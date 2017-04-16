@@ -19,7 +19,7 @@ public class BurgersController {
     private BurgersDAO dao;
 
     @GetMapping("/menu")
-    public List<Burger> getAllBurgers(){
-        return dao.findAll();
+    public String getAllBurgers(){
+        return dao.findAll().toString();
     }
 }

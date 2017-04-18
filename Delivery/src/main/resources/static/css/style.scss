@@ -1,0 +1,520 @@
+@import 'propertires';
+@import 'flex.css';
+
+body{
+	background-image: url('../img/dark_wood.png');
+	*{
+		box-sizing: border-box;
+	}
+}
+
+header{
+	font-family: 'Minion Pro';
+	width:100%;
+	background-image: url('../img/1.png');
+	height: 300px;
+
+
+
+	/* todo: shaddow */
+
+	.container{
+		// position: relative;
+		display: block;
+		// border: 1px solid white;
+		margin-left: calc(123px*100%/1400px);
+		margin-right: calc(123px*100%/1400px);
+		padding-top: 30px;
+		padding-bottom: 35px;
+		color: #fffce2;
+
+		// *{border: 1px solid white;}
+
+		.mobile, .hours{
+			position: relative;
+			float: left;
+			margin-left: 35px;
+			font-size: 15px;
+			opacity: 0.85;
+			letter-spacing: 1px;
+			margin-top: 10px;
+			//margin-right: 5
+			// height: 100%;
+		}
+
+		.mobile::before{@include background-icon($phone,20px,20px);}
+		.hours::before{@include background-icon($time,20px,20px);}
+
+		.mobile::before, .hours::before{
+			background-position:left top;
+			content: " ";
+			position: absolute;
+			top:0;
+			left:-30px;
+			width: 30px;
+			height: 30px;
+			//padding-right: 5px;
+			// border: 1px;
+			// background: url('../img/rubbish-bin.png');
+			// background-size: 20px 20px;
+		}
+
+
+
+
+		.contacts{
+			padding: 7px 12px;
+		}
+
+		.right-header {
+			text-align: right;
+		}
+	}
+
+	.divider{
+		position: absolute;
+		// top:10px;
+		left: 0;
+		border-bottom: 1px solid rgba(255,252,226,0.4);
+		width: 100%;
+		height: 15px;
+	}
+}
+
+
+.btn-account{
+	padding: 7px 12px;
+	border: 1px solid white;
+	background-color: transparent;
+	font-size: 16px;
+}
+
+.btn-account:first-letter{
+	font-size: 12px;
+}
+
+.btn-account:hover{
+	background-color: rgba(255,255,255,0.07);
+}
+.btn-cart{
+	width: 40px;
+	height: 40px;
+	padding: 13px 12px;
+	background-color: transparent;
+	@include background-icon($cart,32px,32px);
+	background-position:center bottom;
+	border-width:0;
+	margin-left: 10px;
+	position: relative;
+	background-blend-mode:screen;
+	// background-color: #13084d;
+	 // -webkit-mask-image: $cart;
+
+	.cart-circle{
+		position: absolute;
+		top:5px;
+		right: -5px;
+		background-color: white;
+		border: 1px solid $black;
+		border-radius: 50%;
+		color: $black;
+		width: 20px;
+		height: 20px;
+		font-size: 12px;
+		padding-top: 1px;
+		text-align: center;
+
+	}
+}
+
+
+.container .second{
+	margin-top: 45px;
+
+	.menu{
+		text-align: right;
+
+		ul{
+			margin-top: 40px;
+			list-style: none;
+
+			li{
+				float: right;
+				padding: 1px 15px;
+				border-right: 2px solid $lighttext;
+			}
+
+			a{
+				color: $lighttext;
+			}
+
+			.active a{
+				color: $yellow;
+			}
+
+			a:hover{
+				color: $yellow;
+				text-decoration: none;
+			}
+			a:focus{
+				text-decoration: none;
+			}
+		}
+
+		ul :first-child{
+			border-width:0;
+		}
+	}
+}
+
+.body{
+	position: relative;
+	width: 90%;
+	background-color: white;
+	// height: 200px;
+	margin: auto;
+	top: -80px;
+	padding: 40px 30px;
+
+	.header{
+		text-align: center;
+		font-size: 44px;
+		font-family: 'Pristina';
+		color: $red;
+
+			.colorful{color: #d56e00;}
+	}
+}
+
+.cart{
+	font-family: 'Minion Pro';
+	margin: 10px 40px;
+
+	.cart-header{
+		font-family: 'Minion Bold';
+		background-color: $black;
+		color: white;
+		padding: 15px 0;
+		font-size: 20px;
+		// font-weight: bold;
+	}
+
+	.cart-items{margin-bottom: 30px;}
+	.item{
+		height: 80px;
+		border-bottom: $divider;
+		*{
+			font-size: 16px;
+			padding-top: 34px;
+		}
+		.bucket{
+			@include background-icon($bucket,30px,30px);
+			background-position: center center;
+			height: 100%;
+			cursor: pointer;
+		}
+		.bucket:hover{
+			opacity: 0.9;
+		}
+
+		.name{
+			color: $red;
+		}
+
+		.price span, .total span{
+			font-size: 12px;
+		}
+
+		.quant{
+			// padding-left: 4.5%;
+
+			span{
+				display: inline-block;
+				padding-top: 0;
+				box-sizing: content-box;
+				padding: 0 5px;
+			}
+
+			.arrow{
+				cursor: pointer;
+				width: 16px;
+				height: 16px;
+				@include icon($arrow);
+			}
+			.before{
+				@include icon($arrow2);
+			}
+		}
+
+	}
+
+	
+	.totals{
+		.row{
+			height: 60px;
+			border-bottom: $divider;
+			padding-top: 22px;
+			font-size: 16px;
+			padding-left: 15px;
+
+			div span{
+				font-size: 13px;
+			}
+		}
+
+		.pre-total{
+				opacity: 0.8;
+			}
+		.total .sum{
+			font-family: 'Minion Bold';
+		}
+
+		.proceed{
+			margin-top: 20px;
+			padding:0;
+			button{
+				width: 100%;
+				margin: auto;
+			}
+		}
+	}
+
+
+	.btn-order{
+		padding: 15px 0 ;
+		background-color: #ffc000;
+		color: white;
+		font-size: 16px;
+		font-family: 'Minion Bold';
+		text-align: center;
+		border-width:0;
+		border-radius: 10px;
+	}
+	.btn-order:hover{
+		background-color: $yellow;
+	}
+}
+
+footer{
+	width: 100%;
+	position: relative;
+	font-size: 14px;
+	opacity: .8;
+
+	.container{
+		display: block;
+		// border: 1px solid white;
+		margin-left: calc(123px*100%/1400px);
+		margin-top: -50px;
+		padding-bottom: 15px;
+		color: #fffce2;
+
+		div{
+			display: inline-block;
+			width: calc(100%/3.3);
+		}
+
+		.ua{
+			text-align: center;
+			*{display:inline-block;padding: 5px;}
+		}
+
+		.privacy-policy{
+			text-align: right;
+		}
+	}
+}
+
+.form-control{border-radius:0 !important; }
+
+.form-data{
+	padding: 20px;
+	label{
+		font-family: 'Minion Pro';
+		font-size: 15px;
+		color: $red;
+		}
+
+	
+}
+.required{
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: $red;
+	margin:0;
+	padding:0;
+
+	position: absolute;
+	right:0;
+	top: 15px;
+}
+
+select{display:block;position:relative;background-color:transparent !important;}
+
+
+.selection::before{
+	content: " ";
+	width: 20px;
+	height: 100%;
+	position: absolute;
+	right:5.2%;
+	top: 0px;
+	background-color: $black;
+	// @include icon($arrow-down);
+	// background-position: center center;
+}
+
+textarea{resize:none;}
+.mandatory{color:$black !important;font-size:12px; opacity:0.8;}
+
+.burger{
+	box-sizing: border-box;
+	// background-color:tomato;
+	height: 350px;
+	color: $black;
+	margin: 30px;
+	font-family: 'Minion Pro';
+	border: $divider;
+
+	&:hover{		
+		border: 1px solid black;
+		transition: 0.5s;
+		
+		.description{
+			opacity: .8;
+			visibility: visible;
+			transition-delay: 0s;
+			.photo{
+				background-size: 120% 12
+				0%;
+			}
+
+		}
+
+	}
+
+	.name{
+		font-family: 'Minion Bold';
+		font-size: 30px;
+		position: relative;
+		text-align: center;
+		margin:auto;
+		padding: 20px 15px 0 15px;
+		
+		color: #641818;
+	}
+
+	.size{
+		position: relative;
+		font-size: 14px;
+		text-align: right;
+		padding-right: 30%;
+		color: rgba(48,48,48, 0.78);
+		// border: 1px solid black;
+		.spicy{
+			position:absolute;
+			@include background-icon($spicy, 18px, 18px);
+			width: 18px;
+			height: 18px;
+			top:0;
+			right:40%;
+		}
+	}
+
+	.photo{
+		@include background-icon($burger-nyc, 150px, 135px);
+		background-position: center center;
+		width: 100%;
+		height: 190px;
+		position: relative;
+	}
+
+	.price, .add{
+		width: 48.899%;
+		float: left;
+		padding: 15px;
+		// text-align: center;
+	}
+
+	.price{
+		font-family: 'Minion Bold';
+		text-align: right;
+		padding-right: 10px;
+		font-size: 20px;
+		color: #641818;
+
+	}
+
+	.add{text-align: center;padding-right: 20px;position: relative;
+		.btn-add{
+			// position: absolute;
+			margin-top: -5px;
+			// right: 45px;
+			width: 30px;
+			height: 30px;
+			padding-right: 15px;
+			background-color: transparent;
+			border-width: 0;
+			// @include background-icon($cart-orange, 30px, 30px);
+			// background-position: center center;
+			background-color: #d56e00;
+  			 -webkit-mask-size: 100%;
+  			 -webkit-mask-image: $cart-orange;
+  			 cursor: pointer;
+
+		}
+		.btn-add:hover{
+			background-color: $red;
+		}
+
+	}
+
+
+	.description{
+		visibility: hidden;
+		background-color: black;
+		opacity: .8;
+		color: white;
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 190px;
+		transition: opacity 0.5s, visibility 0.5s;
+		opacity:0;
+		padding: 22px 35px ;
+		.desc-header{color: $yellow;margin-bottom:10px;}
+
+		article{
+			-webkit-column-count:2;
+			column-count:2;
+			height: 90px;
+			padding:0; margin:0;
+			margin-bottom: 5px;
+
+
+			.ingridients{
+				padding:0;
+				list-style: none;
+				padding:0; margin:0;
+				li{padding:0; margin:0;margin-top:-4px;}
+			}
+		}
+
+		.roasting p{
+			width: auto;
+			float: left;
+
+			&:first-child{
+				color: $yellow;
+				padding-right: 10px;
+			}
+		}
+
+
+	}
+
+
+}
+

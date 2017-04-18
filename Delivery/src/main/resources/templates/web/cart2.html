@@ -1,0 +1,192 @@
+<!DOCTYPE html5>
+<html>
+<head>
+	<title>Cart</title>
+
+
+
+
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+<header>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-5 contacts">
+				<div class="mobile">+38 (050) 555 55 55</div>
+				<div class="hours">7:00 - 23:00</div>
+			</div>
+			<div class="col-md-4"></div>
+			<div class="col-md-3 right-header">
+				<button class="btn-account">My account</button>
+				<button class="btn-cart">
+					<div id="itemsNum" class="cart-circle">12</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+
+	<div class="row second">
+		<div class="col-md-2"><img src="img/logo1.png"></div>
+		<div class="col-md-5"></div>
+		<div class="col-md-5 menu">
+			<ul>
+				<li><a href="#">CONTACTS</a></li>
+				<li class="active"><a href="#">STORE</a></li>
+				<li><a href="#">HOME</a></li>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+</header>
+
+<div class="body">
+	<div class="header">Cart</div>
+
+	<div class="cart">
+		<div class="row">
+			<div class="col-md-8">
+
+				<div class="row cart-header">
+					<div class="col-md-1"></div>
+					<div class="col-md-11">Order Periodical</div>
+				</div>
+
+				<div class="form-data">
+				<form class="form-horizontal" role="form">
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">Full Name <span class="required"></span></label>
+   						<div class="col-sm-10">
+     						<input type="email" class="form-control" id="inputEmail3" placeholder="Full Name" required>
+    					</div>
+  					</div>
+  					<div class="form-group">
+    				<label for="inputPassword3" class="col-sm-2 control-label">	Email <span class="required"></span></label>
+    				<div class="col-sm-10">
+      					<input type="password" class="form-control" id="inputPassword3" placeholder="Email">
+    				</div>
+  					</div>
+
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">Phone <span class="required"></span></label>
+   						<div class="col-sm-10">
+     						<input type="email" class="form-control" id="inputEmail3" placeholder="Phone" required>
+    					</div>
+  					</div>
+
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">Address<span class="required"></span></label>
+   						<div class="col-sm-10">
+     						<input type="email" class="form-control" id="inputEmail3" placeholder="Address" required>
+    					</div>
+  					</div>
+
+  					<div class="form-group">
+  					<label for="inputEmail3" class="col-sm-2 control-label">Payment</label>
+  					<div class="col-sm-5  selection">
+    					<select class="form-control">
+  							<option>Cash</option>
+  							<option>Card</option>
+							</select>
+    					</div>
+  					</div>
+
+  					<div class="form-group">
+    					<label for="inputEmail3" class="col-sm-2 control-label">Comment</label>
+   						<div class="col-sm-10">
+     						<!--<textarea type="email" class="form-control" id="inputEmail3" placeholder="Email" multiple>-->
+     						<textarea class="form-control" rows="3"></textarea>
+    					</div>
+  					</div>
+
+  					<div class="row">
+  						<div class="col-md-2"><span class="required"></span></div>
+  						<div class="col-md-10"> <label for="inputEmail3" class="control-label mandatory">mandatory fields</label></div>
+  					</div>
+
+  				</form>
+  				</div>
+
+				</div>
+
+			<div class="col-md-1"></div>
+
+
+			<div class="col-md-3">
+				
+
+				<div class="row totals">
+					<div class="col-md-12">
+						<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
+						<div class="row pre-total">
+					<div class="col-md-6">Subtotal</div>
+					<div class="col-md-6">600.00 <span>UAH</span> </div>
+				</div>
+				<div class="row total">
+					<div class="col-md-6">Total</div>
+					<div class="col-md-6 sum">600.00 <span>UAH</span> </div>
+				</div>
+
+				<div class="col-md-12 proceed"><button class="btn-order">MAKE AN ORDER</button></div>
+
+			</div>
+		</div>
+
+
+
+			</div>
+		</div>
+
+		<!-- <div class="row item">
+			<div class="col-md-1 bucket"></div>
+			<div class="col-md-5 name">American Burger</div>
+			<div class="col-md-2 price">380.00 <span>UAH</span></div>
+			<div class="col-md-2 quant">
+				<span class="arrow before" id="aBefore"></span>
+				<span>1</span>
+				<span class="arrow after" id="aAfter"></span>
+				</div>
+			<div class="col-md-2 total">380.00 <span>UAH</span></div>
+		</div> -->
+
+		<!-- <div class="row item">
+			<div class="col-md-1 bucket"></div>
+			<div class="col-md-5 name">American Burger</div>
+			<div class="col-md-2 price">380.00 <span>UAH</span></div>
+			<div class="col-md-2 quant">
+				<span class="arrow before" id="aBefore"></span>
+				<span>1</span>
+				<span class="arrow after" id="aAfter"></span>
+				</div>
+			<div class="col-md-2 total">380.00 <span>UAH</span></div>
+		</div> -->
+
+
+		
+
+
+
+	</div>
+
+</div>
+
+<footer>
+<div class="container">
+	<div class="logo"><img src="img/logo2.png"></div>
+	<div class="ua"><img src="img/ukraine.png"><p>ua</p></div>
+	<div class="privacy-policy">Privacy Policy 2017</div>
+</div>
+</footer>
+</body>
+</html>

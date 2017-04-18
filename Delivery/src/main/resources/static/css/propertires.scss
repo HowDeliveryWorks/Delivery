@@ -1,0 +1,56 @@
+ @font-face {
+    font-family: 'Pristina'; /* Имя шрифта */
+    src: url(../fonts/PRISTINA.TTF); /* Путь к файлу со шрифтом */
+   }
+
+ @font-face {
+    font-family: 'Minion Pro'; /* Имя шрифта */
+    src: url(../fonts/MinionPro-Regular.otf); /* Путь к файлу со шрифтом */
+   }
+
+   @font-face {
+    font-family: 'Minion Bold'; /* Имя шрифта */
+    src: url(../fonts/MinionPro-Bold.otf); /* Путь к файлу со шрифтом */
+   }
+
+ /* colors */
+ $lighttext: #fffce2;
+ $black: #313131;
+ $yellow: #ffcf3e;
+ $red: #d54b00;
+
+
+/* borders */
+ $divider: 1px solid rgba(51,51,51,0.21);
+
+/* images */
+ $cart: url(../img/shopping-store-cart-.png);
+ $cart-orange: url(../img/shopping-store-cart-2.png);
+ $phone: url(../img/phone-receiver.png);
+ $time: url(../img/three-quarters-of-an-hour.png);
+ $bucket: url(../img/rubbish-bin.png);
+
+
+ $arrow: url(../img/next.png);
+ $arrow2: url(../img/next2.png);
+ $arrow-down: url(../img/next1.png);
+
+ $burger-nyc: url(../img/burger.png);
+
+ $spicy: url(../img/chili.png);
+ $new: url(../img/new.png);
+
+
+
+ @mixin background-icon($image, $width, $height){
+ 	background-image: $image;
+ 	background-size: $width $height;
+ 	background-repeat: no-repeat;
+ }
+
+ @mixin icon($image){
+ 	background-image: $image;
+ 	background-repeat: no-repeat;
+ 	background-position: center bottom;
+ 	background-size: 12px 12px;
+ }

@@ -4,6 +4,7 @@ import Delivery.DAO.BurgersDAO;
 import Delivery.model.Burger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,9 @@ public class BurgersController {
 
     @GetMapping("/menu")
     public List<Burger> getAllBurgers(){
+        System.out.print("Check");
+        System.out.print(dao.findAll());
         return dao.findAll();
     }
+
 }

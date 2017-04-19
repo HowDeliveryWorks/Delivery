@@ -28,4 +28,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compileOnly('org.projectlombok:lombok')
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.springframework:spring-test")
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }

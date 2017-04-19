@@ -22,8 +22,8 @@ header{
 		// position: relative;
 		display: block;
 		// border: 1px solid white;
-		margin-left: calc(123px*100%/1400px);
-		margin-right: calc(123px*100%/1400px);
+		margin-left: calc(123px*100%/1400);
+		margin-right: calc(123px*100%/1400);
 		padding-top: 30px;
 		padding-bottom: 35px;
 		color: #fffce2;
@@ -304,7 +304,7 @@ footer{
 	.container{
 		display: block;
 		// border: 1px solid white;
-		margin-left: calc(123px*100%/1400px);
+		margin-left: calc(123px*100%/1400);
 		margin-top: -50px;
 		padding-bottom: 15px;
 		color: #fffce2;
@@ -386,8 +386,7 @@ textarea{resize:none;}
 			visibility: visible;
 			transition-delay: 0s;
 			.photo{
-				background-size: 120% 12
-				0%;
+				background-size: 120% 120%;
 			}
 
 		}

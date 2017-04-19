@@ -21,6 +21,8 @@ public class BurgersController {
 
     @GetMapping("/menu")
     public String getAllBurgers(Model model){
+        model.addAttribute("burgers", dao.findAll());
+        List a = dao.findAll();
         return "/web/store";
     }
 

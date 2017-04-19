@@ -1,6 +1,5 @@
 package Delivery.model;
 
-import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
@@ -24,7 +23,7 @@ public class Burger {
     private ArrayList<String> ingredients;
 
     private int weight;
-    private float prize;
+    private int price;
 
     @Override
     public String toString() {
@@ -33,7 +32,7 @@ public class Burger {
                 '}';
     }
 
-    public Burger(UUID id, String name, MeatType meatType, Roasting roasting, BreadType breadType, Boolean spicy, ArrayList<String> ingredients, int weight, float prize) {
+    public Burger(UUID id, String name, MeatType meatType, Roasting roasting, BreadType breadType, Boolean spicy, ArrayList<String> ingredients, int weight, int priсe) {
         this.id = id;
         this.name = name;
         this.meatType = meatType;
@@ -42,6 +41,6 @@ public class Burger {
         this.spicy = spicy;
         this.ingredients = ingredients;
         this.weight = weight;
-        this.prize = prize;
+        this.price = priсe;
     }
 }

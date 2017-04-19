@@ -65,17 +65,16 @@
                     <div class="size" th:text="${burger.getWeight()}  + 'g'">400g</div>
                     <div class="spicy" th:if="${burger.getSpicy()} == true"></div>
 
-                    <div class="photo" th:style="'background-image: url(img/burgers/' + ${burger.getPhoto()} + ')'">
-                        <div class="description">
-                            <div class="desc-header">Ingridients:</div>
-                            <article>
-                                <ul class="ingridients">
-                                    <li th:text="${burger.getBreadType()}">White Bread</li>
-                                    <li th:each="ing : ${burger.getIngredients()}" th:text="${ing}">salad</li>
-                                </ul>
-                            </article>
-                            <div class="roasting"><p>Roasting: </p><p  th:text="${burger.getRoasting()}"> medium well</p></div>
-                        </div>
+					<div class="photo" th:style="'background-image: url(img/burgers/' + ${burger.getPhoto()} + ')'"></div>
+					<div class="description">
+                        <div class="desc-header">Ingridients:</div>
+                        <article>
+                            <ul class="ingridients">
+                                <li th:text="${burger.getBreadType()}">White Bread</li>
+                                <li th:each="ing : ${burger.getIngredients()}" th:text="${ing}">salad</li>
+                            </ul>
+                        </article>
+                        <div class="roasting"><p>Roasting: </p><p  th:text="${burger.getRoasting()}"> medium well</p></div>
                     </div>
 
                     <div class="price" th:text="${burger.getPrice()} + ' UAH'">210 UAH</div>

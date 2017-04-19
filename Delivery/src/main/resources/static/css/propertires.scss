@@ -30,6 +30,8 @@
  $time: url(../img/three-quarters-of-an-hour.png);
  $bucket: url(../img/rubbish-bin.png);
 
+ $main-banner: url(../img/banner.png);
+
 
  $arrow: url(../img/next.png);
  $arrow2: url(../img/next2.png);
@@ -39,6 +41,8 @@
 
  $spicy: url(../img/chili.png);
  $new: url(../img/new.png);
+
+ $check: url(../img/checked.png);
 
 
 
@@ -54,3 +58,10 @@
  	background-position: center bottom;
  	background-size: 12px 12px;
  }
+
+
+@keyframes cart-done{
+  0%{transform:scale(0.1); background-color:$black; border-width:0;}
+  50%{transform:scale(0.5);background-color:#d56e00;border-width:0;}
+  100%{transform:scale(1.0); background-color:$red;border-width:0;}
+}

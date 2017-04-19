@@ -17,6 +17,19 @@
 /* colors */
 /* borders */
 /* images */
+@keyframes cart-done {
+  0% {
+    transform: scale(0.1);
+    background-color: #313131;
+    border-width: 0; }
+  50% {
+    transform: scale(0.5);
+    background-color: #d56e00;
+    border-width: 0; }
+  100% {
+    transform: scale(1);
+    background-color: #d54b00;
+    border-width: 0; } }
 .flex-container {
   padding: 0;
   margin: 0;
@@ -89,6 +102,11 @@ header {
     border-bottom: 1px solid rgba(255, 252, 226, 0.4);
     width: 100%;
     height: 15px; }
+
+.main {
+  background-image: url(../img/banner.png);
+  height: 700px;
+  margin-top: -50px; }
 
 .btn-account {
   padding: 7px 12px;
@@ -311,6 +329,7 @@ textarea {
   opacity: 0.8; }
 
 .burger {
+  position: relative;
   box-sizing: border-box;
   height: 350px;
   color: #313131;
@@ -320,12 +339,15 @@ textarea {
   .burger:hover {
     border: 1px solid black;
     transition: 0.5s; }
+    .burger:hover .photo {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+      transition-delay: 0s;
+      transition: 0.5s; }
     .burger:hover .description {
       opacity: .8;
       visibility: visible;
       transition-delay: 0s; }
-      .burger:hover .description .photo {
-        background-size: 120% 12 0%; }
   .burger .name {
     font-family: 'Minion Bold';
     font-size: 30px;
@@ -342,15 +364,15 @@ textarea {
     padding-right: 30%;
     color: rgba(48, 48, 48, 0.78); }
   .burger .spicy {
-      position: relative;
-      background-image: url(../img/chili.png);
-      background-size: 18px 18px;
-      background-repeat: no-repeat;
-      width: 18px;
-      height: 18px;
-      display: block;
-      float: right;
-      padding-right: 20px; }
+    position: relative;
+    background-image: url(../img/chili.png);
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+    float: right;
+    padding-right: 20px; }
   .burger .photo {
     background-image: url(../img/burger.png);
     background-size: 150px 135px;
@@ -362,7 +384,8 @@ textarea {
   .burger .price, .burger .add {
     width: 48.899%;
     float: left;
-    padding: 15px; }
+    padding: 15px;
+    position: relative; }
   .burger .price {
     font-family: 'Minion Bold';
     text-align: right;
@@ -386,13 +409,16 @@ textarea {
       cursor: pointer; }
     .burger .add .btn-add:hover {
       background-color: #d54b00; }
+  .burger .add-done {
+    -webkit-mask-image: url(../img/checked.png) !important;
+    animation: cart-done 0.15s ease-out 1; }
   .burger .description {
     visibility: hidden;
     background-color: black;
     opacity: .8;
     color: white;
     position: absolute;
-    top: 0;
+    top: 85px;
     left: 0;
     width: 100%;
     height: 190px;
@@ -424,5 +450,51 @@ textarea {
       .burger .description .roasting p:first-child {
         color: #ffcf3e;
         padding-right: 10px; }
+
+/*---------------------------main--------------------------*/
+/* TODO : shaddows */
+.anti-slider {
+  width: 100%;
+  text-align: center;
+  margin-top: 55px; }
+  .anti-slider .sl-header {
+    font-family: 'Pristina';
+    color: #ffcf3e;
+    font-size: 60px; }
+  .anti-slider p {
+    margin-top: 20px;
+    color: white;
+    font-family: 'Minion Pro';
+    font-size: 20px; }
+  .anti-slider .btn-visit {
+    margin: auto;
+    font-family: 'Minion Bold';
+    font-size: 16px;
+    background-color: rgba(255, 207, 62, 0.73);
+    border-width: 0;
+    padding: 10px 50px;
+    color: #313131;
+    margin-top: 10px; }
+    .anti-slider .btn-visit:hover {
+      background-color: #ffcf3e; }
+
+.index {
+  margin-top: 30px; }
+  .index .about {
+    padding: 30px 100px 20px 20px; }
+  .index .header, .index article {
+    font-size: 60px;
+    text-align: right; }
+  .index article {
+    font-family: 'Minion Pro';
+    margin-top: 30px;
+    padding-left: 0px;
+    font-size: 22px; }
+  .index .image {
+    padding: 20px  20px 20px 100px; }
+    .index .image img {
+      border: 15px solid #313131;
+      width: 355px;
+      height: 400px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,5 +1,5 @@
 @import 'propertires';
-@import 'flex.css';
+@import 'flex';
 
 body{
 	background-image: url('../img/dark_wood.png');
@@ -22,8 +22,8 @@ header{
 		// position: relative;
 		display: block;
 		// border: 1px solid white;
-		margin-left: calc(123px*100%/1400);
-		margin-right: calc(123px*100%/1400);
+		margin-left: calc(123px*100%/1400px);
+		margin-right: calc(123px*100%/1400px);
 		padding-top: 30px;
 		padding-bottom: 35px;
 		color: #fffce2;
@@ -79,6 +79,12 @@ header{
 		width: 100%;
 		height: 15px;
 	}
+}
+
+.main{
+	background-image: $main-banner;
+	height: 700px;
+	margin-top: -50px;
 }
 
 
@@ -304,7 +310,7 @@ footer{
 	.container{
 		display: block;
 		// border: 1px solid white;
-		margin-left: calc(123px*100%/1400);
+		margin-left: calc(123px*100%/1400px);
 		margin-top: -50px;
 		padding-bottom: 15px;
 		color: #fffce2;
@@ -369,6 +375,7 @@ textarea{resize:none;}
 .mandatory{color:$black !important;font-size:12px; opacity:0.8;}
 
 .burger{
+	position: relative;
 	box-sizing: border-box;
 	// background-color:tomato;
 	height: 350px;
@@ -380,15 +387,16 @@ textarea{resize:none;}
 	&:hover{		
 		border: 1px solid black;
 		transition: 0.5s;
-		
+		.photo{
+				 -webkit-transform: scale(1.2);
+  				transform: scale(1.2);
+  				transition-delay: 0s;
+  				transition: 0.5s;
+		}
 		.description{
 			opacity: .8;
 			visibility: visible;
 			transition-delay: 0s;
-			.photo{
-				background-size: 120% 120%;
-			}
-
 		}
 
 	}
@@ -433,6 +441,8 @@ textarea{resize:none;}
 		width: 48.899%;
 		float: left;
 		padding: 15px;
+		position: relative;
+		// top: -190px;
 		// text-align: center;
 	}
 
@@ -465,8 +475,15 @@ textarea{resize:none;}
 		}
 		.btn-add:hover{
 			background-color: $red;
+
 		}
 
+	}
+
+	.add-done{
+		
+		-webkit-mask-image: $check !important;
+		animation: cart-done 0.15s ease-out 1; 
 	}
 
 
@@ -476,9 +493,11 @@ textarea{resize:none;}
 		opacity: .8;
 		color: white;
 		position: absolute;
-		top:0;
+		top: 85px;
 		left:0;
 		width: 100%;
+		// margin:auto;
+		// margin-left: 11%;
 		height: 190px;
 		transition: opacity 0.5s, visibility 0.5s;
 		opacity:0;
@@ -517,3 +536,69 @@ textarea{resize:none;}
 
 }
 
+/*---------------------------main--------------------------*/
+
+
+
+/* TODO : shaddows */
+.anti-slider{
+	width:100%;
+	text-align: center;
+	margin-top: 55px;
+
+	.sl-header{
+		font-family: 'Pristina';
+		color: $yellow;
+		font-size: 60px;
+	}
+
+	p{
+		margin-top: 20px;
+		color: white;
+		font-family: 'Minion Pro';
+		font-size: 20px;
+	}
+
+	.btn-visit{
+		margin: auto;
+		font-family: 'Minion Bold';
+		font-size: 16px;		
+		background-color: rgba(255,207,62,0.73);
+		border-width:0;
+		padding:10px 50px;
+		color: $black;
+		margin-top: 10px;
+
+		&:hover{
+			background-color: rgba(255,207,62,1);
+		}
+	}
+
+
+}
+
+
+.index{
+	margin-top: 30px;
+	// position: relative;
+	.about{
+		padding: 30px 100px 20px 20px;
+	}
+	.header, article{
+		font-size: 60px;
+		text-align: right;
+	}
+
+	article{
+		font-family: 'Minion Pro';
+		margin-top: 30px;
+		padding-left: 0px;
+		font-size: 22px;
+	}
+
+	.image{
+		padding: 20px  20px 20px 100px;
+		img{border: 15px solid $black;width:355px;height:400px;}
+	}
+
+}

@@ -32,7 +32,7 @@ public class Burger {
                 '}';
     }
 
-    public Burger(UUID id, String name, MeatType meatType, Roasting roasting, BreadType breadType, Boolean spicy, ArrayList<String> ingredients, int weight, int priсe, String photo) {
+    public Burger(UUID id, String name, MeatType meatType, Roasting roasting, BreadType breadType, Boolean spicy, ArrayList<String> ingredients, int weight, int price, String photo) {
         this.id = id;
         this.name = name;
         this.meatType = meatType;
@@ -41,7 +41,7 @@ public class Burger {
         this.spicy = spicy;
         this.ingredients = ingredients;
         this.weight = weight;
-        this.price = priсe;
+        this.price = price;
         this.photo = photo;
     }
 }

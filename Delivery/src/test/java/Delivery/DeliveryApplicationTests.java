@@ -28,37 +28,37 @@ public class DeliveryApplicationTests {
 
 	    ArrayList<String> ing = new ArrayList<>();
 	    Collections.addAll(ing,"Mayo", "Iceberg Lettuce", "Red Onion", "Chess", "Tomato", "Pickles", "BBQ sauce");
-        Burger burger = new Burger(UUID.randomUUID(), "New York", MeatType.Beef, Roasting.Medium, BreadType.WihiteBread, false, ing, 400, 210);
+        Burger burger = new Burger(UUID.randomUUID(), "New York", MeatType.Beef, Roasting.Medium, BreadType.WihiteBread, false, ing, 400, 210, "burger-1.png");
         burgers.add(burger);
 
         ArrayList<String> ing1 = new ArrayList<>();
         Collections.addAll(ing1,"Mayo", "Iceberg Lettuce", "Tomato", "BBQ sauce", "Chess", "Bacon", "Pickles", "Onion Rings");
-        Burger burger1 = new Burger(UUID.randomUUID(), "The Burger", MeatType.Chicken, Roasting.WellDone, BreadType.WihiteBread, false, ing1, 390, 290);
+        Burger burger1 = new Burger(UUID.randomUUID(), "The Burger", MeatType.Chicken, Roasting.WellDone, BreadType.WihiteBread, false, ing1, 390, 290, "burger-2.png");
         burgers.add(burger1);
 
         ArrayList<String> ing2 = new ArrayList<>();
         Collections.addAll(ing2,"Iceberg Lettuce", "Sauce Salsa", "Secret Sauce", "Chess Viola");
-        Burger burger2 = new Burger(UUID.randomUUID(), "Boston", MeatType.Duck, Roasting.WellDone, BreadType.WihiteBread, true, ing2, 360, 265);
+        Burger burger2 = new Burger(UUID.randomUUID(), "Boston", MeatType.Duck, Roasting.WellDone, BreadType.WihiteBread, true, ing2, 360, 265, "burger-5.png");
         burgers.add(burger2);
 
         ArrayList<String> ing3 = new ArrayList<>();
         Collections.addAll(ing3,"Berry Sauce", "Iceberg Lettuce", "Chess Dar Blue", "Caramelized Apples");
-        Burger burger3 = new Burger(UUID.randomUUID(), "Carolina", MeatType.Duck, Roasting.WellDone, BreadType.WihiteBread, false, ing3, 320, 225);
+        Burger burger3 = new Burger(UUID.randomUUID(), "Carolina", MeatType.Duck, Roasting.WellDone, BreadType.WihiteBread, false, ing3, 320, 225, "burger-4.png");
         burgers.add(burger3);
 
         ArrayList<String> ing4 = new ArrayList<>();
         Collections.addAll(ing4,"Onion", "Mozzarella", "Bulgarian Pepper", "BBQ sauce", "Iceberg Lettuce", "Tomato", "Eggplant", "Zucchini");
-        Burger burger4 = new Burger(UUID.randomUUID(), "Florida", MeatType.Beef, Roasting.Medium, BreadType.BlackBread, false, ing4, 360, 165);
+        Burger burger4 = new Burger(UUID.randomUUID(), "Florida", MeatType.Beef, Roasting.Medium, BreadType.BlackBread, false, ing4, 360, 165, "burger-3.png");
         burgers.add(burger4);
 
         ArrayList<String> ing5 = new ArrayList<>();
         Collections.addAll(ing5,"Iceberg Lettuce", "Tomato", "Mustard", "Red Onion", "Mayo", "Chess Gauda", "Catchup");
-        Burger burger5 = new Burger(UUID.randomUUID(), "Williams", MeatType.Beef, Roasting.MediumWell, BreadType.WihiteBread, true, ing5, 310, 160);
+        Burger burger5 = new Burger(UUID.randomUUID(), "Williams", MeatType.Beef, Roasting.MediumWell, BreadType.WihiteBread, true, ing5, 310, 160, "burger-6.png");
         burgers.add(burger5);
 
         ArrayList<String> ing6 = new ArrayList<>();
         Collections.addAll(ing6,"Tomato", "Mozzarella", "Iceberg Lettuce", "Sauce Pesto");
-        Burger burger6 = new Burger(UUID.randomUUID(), "Kentucky", MeatType.Chicken, Roasting.WellDone, BreadType.WihiteBread, false, ing6, 340, 170);
+        Burger burger6 = new Burger(UUID.randomUUID(), "Kentucky", MeatType.Chicken, Roasting.WellDone, BreadType.WihiteBread, false, ing6, 340, 170, "burger-7.png");
         burgers.add(burger6);
         dao.insert(burgers);
 

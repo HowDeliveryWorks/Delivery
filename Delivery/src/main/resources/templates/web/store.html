@@ -48,6 +48,7 @@
 </header>
 
 <div class="body">
+
 	<div class="header">Burger <span class="colorful">Store</span></div>
 	<div class="item-list">
 	<div class="row">
@@ -56,11 +57,10 @@
 		    <div class="burger">
 		        <div class="name" th:text="${burger.name}">New York</div>
 
-                <div class="size" th:text="${burger.weight}  + 'g'">400g<div class="spicy" th:if="${burger.spicy} == true"></div></div>
+                <div class="size" th:text="${burger.weight}  + 'g'">400g</div>
+                <div class="spicy" th:if="${burger.spicy} == true"></div>
 
-                <!--<div class="size" th:text="${burger.weight}  + 'g'">400g<div class="spicy"></div></div>-->
-
-		        <div class="photo">
+		        <div class="photo" th:style="'background-image: url(img/burgers/' + ${burger.photo} + ')'">
                     <div class="description">
                         <div class="desc-header">Ingridients:</div>
                         <article>
@@ -78,75 +78,6 @@
 
 		    </div>
 		</div>
-		
-		<!--<div class="col-md-4">-->
-			<!--<div class="burger">-->
-				<!--<div class="name">New York</div>-->
-				<!---->
-				<!--<div class="size">400g<div class="spicy"></div></div>-->
-
-				<!--<div class="photo">-->
-					<!--<div class="description">-->
-						<!--<div class="desc-header">Ingridients:</div>-->
-						<!--<article>-->
-							<!--<ul class="ingridients">-->
-								<!--<li>White Bread</li>-->
-								<!--<li>salad</li>-->
-								<!--<li>red onion</li>-->
-								<!--<li>tomato</li>-->
-								<!--<li>tomato</li>-->
-								<!--<li>White Bread</li>-->
-								<!--<li>salad</li>-->
-								<!--<li>red onion</li>-->
-								<!--<li>tomato</li>-->
-								<!--<li>tomato</li>-->
-							<!--</ul>-->
-						<!--</article>-->
-						<!--<div class="roasting"><p>Roasting: </p><p> medium well</p></div>-->
-					<!--</div>-->
-				<!--</div>-->
-
-				<!--<div class="price">210 UAH</div>-->
-				<!--<div class="add"><button class="btn-add" id="addToCart"></button></div>-->
-
-			<!--</div>-->
-		<!--</div>-->
-
-		<!--<div class="col-md-4">-->
-			<!--<div class="burger">-->
-				<!--<div class="name">New York</div>-->
-				<!--<div class="size">400g</div>-->
-				<!--<div class="photo"><div class="description"></div></div>-->
-				<!---->
-				<!--<div class="price">210 UAH</div>-->
-				<!--<div class="add"><button class="btn-add" id="addToCart"></button></div>-->
-
-			<!--</div>-->
-		<!--</div>-->
-
-		<!--<div class="col-md-4">-->
-			<!--<div class="burger">-->
-				<!--<div class="name">New York</div>-->
-				<!--<div class="size">400g</div>-->
-				<!--<div class="photo"><div class="description"></div></div>-->
-				<!---->
-				<!--<div class="price">210 UAH</div>-->
-				<!--<div class="add"><button class="btn-add" id="addToCart"></button></div>-->
-
-			<!--</div>-->
-		<!--</div>-->
-		<!--<div class="col-md-4">-->
-			<!--<div class="burger">-->
-				<!--<div class="name">New York</div>-->
-				<!--<div class="size">400g</div>-->
-				<!--<div class="photo"><div class="description"></div></div>-->
-				<!---->
-				<!--<div class="price">210 UAH</div>-->
-				<!--<div class="add"><button class="btn-add" id="addToCart"></button></div>-->
-
-			<!--</div>-->
-		<!--</div>-->
-
 		
 	</div>
 	</div>

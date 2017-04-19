@@ -10,7 +10,6 @@ import java.util.UUID;
  * Created by igor on 08.04.17.
  */
 @Data
-@Builder
 @NoArgsConstructor
 public class Burger {
     @Id
@@ -21,6 +20,7 @@ public class Burger {
     private BreadType breadType;
     private Boolean spicy;
     private ArrayList<String> ingredients;
+    private String photo;
 
     private int weight;
     private int price;
@@ -32,7 +32,7 @@ public class Burger {
                 '}';
     }
 
-    public Burger(UUID id, String name, MeatType meatType, Roasting roasting, BreadType breadType, Boolean spicy, ArrayList<String> ingredients, int weight, int priсe) {
+    public Burger(UUID id, String name, MeatType meatType, Roasting roasting, BreadType breadType, Boolean spicy, ArrayList<String> ingredients, int weight, int priсe, String photo) {
         this.id = id;
         this.name = name;
         this.meatType = meatType;
@@ -42,5 +42,6 @@ public class Burger {
         this.ingredients = ingredients;
         this.weight = weight;
         this.price = priсe;
+        this.photo = photo;
     }
 }

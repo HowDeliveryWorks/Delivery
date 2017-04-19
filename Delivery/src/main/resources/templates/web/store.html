@@ -65,7 +65,7 @@
                     <div class="size" th:text="${burger.weight}  + 'g'">400g</div>
                     <div class="spicy" th:if="${burger.spicy} == true"></div>
 
-                    <div class="photo" th:style="'background-image: url(img/burgers/' + ${burger.photo} + ')'">
+                    <div class="photo" th:style="'background-image: url(img/burgers/' + ${burger.photo} + ')'"></div>
                         <div class="description">
                             <div class="desc-header">Ingridients:</div>
                             <article>
@@ -76,7 +76,7 @@
                             </article>
                             <div class="roasting"><p>Roasting: </p><p  th:text="${burger.roasting}"> medium well</p></div>
                         </div>
-                    </div>
+
 
                     <div class="price" th:text="${burger.price} + ' UAH'">210 UAH</div>
                     <div class="add"><button class="btn-add" id="addToCart" onclick="addToCart(this)"></button></div>

@@ -14,16 +14,16 @@ import java.util.UUID;
 public class Burger {
     @Id
     private UUID id;
-    private String name;
-    private MeatType meatType;
-    private Roasting roasting;
-    private BreadType breadType;
-    private Boolean spicy;
-    private ArrayList<String> ingredients;
-    private String photo;
+    public String name;
+    public MeatType meatType;
+    public Roasting roasting;
+    public BreadType breadType;
+    public Boolean spicy;
+    public ArrayList<String> ingredients;
+    public String photo;
 
-    private int weight;
-    private int price;
+    public int weight;
+    public int price;
 
     @Override
     public String toString() {

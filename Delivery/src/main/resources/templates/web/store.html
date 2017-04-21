@@ -60,25 +60,25 @@
 
             <div class="col-md-4" th:each="burger : ${burgers}">
                 <div class="burger">
-                    <div class="name" th:text="${burger.name}">New York</div>
+                    <div class="name" th:text="${burger.getName()}">New York</div>
 
-                    <div class="size" th:text="${burger.weight}  + 'g'">400g</div>
-                    <div class="spicy" th:if="${burger.spicy} == true"></div>
+                    <div class="size" th:text="${burger.getWeight()}  + 'g'">400g</div>
+                    <div class="spicy" th:if="${burger.getSpicy()} == true"></div>
 
-                    <div class="photo" th:style="'background-image: url(img/burgers/' + ${burger.photo} + ')'"></div>
-                        <div class="description">
-                            <div class="desc-header">Ingridients:</div>
-                            <article>
-                                <ul class="ingridients">
-                                    <li th:text="${burger.breadType}">White Bread</li>
-                                    <li th:each="ing : ${burger.ingredients}" th:text="${ing}">salad</li>
-                                </ul>
-                            </article>
-                            <div class="roasting"><p>Roasting: </p><p  th:text="${burger.roasting}"> medium well</p></div>
-                        </div>
+					<div class="photo" th:style="'background-image: url(img/burgers/' + ${burger.getPhoto()} + ')'"></div>
+					<div class="description">
+                        <div class="desc-header">Ingridients:</div>
+                        <article>
+                            <ul class="ingridients">
+                                <li th:text="${burger.getBreadType()}">White Bread</li>
+                                <li th:text="${burger.getMeatType()}">Beef</li>
+                                <li th:each="ing : ${burger.getIngredients()}" th:text="${ing}">salad</li>
+                            </ul>
+                        </article>
+                        <div class="roasting"><p>Roasting: </p><p  th:text="${burger.getRoasting()}"> medium well</p></div>
+                    </div>
 
-
-                    <div class="price" th:text="${burger.price} + ' UAH'">210 UAH</div>
+                    <div class="price" th:text="${burger.getPrice()} + ' UAH'">210 UAH</div>
                     <div class="add"><button class="btn-add" id="addToCart" onclick="addToCart(this)"></button></div>
 
                 </div>

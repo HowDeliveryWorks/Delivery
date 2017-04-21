@@ -35,4 +35,9 @@ public class BurgersController {
     public String cart2(Model model){
         return "/web/cart2";
     }
+
+    @GetMapping("/")
+    public String main(Model model){
+        return "/web/index";
+    }
 }

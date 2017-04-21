@@ -1,0 +1,114 @@
+<!DOCTYPE html5>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Cart</title>
+
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+</head>
+<body>
+<header>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-5 contacts">
+				<div class="mobile">+38 (050) 555 55 55</div>
+				<div class="hours">7:00 - 23:00</div>
+			</div>
+			<div class="col-md-4"></div>
+			<div class="col-md-3 right-header">
+				<button class="btn-account">My account</button>
+				<button class="btn-cart">
+					<div id="itemsNum" class="cart-circle">12</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+
+	<div class="row second">
+		<div class="col-md-2"><img src="img/logo1.png"></div>
+		<div class="col-md-5"></div>
+		<div class="col-md-5 menu">
+			<ul>
+				<li><a href="#">CONTACTS</a></li>
+				<li class="active"><a href="#">STORE</a></li>
+				<li><a href="#">HOME</a></li>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+</header>
+
+<div class="body">
+	<div class="header">Cart</div>
+
+	<div class="cart">
+		<div class="cart-items">
+		<div class="row cart-header">
+			<div class="col-md-1"></div>
+			<div class="col-md-5">Item</div>
+			<div class="col-md-2">Price</div>
+			<div class="col-md-2">Quantity</div>
+			<div class="col-md-2">Total</div>
+		</div>
+
+		<div class="row item" th:each="cartLine : ${cartInfo.getCartLines()}">
+			<div class="col-md-1 bucket">
+				<a th:href="@{/shoppingCartRemoveProduct(id=${cartLine.getBurgerInfo().getId()})}"></a>
+			</div>
+			<div class="col-md-5 name" th:text="${cartLine.getBurgerInfo().getName()}">American Burger</div>
+			<div class="col-md-2 price" th:text="${cartLine.getBurgerInfo().getPrice()}">380.00 <span>UAH</span></div>
+			<div class="col-md-2 quant">
+				<span class="arrow before" id="aBefore"></span>
+				<span th:text="${cartLine.getQuantity()}" >1</span>
+				<span class="arrow after" id="aAfter"></span>
+				</div>
+			<div class="col-md-2 total" th:text="${cartLine.getBurgerInfo().getName()}" >380.00 <span>UAH</span></div>
+		</div>
+
+		</div>
+
+		<div class="row totals">
+			<div class="col-md-9"></div>
+			<div class="col-md-3">
+				<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
+				<div class="row pre-total">
+					<div class="col-md-6">Subtotal</div>
+					<div class="col-md-6">600.00 <span>UAH</span> </div>
+				</div>
+				<div class="row total">
+					<div class="col-md-6">Total</div>
+					<div class="col-md-6 sum">600.00 <span>UAH</span> </div>
+				</div>
+
+				<div class="col-md-12 proceed"><button class="btn-order">PROCEED  TO  CHECKOUT</button></div>
+
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+</div>
+
+<footer>
+<div class="container">
+	<div class="logo"><img src="img/logo2.png"></div>
+	<div class="ua"><img src="img/ukraine.png"><p>ua</p></div>
+	<div class="privacy-policy">Privacy Policy 2017</div>
+</div>
+</footer>
+</body>
+</html>

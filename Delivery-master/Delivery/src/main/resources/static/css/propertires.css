@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Pristina';
+  /* ╨Ш╨╝╤П ╤И╤А╨╕╤Д╤В╨░ */
+  src: url(../fonts/PRISTINA.TTF);
+  /* ╨Я╤Г╤В╤М ╨║ ╤Д╨░╨╣╨╗╤Г ╤Б╨╛ ╤И╤А╨╕╤Д╤В╨╛╨╝ */ }
+@font-face {
+  font-family: 'Minion Pro';
+  /* ╨Ш╨╝╤П ╤И╤А╨╕╤Д╤В╨░ */
+  src: url(../fonts/MinionPro-Regular.otf);
+  /* ╨Я╤Г╤В╤М ╨║ ╤Д╨░╨╣╨╗╤Г ╤Б╨╛ ╤И╤А╨╕╤Д╤В╨╛╨╝ */ }
+@font-face {
+  font-family: 'Minion Bold';
+  /* ╨Ш╨╝╤П ╤И╤А╨╕╤Д╤В╨░ */
+  src: url(../fonts/MinionPro-Bold.otf);
+  /* ╨Я╤Г╤В╤М ╨║ ╤Д╨░╨╣╨╗╤Г ╤Б╨╛ ╤И╤А╨╕╤Д╤В╨╛╨╝ */ }
+/* colors */
+/* borders */
+/* images */
+@keyframes cart-done {
+  0% {
+    transform: scale(0.1);
+    background-color: #313131;
+    border-width: 0; }
+  50% {
+    transform: scale(0.5);
+    background-color: #d56e00;
+    border-width: 0; }
+  100% {
+    transform: scale(1);
+    background-color: #d54b00;
+    border-width: 0; } }
+
+/*# sourceMappingURL=propertires.css.map */

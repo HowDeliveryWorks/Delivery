@@ -64,6 +64,8 @@ public class DeliveryApplicationTests {
 
         List<Burger> res = dao.findAll();
         System.out.print(res);
+
+
 	}
 
 }

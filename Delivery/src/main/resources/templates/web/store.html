@@ -71,6 +71,7 @@
                         <article>
                             <ul class="ingridients">
                                 <li th:text="${burger.getBreadType()}">White Bread</li>
+                                <li th:text="${burger.getMeatType()}">Beef</li>
                                 <li th:each="ing : ${burger.getIngredients()}" th:text="${ing}">salad</li>
                             </ul>
                         </article>

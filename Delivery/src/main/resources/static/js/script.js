@@ -17,6 +17,32 @@ function addToCart(elem){
 	},2000);
 
 	setCount();
-	
+
 }
+
+
+function incrItem(elem,price){
+	var curr = $(elem).prev().text();
+    console.log(curr);
+	curr = +curr;
+
+	console.log(curr++);
+    $(elem).parent().next().text(curr*price);
+    $(elem).prev().text(curr++);
+
+
+}
+
+function decrItem(elem,price){
+    var curr = $(elem).next().text();
+    console.log(curr);
+    curr = +curr;
+    if(curr>1){
+        curr = curr-1;
+    	$(elem).next().text(curr);
+    }
+    $(elem).parent().next().text(curr*price);
+
+}
+
 

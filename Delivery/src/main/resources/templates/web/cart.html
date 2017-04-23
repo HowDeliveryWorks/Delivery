@@ -8,6 +8,7 @@
 
 
 	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/script.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
@@ -65,14 +66,14 @@
 		<div class="row item" th:each="cartLine : ${session.currentCart.getCartLines()}">
 			<!--<div class="col-md-1 bucket">  For the better times...-->
 			<div class="col-md-1">
-				<a th:href="@{/shoppingCartRemoveProduct(id=${cartLine.getBurgerInfo().getId()})}">Delete</a>
+				<a th:href="@{/shoppingCartRemoveProduct(id=${cartLine.getBurgerInfo().getId()})}" class="bucket"></a>
 			</div>
 			<div class="col-md-5 name" th:text="${cartLine.getBurgerInfo().getName()}">American Burger</div>
 			<div class="col-md-2 price" th:text="${cartLine.getBurgerInfo().getPrice()}">380.00 <span>UAH</span></div>
 			<div class="col-md-2 quant">
-				<span class="arrow before" id="aBefore"></span>
-				<span th:text="${cartLine.getQuantity()}" >1</span>
-				<span class="arrow after" id="aAfter"></span>
+				<span class="arrow before"  th:onclick="'javascript:decrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>
+				<span th:text="${cartLine.getQuantity()}"id="quantity">1</span>
+				<span class="arrow after" id="aAfter"  th:onclick="'javascript:incrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>
 				</div>
 			<div class="col-md-2 total" th:text="${cartLine.getAmount()}" >380.00 <span>UAH</span></div>
 		</div>
@@ -80,7 +81,9 @@
 		</div>
 
 		<div class="row totals">
-			<div class="col-md-9"></div>
+			<div class="col-md-6"></div>
+			<div class="col-md-2 update"><a class="btn-order">UPDATE CART</a></div>
+			<div class="col-md-1"></div>
 			<div class="col-md-3">
 				<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
 				<div class="row pre-total">
@@ -115,5 +118,7 @@
 	<div class="privacy-policy">Privacy Policy 2017</div>
 </div>
 </footer>
+
+
 </body>
 </html>

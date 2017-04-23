@@ -39,7 +39,7 @@ public class ApplicationMailerTest {
         /*text = "We have a new order. Order info:  /n"
                 + order.toString();
         mailer.sendMail("howdeliveryworks@gmail.com", "Test Subject", text);*/
-        mailer.sendPreConfiguredMail("Exception occurred everywhere.. where are you ????");
+        //mailer.sendPreConfiguredMail("Exception occurred everywhere.. where are you ????");
     }
 
 }

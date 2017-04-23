@@ -497,4 +497,21 @@ textarea {
   display: block;
   width: 100%; }
 
+.about form input, .about form textarea {
+  width: 130%;
+  padding: 20px 25px; }
+.about form textarea {
+  color: grey; }
+.about form button {
+  font-family: 'Minion Bold';
+  font-size: 18px;
+  border: none;
+  width: 107%;
+  padding: 15px 20px;
+  background-color: #ffcf3e;
+  color: #313131;
+  text-align: center; }
+  .about form button:hover {
+    background-color: #ffcc33; }
+
 /*# sourceMappingURL=style.css.map */

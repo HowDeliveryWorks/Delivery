@@ -621,3 +621,31 @@ textarea{resize:none;}
     width: 100%;
   }
 }
+
+
+.about form{
+
+	input, textarea{
+		width: 130%;
+		padding: 20px 25px;
+	}
+
+	textarea{
+		color: grey;
+	}
+
+	button{
+		font-family: 'Minion Bold';
+		font-size: 18px;
+		border: none;
+		width: 107%;
+		padding: 15px 20px;
+		background-color: $yellow;
+		color: $black;
+		text-align: center;
+
+		&:hover{
+			background-color: #ffcc33;
+		}
+	}
+}

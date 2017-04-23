@@ -4,6 +4,7 @@ import Delivery.model.*;
 import Delivery.services.ApplicationMailer;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class ApplicationMailerTest {
     @Test
     public void test()
     {
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
-        ApplicationMailer mailer = (ApplicationMailer) context.getBean("mailService");
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
+        ApplicationMailer mailer = (ApplicationMailer) ctx.getBean("mailService");
         Customer vasya = new Customer(UUID.randomUUID(), "vasya", "howdeliveryworks@gmail.com");
         ArrayList<String> ingredients = new ArrayList<>();
         Collections.addAll(ingredients, "Mayo", "Iceberg Lettuce", "Red Onion", "Chess", "Tomato", "Pickles", "BBQ sauce");
@@ -35,7 +36,10 @@ public class ApplicationMailerTest {
                 + " with the order price of "
                 + order.getOrderPrice();
         mailer.sendMail("howdeliveryworks@gmail.com", "Test Subject", text);
-        //mailer.sendPreConfiguredMail("Exception occurred everywhere.. where are you ????");
+        /*text = "We have a new order. Order info:  /n"
+                + order.toString();
+        mailer.sendMail("howdeliveryworks@gmail.com", "Test Subject", text);*/
+        mailer.sendPreConfiguredMail("Exception occurred everywhere.. where are you ????");
     }
 
 }

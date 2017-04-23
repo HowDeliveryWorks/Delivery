@@ -1,10 +1,16 @@
 package Delivery.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BurgerInfo {
 
     private UUID id;
@@ -22,9 +28,6 @@ public class BurgerInfo {
     // Upload file.
     private CommonsMultipartFile fileData;
 
-    public BurgerInfo() {
-    }
-
     public BurgerInfo(Burger burger) {
         this.id = burger.getId();
         this.name = burger.getName();
@@ -35,90 +38,6 @@ public class BurgerInfo {
         this.ingredients = burger.getIngredients();
         this.weight = burger.getWeight();
         this.price = burger.getPrice();
-    }
-
-    public BurgerInfo(UUID id, String name, MeatType meatType, Roasting roasting, BreadType breadType, Boolean spicy, ArrayList<String> ingredients, int weight, int price) {
-        this.id = id;
-        this.name = name;
-        this.meatType = meatType;
-        this.roasting = roasting;
-        this.breadType = breadType;
-        this.spicy = spicy;
-        this.ingredients = ingredients;
-        this.weight = weight;
-        this.price = price;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public MeatType getMeatType() {
-        return meatType;
-    }
-
-    public void setMeatType(MeatType meatType) {
-        this.meatType = meatType;
-    }
-
-    public Roasting getRoasting() {
-        return roasting;
-    }
-
-    public void setRoasting(Roasting roasting) {
-        this.roasting = roasting;
-    }
-
-    public BreadType getBreadType() {
-        return breadType;
-    }
-
-    public void setBreadType(BreadType breadType) {
-        this.breadType = breadType;
-    }
-
-    public Boolean getSpicy() {
-        return spicy;
-    }
-
-    public void setSpicy(Boolean spicy) {
-        this.spicy = spicy;
-    }
-
-    public ArrayList<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public CommonsMultipartFile getFileData() {

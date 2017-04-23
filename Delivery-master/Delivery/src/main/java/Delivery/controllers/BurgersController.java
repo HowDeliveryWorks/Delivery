@@ -30,9 +30,12 @@ public class BurgersController {
     private BurgersDAO dao;
 
     @GetMapping("/menu")
-    public String getAllBurgers(Model model){
+    public String getAllBurgers(HttpServletRequest request, Model model){
         model.addAttribute("burgers", dao.findAll());
         List a = dao.findAll();
+
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        request.getSession().setAttribute("currentCart", cartInfo);
         return "/web/store";
     }
 
@@ -41,10 +44,10 @@ public class BurgersController {
         return "/web/cart";
     }
 
-//    @GetMapping("/cart2")
-//    public String cart2(Model model){
-//        return "/web/cart2";
-//    }
+    @GetMapping("/cart2")
+    public String cart2(Model model){
+        return "/web/cart2";
+    }
 
     @RequestMapping({ "/buyBurger" })
     public String listProductHandler(HttpServletRequest request, Model model, //
@@ -61,7 +64,7 @@ public class BurgersController {
             BurgerInfo burgerInfo = new BurgerInfo(burger);
 
             cartInfo.addBurger(burgerInfo, 1);
-            model.addAttribute("currentCart", cartInfo);
+            //model.addAttribute("currentCart", cartInfo);
         }
         // Redirect to cart page.
         return "forward:/cart";
@@ -83,7 +86,7 @@ public class BurgersController {
             BurgerInfo burgerInfo = new BurgerInfo(burger);
 
             cartInfo.removeBurger(burgerInfo);
-            model.addAttribute("currentCart", cartInfo);
+            //model.addAttribute("currentCart", cartInfo);
 
         }
         // Redirect to cart page.
@@ -108,7 +111,7 @@ public class BurgersController {
     public String shoppingCartCustomerForm(HttpServletRequest request, Model model) {
 
         CartInfo cartInfo = Utils.getCartInSession(request);
-        model.addAttribute("currentCart", cartInfo);
+        //model.addAttribute("currentCart", cartInfo);
 
         // Cart is empty.
         if (cartInfo.isEmpty()) {

@@ -9,21 +9,21 @@ public class Utils {
     public static CartInfo getCartInSession(HttpServletRequest request) {
 
         // Get Cart from Session.
-        CartInfo cartInfo = (CartInfo) request.getSession().getAttribute("myCart");
+        CartInfo cartInfo = (CartInfo) request.getSession().getAttribute("currentCart");
 
         // If null, create it.
         if (cartInfo == null) {
             cartInfo = new CartInfo();
 
             // And store to Session.
-            request.getSession().setAttribute("myCart", cartInfo);
+            request.getSession().setAttribute("currentCart", cartInfo);
         }
         //System.out.println(cartInfo.toString());
         return cartInfo;
     }
 
     public static void removeCartInSession(HttpServletRequest request) {
-        request.getSession().removeAttribute("myCart");
+        request.getSession().removeAttribute("currentCart");
     }
 
     public static void storeLastOrderedCartInSession(HttpServletRequest request, CartInfo cartInfo) {

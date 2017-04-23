@@ -22,10 +22,10 @@ public class Burger {
     private BreadType breadType;
     private Boolean spicy;
     private ArrayList<String> ingredients;
-    private String photo;
 
     private int weight;
     private int price;
+    private String photo;
 
     @Override
     public String toString() {

@@ -35,7 +35,7 @@ public class BurgersController {
         List a = dao.findAll();
 
         CartInfo cartInfo = Utils.getCartInSession(request);
-        request.getSession().setAttribute("currentCart", cartInfo);
+
         return "/web/store";
     }
 
@@ -215,7 +215,11 @@ public class BurgersController {
 //    }
 
     @GetMapping("/")
-    public String main(Model model){
+    public String main(HttpServletRequest request, Model model){
+
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        //request.getSession().setAttribute("currentCart", cartInfo);
+
         return "/web/index";
     }
 }

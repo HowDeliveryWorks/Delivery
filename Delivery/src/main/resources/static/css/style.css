@@ -63,8 +63,8 @@ header {
   /* todo: shaddow */ }
   header .container {
     display: block;
-    margin-left: calc(123px*100%/1400px);
-    margin-right: calc(123px*100%/1400px);
+    margin-left: calc(123px*100%/1400);
+    margin-right: calc(123px*100%/1400);
     padding-top: 30px;
     padding-bottom: 35px;
     color: #fffce2; }
@@ -202,12 +202,15 @@ header {
     .cart .item * {
       font-size: 16px;
       padding-top: 34px; }
+    .cart .item .col-md-1 {
+      padding-top: 22px; }
     .cart .item .bucket {
+      display: block;
       background-image: url(../img/rubbish-bin.png);
       background-size: 30px 30px;
       background-repeat: no-repeat;
       background-position: center center;
-      height: 100%;
+      width: 30px;
       cursor: pointer; }
     .cart .item .bucket:hover {
       opacity: 0.9; }
@@ -252,7 +255,7 @@ header {
       width: 100%;
       margin: auto; }
   .cart .btn-order {
-    padding: 15px 0;
+    padding: 15px 10px;
     background-color: #ffc000;
     color: white;
     font-size: 16px;
@@ -261,7 +264,8 @@ header {
     border-width: 0;
     border-radius: 10px; }
   .cart .btn-order:hover {
-    background-color: #ffcf3e; }
+    background-color: #ffcf3e;
+    text-decoration: none; }
 
 footer {
   width: 100%;
@@ -270,7 +274,7 @@ footer {
   opacity: .8; }
   footer .container {
     display: block;
-    margin-left: calc(123px*100%/1400px);
+    margin-left: calc(123px*100%/1400);
     margin-top: -50px;
     padding-bottom: 15px;
     color: #fffce2; }
@@ -311,15 +315,6 @@ select {
   position: relative;
   background-color: transparent !important; }
 
-.selection::before {
-  content: " ";
-  width: 20px;
-  height: 100%;
-  position: absolute;
-  right: 5.2%;
-  top: 0px;
-  background-color: #313131; }
-
 textarea {
   resize: none; }
 
@@ -358,28 +353,26 @@ textarea {
     color: #641818; }
   .burger .size {
     position: relative;
-    float: right;
     font-size: 14px;
     text-align: right;
     padding-right: 30%;
     color: rgba(48, 48, 48, 0.78); }
-  .burger .spicy {
-    position: relative;
-    background-image: url(../img/chili.png);
-    background-size: 18px 18px;
-    background-repeat: no-repeat;
-    width: 18px;
-    height: 18px;
-    display: block;
-    float: right;
-    padding-right: 20px; }
+    .burger .size .spicy {
+      position: absolute;
+      background-image: url(../img/chili.png);
+      background-size: 18px 18px;
+      background-repeat: no-repeat;
+      width: 18px;
+      height: 18px;
+      top: 0;
+      right: 40%; }
   .burger .photo {
     background-image: url(../img/burger.png);
     background-size: 150px 135px;
     background-repeat: no-repeat;
     background-position: center center;
     width: 100%;
-    height: 210px;
+    height: 190px;
     position: relative; }
   .burger .price, .burger .add {
     width: 48.899%;
@@ -397,6 +390,9 @@ textarea {
     padding-right: 20px;
     position: relative; }
     .burger .add .btn-add {
+      display: block;
+      float: right;
+      margin-right: 25px;
       margin-top: -5px;
       width: 30px;
       height: 30px;
@@ -496,5 +492,9 @@ textarea {
       border: 15px solid #313131;
       width: 355px;
       height: 400px; }
+
+.update a {
+  display: block;
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

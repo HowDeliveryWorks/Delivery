@@ -26,7 +26,7 @@
 			<div class="col-md-3 right-header">
 				<button class="btn-account">My account</button>
 				<button class="btn-cart">
-					<div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
+					<div id="itemsNum" class="cart-circle">12</div>
 				</button>
 			</div>
 		</div>
@@ -40,8 +40,8 @@
 		<div class="col-md-5 menu">
 			<ul>
 				<li><a href="#">CONTACTS</a></li>
-				<li class="active"><a th:href="@{/menu}">STORE</a></li>
-				<li><a th:href="@{/}">HOME</a></li>
+				<li class="active"><a href="#">STORE</a></li>
+				<li><a href="#">HOME</a></li>
 			</ul>
 		</div>
 	</div>
@@ -49,10 +49,10 @@
 </div>
 </header>
 
-<div class="body" >
+<div class="body">
 	<div class="header">Cart</div>
 
-	<div class="cart" >
+	<div class="cart">
 		<div class="cart-items">
 		<div class="row cart-header">
 			<div class="col-md-1"></div>
@@ -62,10 +62,9 @@
 			<div class="col-md-2">Total</div>
 		</div>
 
-		<div class="row item" th:each="cartLine : ${session.currentCart.getCartLines()}">
-			<!--<div class="col-md-1 bucket">  For the better times...-->
-			<div class="col-md-1">
-				<a th:href="@{/shoppingCartRemoveProduct(id=${cartLine.getBurgerInfo().getId()})}">Delete</a>
+		<div class="row item" th:each="cartLine : ${cartInfo.getCartLines()}">
+			<div class="col-md-1 bucket">
+				<a th:href="@{/shoppingCartRemoveProduct(id=${cartLine.getBurgerInfo().getId()})}"></a>
 			</div>
 			<div class="col-md-5 name" th:text="${cartLine.getBurgerInfo().getName()}">American Burger</div>
 			<div class="col-md-2 price" th:text="${cartLine.getBurgerInfo().getPrice()}">380.00 <span>UAH</span></div>
@@ -74,7 +73,7 @@
 				<span th:text="${cartLine.getQuantity()}" >1</span>
 				<span class="arrow after" id="aAfter"></span>
 				</div>
-			<div class="col-md-2 total" th:text="${cartLine.getAmount()}" >380.00 <span>UAH</span></div>
+			<div class="col-md-2 total" th:text="${cartLine.getBurgerInfo().getName()}" >380.00 <span>UAH</span></div>
 		</div>
 
 		</div>
@@ -84,20 +83,16 @@
 			<div class="col-md-3">
 				<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
 				<div class="row pre-total">
-					<div class="col-md-6" >Subtotal</div>
-					<div class="col-md-6"  th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+					<div class="col-md-6">Subtotal</div>
+					<div class="col-md-6">600.00 <span>UAH</span> </div>
 				</div>
 				<div class="row total">
 					<div class="col-md-6">Total</div>
-					<div class="col-md-6 sum"  th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+					<div class="col-md-6 sum">600.00 <span>UAH</span> </div>
 				</div>
 
-				<div class="col-md-12 proceed">
-					<!--<button class="btn-order">-->
-					<a
-							th:href="@{/shoppingCartCustomer}" class="btn-order">PROCEED  TO  CHECKOUT</a>
-					<!--</button>-->
-				</div>
+				<div class="col-md-12 proceed"><button class="btn-order">PROCEED  TO  CHECKOUT</button></div>
+
 			</div>
 		</div>
 

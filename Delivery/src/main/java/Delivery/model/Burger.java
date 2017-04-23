@@ -12,6 +12,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 public class Burger {
+
     @Id
     private UUID id;
     private String name;

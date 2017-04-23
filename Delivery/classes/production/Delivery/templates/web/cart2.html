@@ -1,5 +1,5 @@
 <!DOCTYPE html5>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 	<title>Cart</title>
 
@@ -28,7 +28,7 @@
 			<div class="col-md-3 right-header">
 				<button class="btn-account">My account</button>
 				<button class="btn-cart">
-					<div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">12</div>
+					<div id="itemsNum" class="cart-circle">12</div>
 				</button>
 			</div>
 		</div>
@@ -42,8 +42,8 @@
 		<div class="col-md-5 menu">
 			<ul>
 				<li><a href="#">CONTACTS</a></li>
-				<li class="active"><a th:href="@{/menu}">STORE</a></li>
-				<li><a th:href="@{/}">HOME</a></li>
+				<li class="active"><a href="#">STORE</a></li>
+				<li><a href="#">HOME</a></li>
 			</ul>
 		</div>
 	</div>
@@ -131,11 +131,11 @@
 						<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
 						<div class="row pre-total">
 					<div class="col-md-6">Subtotal</div>
-					<div class="col-md-6" th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+					<div class="col-md-6">600.00 <span>UAH</span> </div>
 				</div>
 				<div class="row total">
 					<div class="col-md-6">Total</div>
-					<div class="col-md-6 sum" th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+					<div class="col-md-6 sum">600.00 <span>UAH</span> </div>
 				</div>
 
 				<div class="col-md-12 proceed"><button class="btn-order">MAKE AN ORDER</button></div>

@@ -17,11 +17,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Order {
     @Id
-    private UUID id;
     private Integer number;
     private Customer customer;
+    private String phone;
     private String address;
     private OrderPaymentMethod paymentMethod;
+    private String comment;
     private List<Burger> burgers;
 
 

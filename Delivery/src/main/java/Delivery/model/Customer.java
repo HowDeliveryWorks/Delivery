@@ -14,21 +14,21 @@ import java.util.UUID;
 public class Customer {
     @Id
     private UUID id;
-    private String Name;
+    private String name;
     private String email;
 
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", Name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
 
     public Customer(UUID id, String name, String email) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.email = email;
     }
 }

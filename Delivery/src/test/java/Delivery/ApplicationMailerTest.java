@@ -29,7 +29,7 @@ public class ApplicationMailerTest {
         Burger burger2 = new Burger(UUID.randomUUID(), "Boston", MeatType.Duck, Roasting.WellDone, BreadType.WihiteBread, true, ing2, 360, 265, "burger-5.png");
         ArrayList<Burger> burgers = new ArrayList<>();
         Collections.addAll(burgers, burger, burger2);
-        Order order = new Order(UUID.randomUUID(), 0, vasya, "Kek Street 1", OrderPaymentMethod.Cash, burgers);
+        Order order = new Order(0, vasya, "+380670000000","Kek Street 1", OrderPaymentMethod.Cash,"", burgers);
         String text = "Dear " + order.getCustomer().getName()
                 + ", thank you for placing order. Your order number is "
                 + order.getNumber()

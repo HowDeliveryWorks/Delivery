@@ -27,7 +27,7 @@ function incrItem(elem,price){
 	curr = +curr;
 
 	console.log(curr++);
-    $(elem).parent().next().text(curr*price);
+    $(elem).parent().next().children(".span-price").text((curr*price));
     $(elem).prev().text(curr++);
 
 
@@ -41,8 +41,11 @@ function decrItem(elem,price){
         curr = curr-1;
     	$(elem).next().text(curr);
     }
-    $(elem).parent().next().text(curr*price);
+    $(elem).parent().next().children(".span-price").text(curr*price);
 
 }
 
 
+function showOrderDone() {
+	$('#orderDone').addClass('show');
+}

@@ -30,6 +30,7 @@ public class BurgersController {
 
     @GetMapping("/menu")
     public String getAllBurgers(HttpServletRequest request, Model model){
+        contextLoads();
         model.addAttribute("burgers", dao.findAll());
         List a = dao.findAll();
 
@@ -214,7 +215,7 @@ public class BurgersController {
 //    }
 
     @GetMapping("/")
-    public String main(HttpServletRequest request, Model model){
+    public String index(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
         //request.getSession().setAttribute("currentCart", cartInfo);
 

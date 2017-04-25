@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.2.RELEASE'
+		springBootVersion = '1.5.3.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -15,7 +15,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
-version = '0.0.1-SNAPSHOT'
+//version = '0.0.1'
 sourceCompatibility = 1.8
 
 repositories {
@@ -35,4 +35,13 @@ dependencies {
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 	compile('org.thymeleaf:thymeleaf')
+}
+//
+//plugins {
+//    id 'org.springframework.boot' version '1.5.3.RELEASE'
+//}
+//
+bootRepackage {
+    mainClass = 'Delivery.DeliveryApplication'
+    executable = true
 }

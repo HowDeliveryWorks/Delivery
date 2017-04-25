@@ -36,17 +36,17 @@ public class BurgersController {
 
         CartInfo cartInfo = Utils.getCartInSession(request);
 
-        return "/web/store";
+        return "store";
     }
 
     @GetMapping("/cart")
     public String cart(Model model){
-        return "/web/cart";
+        return "cart";
     }
 
     @GetMapping("/cart2")
     public String cart2(Model model){
-        return "/web/cart2";
+        return "cart2";
     }
 
     @RequestMapping({ "/buyBurger" })
@@ -127,7 +127,7 @@ public class BurgersController {
 
         model.addAttribute("customerForm", customerInfo);
 
-        return "/web/cart2";
+        return "cart2";
     }
 
 //    // POST: Save customer information.
@@ -142,7 +142,7 @@ public class BurgersController {
 //        if (result.hasErrors()) {
 //            customerForm.setValid(false);
 //            // Forward to reenter customer info.
-//            return "/web/cart2";
+//            return "cart2";
 //        }
 //
 //        customerForm.setValid(true);
@@ -216,10 +216,9 @@ public class BurgersController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model){
-
         CartInfo cartInfo = Utils.getCartInSession(request);
         //request.getSession().setAttribute("currentCart", cartInfo);
 
-        return "/web/index";
+        return "index";
     }
 }

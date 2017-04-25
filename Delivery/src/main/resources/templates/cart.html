@@ -66,7 +66,6 @@
 			<div class="row item" th:if="${#lists.isEmpty(session.currentCart.getCartLines())}">
 				<div class="col-md-12 no-items">Cart has no items</div>
 			</div>
-
 		<div class="row item" th:each="cartLine : ${session.currentCart.getCartLines()}">
 			<!--<div class="col-md-1 bucket">  For the better times...-->
 			<div class="col-md-1">
@@ -98,7 +97,6 @@
 					<div class="col-md-6">Total</div>
 					<!--<div class="col-md-6 sum"  th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>-->
 					<div class="col-md-6 sum"><span class="span-price" th:text="${#numbers.formatDecimal(session.currentCart.getAmountTotal(),1,0)}">600.00</span> <span>UAH</span> </div>
-
 				</div>
 
 				<div class="col-md-12 proceed">

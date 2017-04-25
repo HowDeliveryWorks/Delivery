@@ -1,10 +1,7 @@
 package Delivery.controllers;
 
 import Delivery.DAO.BurgersDAO;
-import Delivery.model.Burger;
-import Delivery.model.BurgerInfo;
-import Delivery.model.CartInfo;
-import Delivery.model.CustomerInfo;
+import Delivery.model.*;
 import Delivery.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -216,7 +215,6 @@ public class BurgersController {
 
     @GetMapping("/")
     public String main(HttpServletRequest request, Model model){
-
         CartInfo cartInfo = Utils.getCartInSession(request);
         //request.getSession().setAttribute("currentCart", cartInfo);
 

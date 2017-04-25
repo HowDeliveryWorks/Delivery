@@ -26,9 +26,9 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-3 right-header">
 				<button class="btn-account">My account</button>
-				<button class="btn-cart">
+                <a th:href="@{/cart}"><button class="btn-cart">
 					<div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
-				</button>
+                </button></a>
 			</div>
 		</div>
 
@@ -40,7 +40,7 @@
 		<div class="col-md-5"></div>
 		<div class="col-md-5 menu">
 			<ul>
-				<li><a href="#">CONTACTS</a></li>
+				<li><a th:href="@{/contacts}">CONTACTS</a></li>
 				<li class="active"><a th:href="@{/menu}">STORE</a></li>
 				<li><a th:href="@{/}">HOME</a></li>
 			</ul>
@@ -63,36 +63,42 @@
 			<div class="col-md-2">Total</div>
 		</div>
 
+			<div class="row item" th:if="${#lists.isEmpty(session.currentCart.getCartLines())}">
+				<div class="col-md-12 no-items">Cart has no items</div>
+			</div>
+
 		<div class="row item" th:each="cartLine : ${session.currentCart.getCartLines()}">
 			<!--<div class="col-md-1 bucket">  For the better times...-->
 			<div class="col-md-1">
 				<a th:href="@{/shoppingCartRemoveProduct(id=${cartLine.getBurgerInfo().getId()})}" class="bucket"></a>
 			</div>
 			<div class="col-md-5 name" th:text="${cartLine.getBurgerInfo().getName()}">American Burger</div>
-			<div class="col-md-2 price" th:text="${cartLine.getBurgerInfo().getPrice()}">380.00 <span>UAH</span></div>
+			<div class="col-md-2 price" ><span class="span-price" th:text="${#numbers.formatDecimal(cartLine.getBurgerInfo().getPrice(),1,0)}">380.00 </span><span>UAH</span></div>
 			<div class="col-md-2 quant">
 				<span class="arrow before"  th:onclick="'javascript:decrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>
 				<span th:text="${cartLine.getQuantity()}"id="quantity">1</span>
 				<span class="arrow after" id="aAfter"  th:onclick="'javascript:incrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>
 				</div>
-			<div class="col-md-2 total" th:text="${cartLine.getAmount()}" >380.00 <span>UAH</span></div>
+			<div class="col-md-2 total"><span class="span-price" th:text="${#numbers.formatDecimal(cartLine.getAmount(),1,0)}">380.00</span><span>UAH</span></div>
 		</div>
 
 		</div>
 
-		<div class="row totals">
+		<div class="row totals" th:if="${not #lists.isEmpty(session.currentCart.getCartLines())}">
 			<div class="col-md-6"></div>
-			<div class="col-md-2 update"><a class="btn-order">UPDATE CART</a></div>
+			<div class="col-md-2 update"><a class="btn-order" href="#">UPDATE CART</a></div>
 			<div class="col-md-1"></div>
 			<div class="col-md-3">
 				<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
 				<div class="row pre-total">
 					<div class="col-md-6" >Subtotal</div>
-					<div class="col-md-6"  th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+					<div class="col-md-6"><span class="span-price" th:text="${#numbers.formatDecimal(session.currentCart.getAmountTotal(),1,0)}">600.00 </span> <span>  UAH</span> </div>
 				</div>
 				<div class="row total">
 					<div class="col-md-6">Total</div>
-					<div class="col-md-6 sum"  th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+					<!--<div class="col-md-6 sum"  th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>-->
+					<div class="col-md-6 sum"><span class="span-price" th:text="${#numbers.formatDecimal(session.currentCart.getAmountTotal(),1,0)}">600.00</span> <span>UAH</span> </div>
+
 				</div>
 
 				<div class="col-md-12 proceed">

@@ -84,7 +84,7 @@ header{
 .main{
 	background-image: $main-banner;
 	height: 700px;
-	margin-top: -50px;
+	//margin-top: -50px;
 }
 
 
@@ -236,6 +236,12 @@ header{
 			font-size: 12px;
 		}
 
+        .price .span-price, .total .span-price{
+					 font-size: 16px;
+					padding-right: 3px;
+
+				 }
+
 		.quant{
 			// padding-left: 4.5%;
 
@@ -270,6 +276,10 @@ header{
 
 			div span{
 				font-size: 13px;
+			}
+
+			div .span-price{
+				font-size: 16px;
 			}
 		}
 
@@ -557,17 +567,21 @@ textarea{resize:none;}
 	margin-top: 55px;
 
 	.sl-header{
+		text-shadow: 0px -1px 12px rgba(0, 0, 0, 1);
 		font-family: 'Pristina';
 		color: $yellow;
 		font-size: 60px;
 	}
 
 	p{
+		text-shadow: 0px -1px 12px rgba(0, 0, 0, 1);
 		margin-top: 20px;
 		color: white;
 		font-family: 'Minion Pro';
 		font-size: 20px;
 	}
+
+
 
 	.btn-visit{
 		margin: auto;
@@ -578,7 +592,12 @@ textarea{resize:none;}
 		padding:10px 50px;
 		color: $black;
 		margin-top: 10px;
-
+        a:hover{
+          text-decoration: none;
+        }
+       a{
+         color: $black;
+       }
 		&:hover{
 			background-color: rgba(255,207,62,1);
 		}
@@ -648,4 +667,60 @@ textarea{resize:none;}
 			background-color: #ffcc33;
 		}
 	}
+}
+
+.no-items{
+	text-align: center;
+}
+
+
+
+
+.order-done-info{
+  visibility:hidden;
+  position: absolute;
+  width:100%;
+  height: 155%;
+  top:0;
+  left:0;
+  text-align: center;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+
+  .info{
+    position: fixed;
+    width: 26%;
+    height: 150px;
+    margin:auto;
+    // padding: 25px 30px;
+    background-color: white;
+    color: $black;
+    margin-left: calc((100% - 26%)/2);
+    margin-top: 200px;
+    font-size: 18px;
+    font-family: 'Minion Pro';
+
+    .modal-header{
+      width: 100%;
+      height: 40px;
+      background-color: #313131;
+      text-align: right;
+      button{
+        width: 20px;
+        height: 20px;
+        border: none;
+        background-color: transparent;
+        @include background-icon($close, 15px, 15px);
+        background-position: left top;
+      }
+    }
+    .text{
+      padding: 25px 30px;
+    }
+
+  }
+}
+
+.show{
+  visibility: visible;
 }

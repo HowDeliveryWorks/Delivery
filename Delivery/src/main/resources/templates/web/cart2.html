@@ -9,6 +9,8 @@
 
 	<script src="js/jquery-3.1.0.min.js"></script>
 
+	<script src="js/script.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -27,9 +29,9 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-3 right-header">
 				<button class="btn-account">My account</button>
-				<button class="btn-cart">
+                <a th:href="@{/cart}"><button class="btn-cart">
 					<div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">12</div>
-				</button>
+                </button></a>
 			</div>
 		</div>
 
@@ -41,7 +43,7 @@
 		<div class="col-md-5"></div>
 		<div class="col-md-5 menu">
 			<ul>
-				<li><a href="#">CONTACTS</a></li>
+				<li><a th:href="@{/contacts}">CONTACTS</a></li>
 				<li class="active"><a th:href="@{/menu}">STORE</a></li>
 				<li><a th:href="@{/}">HOME</a></li>
 			</ul>
@@ -131,14 +133,14 @@
 						<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
 						<div class="row pre-total">
 					<div class="col-md-6">Subtotal</div>
-					<div class="col-md-6" th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+                            <div class="col-md-6"><span class="span-price" th:text="${#numbers.formatDecimal(session.currentCart.getAmountTotal(),1,0)}">600.00</span> <span>UAH</span> </div>
 				</div>
 				<div class="row total">
 					<div class="col-md-6">Total</div>
-					<div class="col-md-6 sum" th:text="${session.currentCart.getAmountTotal()}">600.00 <span>UAH</span> </div>
+                    <div class="col-md-6 sum" ><span class="span-price" th:text="${#numbers.formatDecimal(session.currentCart.getAmountTotal(),1,0)}">600.00</span> <span>UAH</span> </div>
 				</div>
 
-				<div class="col-md-12 proceed"><button class="btn-order">MAKE AN ORDER</button></div>
+				<div class="col-md-12 proceed"><button class="btn-order" onclick="showOrderDone()">MAKE AN ORDER</button></div>
 
 			</div>
 		</div>
@@ -188,5 +190,19 @@
 	<div class="privacy-policy">Privacy Policy 2017</div>
 </div>
 </footer>
+
+
+<!--This is modal window-->
+<div class="order-done-info" id="orderDone">
+
+
+	<div class="info">
+		<div class="modal-header"><a th:href="@{/menu}"><button></button></a></div>
+		<div class="text">Your order is accepted. Please wait for call from manager to confirm the order.</div>
+	</div>
+</div>
+<!--...-->
+
+
 </body>
 </html>

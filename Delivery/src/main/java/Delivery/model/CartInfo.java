@@ -55,9 +55,7 @@ public class CartInfo {
             this.cartLines.add(line);
         }
         int newQuantity = line.getQuantity() + quantity;
-        if (newQuantity <= 0) {
-            this.cartLines.remove(line);
-        } else {
+        if (newQuantity > 0) {
             line.setQuantity(newQuantity);
         }
     }

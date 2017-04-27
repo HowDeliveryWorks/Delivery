@@ -23,8 +23,4 @@ public class WelcomeController {
         return "/web/store";
     }
 
-    @GetMapping("/contacts")
-    public String contacts(Model model) {
-        return "/web/contacts";
-    }
 }

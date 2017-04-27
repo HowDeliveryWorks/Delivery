@@ -66,40 +66,40 @@
 				</div>
 
 				<div class="form-data">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" th:action="@{/cart2}" th:object="${order}" method ="post">
   					<div class="form-group">
     					<label class="col-sm-2 control-label">Full Name <span class="required"></span></label>
    						<div class="col-sm-10">
-     						<input type="text" class="form-control" id="inputFullName" placeholder="Full Name" required>
+     						<input type="text" th:field="*{name}" class="form-control" id="inputFullName" placeholder="Full Name" required>
     					</div>
   					</div>
   					<div class="form-group">
     				<label class="col-sm-2 control-label">	Email <span class="required"></span></label>
     				<div class="col-sm-10">
-      					<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      					<input type="email" th:field="*{email}" class="form-control" id="inputEmail" placeholder="Email">
     				</div>
   					</div>
 
   					<div class="form-group">
     					<label class="col-sm-2 control-label">Phone <span class="required"></span></label>
    						<div class="col-sm-10">
-     						<input type="tel" class="form-control" id="inputPhone" placeholder="Phone" required>
+     						<input type="tel" th:field="*{phone}" class="form-control" id="inputPhone" placeholder="Phone" required>
     					</div>
   					</div>
 
   					<div class="form-group">
     					<label class="col-sm-2 control-label">Address<span class="required"></span></label>
    						<div class="col-sm-10">
-     						<input type="text" class="form-control" id="inputEmail3" placeholder="Address" required>
+     						<input type="text" th:field="*{address}" class="form-control" id="inputEmail3" placeholder="Address" required>
     					</div>
   					</div>
 
   					<div class="form-group">
   					<label class="col-sm-2 control-label">Payment</label>
   					<div class="col-sm-5  selection">
-    					<select class="form-control">
-  							<option>Cash</option>
-  							<option>Card</option>
+    					<select th:field="*{paymentMethod}" class="form-control">
+  							<option value="Cash">Cash</option>
+  							<option value="Card">Card</option>
 							</select>
     					</div>
   					</div>
@@ -108,7 +108,7 @@
     					<label class="col-sm-2 control-label">Comment</label>
    						<div class="col-sm-10">
      						<!--<textarea type="email" class="form-control" id="inputEmail3" placeholder="Email" multiple>-->
-     						<textarea class="form-control" rows="3"></textarea>
+     						<textarea th:field="*{comment}" class="form-control"></textarea>
     					</div>
   					</div>
 
@@ -116,6 +116,7 @@
   						<div class="col-md-2"><span class="required"></span></div>
   						<div class="col-md-10"> <label for="inputEmail3" class="control-label mandatory">mandatory fields</label></div>
   					</div>
+					<div class="col-md-12 proceed"><button class="btn-order" onclick="showOrderDone()">MAKE AN ORDER</button></div>
 
   				</form>
   				</div>
@@ -140,7 +141,7 @@
                     <div class="col-md-6 sum" ><span class="span-price" th:text="${#numbers.formatDecimal(session.currentCart.getAmountTotal(),1,0)}">600.00</span> <span>UAH</span> </div>
 				</div>
 
-				<div class="col-md-12 proceed"><button class="btn-order" onclick="showOrderDone()">MAKE AN ORDER</button></div>
+				<!--<div class="col-md-12 proceed"><button class="btn-order" onclick="showOrderDone()">MAKE AN ORDER</button></div>-->
 
 			</div>
 		</div>
@@ -197,7 +198,7 @@
 
 
 	<div class="info">
-		<div class="modal-header"><a th:href="@{/menu}"><button></button></a></div>
+		<div class="modal-header"><a th:href="@{/menuUpdate}"><button></button></a></div>
 		<div class="text">Your order is accepted. Please wait for call from manager to confirm the order.</div>
 	</div>
 </div>

@@ -17,17 +17,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Order {
     @Id
-    private Integer number;
-    private Customer customer;
+    private Integer number = 0;
+    private String name;
+    private String email;
     private String phone;
     private String address;
     private OrderPaymentMethod paymentMethod;
     private String comment;
-    private List<Burger> burgers;
+    private List<CartLineInfo> burgers;
 
-
-    public Integer getOrderPrice()
-    {
-        return burgers.stream().mapToInt(Burger::getPrice).sum();
-    }
 }

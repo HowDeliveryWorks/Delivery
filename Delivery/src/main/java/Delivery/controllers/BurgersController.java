@@ -1,9 +1,13 @@
 package Delivery.controllers;
 
 import Delivery.DAO.BurgersDAO;
+import Delivery.DeliveryApplication;
 import Delivery.model.*;
+import Delivery.services.ApplicationMailer;
 import Delivery.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,25 +33,83 @@ public class BurgersController {
     @Autowired
     private BurgersDAO dao;
 
+    @GetMapping("/contacts")
+    public String contacts(HttpServletRequest request, Model model){
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        model.addAttribute("feedback", new Feedback());
+        return "contacts";
+    }
+
+    @PostMapping("/contacts")
+    public String contactsForm(@ModelAttribute Feedback feedback, Model model){
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
+        ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
+        try
+        {
+            am.sendMail("howdeliveryworks@gmail.com","Feedback", feedback.toString());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return "index";
+    }
+
     @GetMapping("/menu")
     public String getAllBurgers(HttpServletRequest request, Model model){
         model.addAttribute("burgers", dao.findAll());
         List a = dao.findAll();
-
         CartInfo cartInfo = Utils.getCartInSession(request);
-
         return "store";
     }
 
+    @GetMapping("/menuUpdate")
+    public String getAllUpdatedBurgers(HttpSession session){
+        session.invalidate();
+        return "redirect:/menu";
+    }
+
     @GetMapping("/cart")
-    public String cart(Model model){
+    public String cart(HttpServletRequest request, Model model){
+        CartInfo cartInfo = Utils.getCartInSession(request);
         return "cart";
     }
 
     @GetMapping("/cart2")
-    public String cart2(Model model){
+    public String cart2(HttpServletRequest request, Model model){
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        model.addAttribute("order", new Order());
         return "cart2";
     }
+
+    @PostMapping("/cart2")
+    public String ordersForm(HttpServletRequest request, @ModelAttribute Order order, Model model){
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
+        ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        order.setBurgers(cartInfo.getCartLines());
+        String customerText = order.toString();
+        String ownerText = order.toString();
+        try
+        {
+            am.sendMail(order.getEmail(),"Your Burgers Order", customerText);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        try
+        {
+            am.sendMail("howdeliveryworks@gmail.com","We got a new order!", ownerText);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        Utils.removeCartInSession(request);
+        return "redirect:/cart2";
+    }
+
 
     @RequestMapping({ "/buyBurger" })
     public String listProductHandler(HttpServletRequest request, Model model, //
@@ -126,7 +189,7 @@ public class BurgersController {
 
         model.addAttribute("customerForm", customerInfo);
 
-        return "cart2";
+        return "forward:/cart2";
     }
 
 //    // POST: Save customer information.

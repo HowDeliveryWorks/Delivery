@@ -74,9 +74,11 @@
 			<div class="col-md-5 name" th:text="${cartLine.getBurgerInfo().getName()}">American Burger</div>
 			<div class="col-md-2 price" ><span class="span-price" th:text="${#numbers.formatDecimal(cartLine.getBurgerInfo().getPrice(),1,0)}">380.00 </span><span>UAH</span></div>
 			<div class="col-md-2 quant">
-				<span class="arrow before"  th:onclick="'javascript:decrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>
+				<!--<span class="arrow before"  th:onclick="'javascript:decrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>-->
+				<a th:href="@{/removeBurger(id=${cartLine.getBurgerInfo().getId()})}"><span class="arrow before" ></span></a>
 				<span th:text="${cartLine.getQuantity()}"id="quantity">1</span>
-				<span class="arrow after" id="aAfter"  th:onclick="'javascript:incrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>
+				<!--<span class="arrow after" id="aAfter"  th:onclick="'javascript:incrItem(this,\'' + ${cartLine.getBurgerInfo().getPrice()} + '\')'"></span>-->
+				<a th:href="@{/buyBurger(id=${cartLine.getBurgerInfo().getId()})}"><span class="arrow after" id="aAfter" ></span></a>
 				</div>
 			<div class="col-md-2 total"><span class="span-price" th:text="${#numbers.formatDecimal(cartLine.getAmount(),1,0)}">380.00</span><span>UAH</span></div>
 		</div>
@@ -84,9 +86,7 @@
 		</div>
 
 		<div class="row totals" th:if="${not #lists.isEmpty(session.currentCart.getCartLines())}">
-			<div class="col-md-6"></div>
-			<div class="col-md-2 update"><a class="btn-order" href="#">UPDATE CART</a></div>
-			<div class="col-md-1"></div>
+			<div class="col-md-9"></div>
 			<div class="col-md-3">
 				<div class="row cart-header"><div class="col-md-12">Cart totals</div></div>
 				<div class="row pre-total">

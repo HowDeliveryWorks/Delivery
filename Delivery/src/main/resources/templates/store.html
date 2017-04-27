@@ -80,11 +80,8 @@
                     </div>
 
                     <div class="price" th:text="${burger.getPrice()} + ' UAH'">210 UAH</div>
-					<!--TODO: Insert proper link like /buyBurger?name=(getName)-->
                     <div class="add">
-						<!--<button class="btn-add" id="addToCart" onclick="addToCart(this)">-->
 						<a th:href="@{/buyBurger(id=${burger.getId()})}" class="btn-add" id="addToCart" onclick="addToCart(this)"></a>
-						<!--</button>-->
 					</div>
 
                 </div>

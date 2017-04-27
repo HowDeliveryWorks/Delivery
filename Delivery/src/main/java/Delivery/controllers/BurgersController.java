@@ -39,7 +39,8 @@ public class BurgersController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model model){
+    public String cart(HttpServletRequest request, Model model){
+        CartInfo cartInfo = Utils.getCartInSession(request);
         return "cart";
     }
 
@@ -63,7 +64,26 @@ public class BurgersController {
             BurgerInfo burgerInfo = new BurgerInfo(burger);
 
             cartInfo.addBurger(burgerInfo, 1);
-            //model.addAttribute("currentCart", cartInfo);
+        }
+        // Redirect to cart page.
+        return "forward:/cart";
+    }
+
+    @RequestMapping({ "/removeBurger" })
+    public String listProductUnHandler(HttpServletRequest request, Model model, //
+                                     @RequestParam(value = "id", defaultValue = "") UUID id) {
+        Burger burger = null;
+        if (id != null) {
+            burger = dao.findById(id);
+        }
+        if (burger != null) {
+
+            // Cart info stored in Session.
+            CartInfo cartInfo = Utils.getCartInSession(request);
+
+            BurgerInfo burgerInfo = new BurgerInfo(burger);
+
+            cartInfo.addBurger(burgerInfo, -1);
         }
         // Redirect to cart page.
         return "forward:/cart";

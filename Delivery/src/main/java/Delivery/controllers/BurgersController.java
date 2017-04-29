@@ -107,7 +107,7 @@ public class BurgersController {
             e.printStackTrace();
         }
         Utils.removeCartInSession(request);
-        return "redirect:/cart2";
+        return "redirect:/menu";
     }
 
 

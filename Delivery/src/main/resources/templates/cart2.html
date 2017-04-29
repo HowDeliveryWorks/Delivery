@@ -66,7 +66,7 @@
 				</div>
 
 				<div class="form-data">
-				<form class="form-horizontal" role="form" th:action="@{/cart2}" th:object="${order}" method ="post">
+				<form class="form-horizontal" role="form" th:action="@{/cart2}" th:object="${order}" method ="post" id="customerInfoForm" name="customerInfo" onsubmit="showOrderDone()">
   					<div class="form-group">
     					<label class="col-sm-2 control-label">Full Name <span class="required"></span></label>
    						<div class="col-sm-10">
@@ -116,7 +116,8 @@
   						<div class="col-md-2"><span class="required"></span></div>
   						<div class="col-md-10"> <label for="inputEmail3" class="control-label mandatory">mandatory fields</label></div>
   					</div>
-					<div class="col-md-12 proceed"><button class="btn-order" onclick="showOrderDone()">MAKE AN ORDER</button></div>
+					<!--<div class="col-md-4 col-md-offset-8 proceed"><button class="btn-order" type="submit" onclick="showOrderDone()">MAKE AN ORDER</button></div>-->
+					<div class="col-md-4 col-md-offset-8 proceed"><button class="btn-order" type="submit">MAKE AN ORDER</button></div>
 
   				</form>
   				</div>

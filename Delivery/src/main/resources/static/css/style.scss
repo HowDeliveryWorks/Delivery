@@ -6,6 +6,9 @@ body{
 	*{
 		box-sizing: border-box;
 	}
+	a:visited{
+		text-decoration: none;
+	}
 }
 
 header{
@@ -558,6 +561,71 @@ textarea{resize:none;}
 
 	}
 
+
+}
+
+
+
+/*_________________________________CUSTOM_BURGER_________________________*/
+
+.custom .burger{
+	background-image: url('../img/custom.jpg');
+	background-size: 125% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	.name {
+		text-shadow: 1px 1px 14px rgba(0, 0, 0, 1);
+		background-color: rgba(0,0,0,0.65);
+		color: $lighttext;
+		font-size: 27px;
+		padding: 45px 20px;
+		top: 95px;
+		span{
+			color: $yellow;
+		}
+	}
+	.photo{
+		background-image: none;
+	}
+	a{
+		width: 70%;
+		text-align: center;
+		text-shadow: none;
+		// display: none;
+		opacity: 0;
+		position: absolute;
+		background-color: $yellow;
+		color: $black;
+		padding: 27px 0;
+		font-size: 27px;
+		font-family: 'Minion Bold';
+		top: 40%;
+		left: 15%;
+	}
+	a:hover{text-decoration:none;color:$red;}
+	&:hover{
+		border: 1px solid black;
+		transition: 0.5s;
+		.photo{
+			-webkit-transform: none;
+			transform: none;
+			// transition-delay: 0s;
+			// transition: 0.5s;
+		}
+		.name{
+			overflow-y: hidden;
+			-webkit-transform: scale(1.0,2.05);
+			transform: scale(1.0,2.05);
+			transition-delay: 0s;
+			transition: 0.3s;
+			color: transparent;
+			text-shadow: none;
+			z-index:0;
+		}
+		.name{color: transparent;}
+		.name span{color: transparent;}
+		a{opacity:1;z-index:1;transition: 0.4s;}
+	}
 
 }
 

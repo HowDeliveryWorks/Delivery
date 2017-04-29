@@ -54,6 +54,8 @@ body {
   background-image: url("../img/dark_wood.png"); }
   body * {
     box-sizing: border-box; }
+  body a:visited {
+    text-decoration: none; }
 
 header {
   font-family: 'Minion Pro';
@@ -453,6 +455,63 @@ textarea {
       .burger .description .roasting p:first-child {
         color: #ffcf3e;
         padding-right: 10px; }
+
+/*_________________________________CUSTOM_BURGER_________________________*/
+.custom .burger {
+  background-image: url("../img/custom.jpg");
+  background-size: 125% 100%;
+  background-repeat: no-repeat;
+  background-position: center center; }
+  .custom .burger .name {
+    text-shadow: 1px 1px 14px black;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #fffce2;
+    font-size: 27px;
+    padding: 45px 20px;
+    top: 95px; }
+    .custom .burger .name span {
+      color: #ffcf3e; }
+  .custom .burger .photo {
+    background-image: none; }
+  .custom .burger a {
+    width: 70%;
+    text-align: center;
+    text-shadow: none;
+    opacity: 0;
+    position: absolute;
+    background-color: #ffcf3e;
+    color: #313131;
+    padding: 27px 0;
+    font-size: 27px;
+    font-family: 'Minion Bold';
+    top: 40%;
+    left: 15%; }
+  .custom .burger a:hover {
+    text-decoration: none;
+    color: #d54b00; }
+  .custom .burger:hover {
+    border: 1px solid black;
+    transition: 0.5s; }
+    .custom .burger:hover .photo {
+      -webkit-transform: none;
+      transform: none; }
+    .custom .burger:hover .name {
+      overflow-y: hidden;
+      -webkit-transform: scale(1, 2.05);
+      transform: scale(1, 2.05);
+      transition-delay: 0s;
+      transition: 0.3s;
+      color: transparent;
+      text-shadow: none;
+      z-index: 0; }
+    .custom .burger:hover .name {
+      color: transparent; }
+    .custom .burger:hover .name span {
+      color: transparent; }
+    .custom .burger:hover a {
+      opacity: 1;
+      z-index: 1;
+      transition: 0.4s; }
 
 /*---------------------------main--------------------------*/
 /* TODO : shaddows */

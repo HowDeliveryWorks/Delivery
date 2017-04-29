@@ -302,4 +302,10 @@ public class BurgersController {
 
         return "index";
     }
+
+    @GetMapping("/constructor")
+    public String constructor(HttpServletRequest request, Model model){
+    CartInfo cartInfo = Utils.getCartInSession(request);
+        return "constructor";
+    }
 }

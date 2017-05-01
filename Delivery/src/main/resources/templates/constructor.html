@@ -1,70 +1,300 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Cart</title>
+    <title>Cart</title>
 
 
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
-
-	<script src="js/jquery-3.1.0.min.js"></script>
-	<script src="js/script.js"></script>
-
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 <body>
 <header>
 
-	<div class="container">
+    <div class="container">
 
-		<div class="row">
-			<div class="col-md-5 contacts">
-				<div class="mobile">+38 (050) 555 55 55</div>
-				<div class="hours">7:00 - 23:00</div>
-			</div>
-			<div class="col-md-4"></div>
-			<div class="col-md-3 right-header">
-				<button class="btn-account">My account</button>
-				<a th:href="@{/cart}"><button class="btn-cart">
-					<div id="counter" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
-				</button></a>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-md-5 contacts">
+                <div class="mobile">+38 (050) 555 55 55</div>
+                <div class="hours">7:00 - 23:00</div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-3 right-header">
+                <button class="btn-account">My account</button>
+                <a th:href="@{/cart}">
+                    <button class="btn-cart">
+                        <div id="counter" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
 
-		<div class="divider"></div>
+        <div class="divider"></div>
 
 
-		<div class="row second">
-			<div class="col-md-2"><img src="img/logo1.png"></div>
-			<div class="col-md-5"></div>
-			<div class="col-md-5 menu">
-				<ul>
-					<li><a th:href="@{/contacts}">CONTACTS</a></li>
-					<li class="active"><a th:href="@{/menu}">STORE</a></li>
-					<li><a th:href="@{/}">HOME</a></li>
-				</ul>
-			</div>
-		</div>
+        <div class="row second">
+            <div class="col-md-2"><img src="img/logo1.png"></div>
+            <div class="col-md-5"></div>
+            <div class="col-md-5 menu">
+                <ul>
+                    <li><a th:href="@{/contacts}">CONTACTS</a></li>
+                    <li class="active"><a th:href="@{/menu}">STORE</a></li>
+                    <li><a th:href="@{/}">HOME</a></li>
+                </ul>
+            </div>
+        </div>
 
-	</div>
+    </div>
 </header>
 
-<div class="body"><center>
-<h3>This page is under construction :(</h3><br>
-<img src="img/cat.png" width="25%"></center>
-<br>
+<div class="body">
+    <div class="header">Burger Constructor</div>
+    <div class="row">
+        <div class="col-md-7">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#bread">Bread Type</a></li>
+                <li><a data-toggle="tab" href="#meat">Meat Type</a></li>
+                <li><a data-toggle="tab" href="#roasting">Roasting</a></li>
+                <li><a data-toggle="tab" href="#sauce">Sauces</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="bread" class="tab-pane fade in active">
+
+
+                    <div class="btn-group row item-list" data-toggle="buttons">
+
+                        <div class="col-md-4">
+                            <label class="btn item active" style="outline: none;">
+                                <div class="photo"></div>
+                                <input type="radio" name="options" id="bun1">
+                                <div class="name"> White Bun</div>
+                                <div class="price">10 UAH</div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/blackbun.png');"></div>
+                                <input type="radio" name="options" id="bun2">
+                                <div class="name"> Black Bun</div>
+                                <div class="price">20 UAH</div>
+                            </label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div id="meat" class="tab-pane fade">
+
+                    <div class="btn-group row item-list" data-toggle="buttons">
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/chicken-breast.png');"></div>
+                                <input type="radio" name="options" id="meat1">
+                                <div class="name"> Chicken</div>
+                                <div class="price">50 UAH</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item active" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/Beef.png');"></div>
+                                <input type="radio" name="options" id="meat2">
+                                <div class="name"> Beef</div>
+                                <div class="price">60 UAH</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/pork.png');"></div>
+                                <input type="radio" name="options" id="meat3" >
+                                <div class="name"> Pork</div>
+                                <div class="price">60 UAH</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/vealmain.png');"></div>
+                                <input type="radio" name="options" id="meat4">
+                                <div class="name"> Veal</div>
+                                <div class="price">60 UAH</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/falafel.jpg');"></div>
+                                <input type="radio" name="options" id="meat5">
+                                <div class="name"> Falafel</div>
+                                <div class="price">40 UAH</div>
+
+                            </label>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div id="roasting" class="tab-pane fade">
+
+                    <div class="btn-group row item-list" data-toggle="buttons">
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/rare.png');"></div>
+                                <input type="radio" name="options" id="roast1">
+                                <div class="name"> Rare</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/mediumrare.png');"></div>
+                                <input type="radio" name="options" id="roast2">
+                                <div class="name"> Medium Rare</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item active" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/medium.png');"></div>
+                                <input type="radio" name="options" id="roast3" >
+                                <div class="name"> Medium</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/mediumwell.png');"></div>
+                                <input type="radio" name="options" id="roast4">
+                                <div class="name"> Medium Well</div>
+
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/welldone.png');"></div>
+                                <input type="radio" name="options" id="roast5">
+                                <div class="name"> Well Done</div>
+
+                            </label>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div id="sauce" class="tab-pane fade">
+
+                    <div class="btn-group row item-list" data-toggle="buttons">
+
+                        <div class="col-md-6">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/yellow.png');"></div>
+                                <input type="checkbox" name="options" id="sauce1">
+                                <div class="name"> Yellow Mustard</div>
+                                <div class="price">5 UAH</div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/aioli.png');"></div>
+                                <input type="checkbox" name="options" id="sauce2">
+                                <div class="name"> Aioli</div>
+                                <div class="price">5 UAH</div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/bbq.png');"></div>
+                                <input type="checkbox" name="options" id="sauce3">
+                                <div class="name"> BBQ Sauce</div>
+                                <div class="price">5 UAH</div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/mayo.png');"></div>
+                                <input type="checkbox" name="options" id="sauce4">
+                                <div class="name"> Mayo</div>
+                                <div class="price">5 UAH</div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="btn item" style="outline: none;">
+                                <div class="photo" style="background-image: url('img/constructor/ketchup.png');"></div>
+                                <input type="checkbox" name="options" id="sauce5">
+                                <div class="name"> Ketchup</div>
+                                <div class="price">5 UAH</div>
+                            </label>
+                        </div>
+
+
+
+                    </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-5 b">
+            <div class="custom-info">
+
+                <article>Ausi ente me idem utor adeo ob ille. Hominem inferri hos effugio una vel istarum. Gnum ii
+                    iste amen ab visu atra. Deo sic olim sese amen. Im co vereor opinio certas.
+                </article>
+
+                <div class="ingridients">
+                    <span id="spiceTooltip"> </span>
+                    <div class="spiciness">Spiciness:
+                        <button type="button" class="btn add-spiciness" data-toggle="button"></button>
+                    </div>
+                    <div class="bun">Bun:<span>White Bread</span></div>
+                    <div class="meat">Meat:<span>Beef</span></div>
+                    <div class="roasting">Roasting:<span>Medium</span></div>
+                    <div class="sauces">Sauses:
+                        <ul>
+                            <li>Aioli</li>
+                            <li>Ketchup</li>
+                            <li>BBQ Sause</li>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-5">
+                            <div class="total">225 UAH</div>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="add">Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<footer>
-<div class="container">
-	<div class="logo"><img src="img/logo2.png"></div>
-	<div class="ua"><img src="img/ukraine.png"><p>ua</p></div>
-	<div class="privacy-policy">Privacy Policy 2017</div>
-</div>
-</footer>
 </body>
 </html>

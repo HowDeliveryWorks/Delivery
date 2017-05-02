@@ -1,6 +1,7 @@
 package Delivery.controllers;
 
 import Delivery.DAO.BurgersDAO;
+import Delivery.DAO.IngredientsDAO;
 import Delivery.DeliveryApplication;
 import Delivery.model.*;
 import Delivery.services.ApplicationMailer;
@@ -32,6 +33,9 @@ public class BurgersController {
 
     @Autowired
     private BurgersDAO dao;
+
+    @Autowired
+    private IngredientsDAO daoIngredients;
 
     @GetMapping("/contacts")
     public String contacts(HttpServletRequest request, Model model){
@@ -305,7 +309,9 @@ public class BurgersController {
 
     @GetMapping("/constructor")
     public String constructor(HttpServletRequest request, Model model){
-    CartInfo cartInfo = Utils.getCartInSession(request);
+        model.addAttribute("ingredients", daoIngredients.findAll());
+        List a = daoIngredients.findAll();
+        CartInfo cartInfo = Utils.getCartInSession(request);
         return "constructor";
     }
 }

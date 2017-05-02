@@ -18,9 +18,9 @@ public class WelcomeController {
         return "/web/hello";
     }
 
-    @GetMapping("/store")
-    public String store(Model model) {
-        return "/web/store";
-    }
+//    @GetMapping("/store")
+//    public String store(Model model) {
+//        return "/web/store";
+//    }
 
 }

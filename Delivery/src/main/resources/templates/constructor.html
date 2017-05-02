@@ -65,27 +65,19 @@
                 <li><a data-toggle="tab" href="#sauce">Sauces</a></li>
             </ul>
 
-            <div class="tab-content">
+            <div class="tab-content" >
                 <div id="bread" class="tab-pane fade in active">
 
 
                     <div class="btn-group row item-list" data-toggle="buttons">
 
-                        <div class="col-md-4">
-                            <label class="btn item active" style="outline: none;">
-                                <div class="photo"></div>
-                                <input type="radio" name="options" id="bun1">
-                                <div class="name"> White Bun</div>
-                                <div class="price">10 UAH</div>
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
+                        <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).BreadType}">
                             <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/blackbun.png');"></div>
-                                <input type="radio" name="options" id="bun2">
-                                <div class="name"> Black Bun</div>
-                                <div class="price">20 UAH</div>
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
+                                <!--TODO: Insert right id-->
+                                <input type="radio" name="options" id="bun1">
+                                <div class="name" th:text="${ingredient.getName()}">W</div>
+                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">0 UAH</div>
                             </label>
                         </div>
 
@@ -96,56 +88,16 @@
                 <div id="meat" class="tab-pane fade">
 
                     <div class="btn-group row item-list" data-toggle="buttons">
-                        <div class="col-md-4">
+
+                        <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).MeatType}">
                             <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/chicken-breast.png');"></div>
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
+                                <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="meat1">
-                                <div class="name"> Chicken</div>
-                                <div class="price">50 UAH</div>
-
+                                <div class="name" th:text="${ingredient.getName()}"> Chick</div>
+                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">2 UAH</div>
                             </label>
                         </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item active" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/Beef.png');"></div>
-                                <input type="radio" name="options" id="meat2">
-                                <div class="name"> Beef</div>
-                                <div class="price">60 UAH</div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/pork.png');"></div>
-                                <input type="radio" name="options" id="meat3" >
-                                <div class="name"> Pork</div>
-                                <div class="price">60 UAH</div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/vealmain.png');"></div>
-                                <input type="radio" name="options" id="meat4">
-                                <div class="name"> Veal</div>
-                                <div class="price">60 UAH</div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/falafel.jpg');"></div>
-                                <input type="radio" name="options" id="meat5">
-                                <div class="name"> Falafel</div>
-                                <div class="price">40 UAH</div>
-
-                            </label>
-                        </div>
-
 
                     </div>
 
@@ -153,51 +105,15 @@
                 <div id="roasting" class="tab-pane fade">
 
                     <div class="btn-group row item-list" data-toggle="buttons">
-                        <div class="col-md-4">
+
+                        <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Roasting}">
                             <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/rare.png');"></div>
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
+                                <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="roast1">
-                                <div class="name"> Rare</div>
-
+                                <div class="name" th:text="${ingredient.getName()}"> Rare</div>
                             </label>
                         </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/mediumrare.png');"></div>
-                                <input type="radio" name="options" id="roast2">
-                                <div class="name"> Medium Rare</div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item active" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/medium.png');"></div>
-                                <input type="radio" name="options" id="roast3" >
-                                <div class="name"> Medium</div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/mediumwell.png');"></div>
-                                <input type="radio" name="options" id="roast4">
-                                <div class="name"> Medium Well</div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/welldone.png');"></div>
-                                <input type="radio" name="options" id="roast5">
-                                <div class="name"> Well Done</div>
-
-                            </label>
-                        </div>
-
 
                     </div>
                 </div>
@@ -207,52 +123,14 @@
 
                     <div class="btn-group row item-list" data-toggle="buttons">
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Sauces}">
                             <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/yellow.png');"></div>
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <input type="checkbox" name="options" id="sauce1">
-                                <div class="name"> Yellow Mustard</div>
-                                <div class="price">5 UAH</div>
+                                <div class="name" th:text="${ingredient.getName()}"> Yellow Mustard</div>
+                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">5 UAH</div>
                             </label>
                         </div>
-
-                        <div class="col-md-6">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/aioli.png');"></div>
-                                <input type="checkbox" name="options" id="sauce2">
-                                <div class="name"> Aioli</div>
-                                <div class="price">5 UAH</div>
-                            </label>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/bbq.png');"></div>
-                                <input type="checkbox" name="options" id="sauce3">
-                                <div class="name"> BBQ Sauce</div>
-                                <div class="price">5 UAH</div>
-                            </label>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/mayo.png');"></div>
-                                <input type="checkbox" name="options" id="sauce4">
-                                <div class="name"> Mayo</div>
-                                <div class="price">5 UAH</div>
-                            </label>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="btn item" style="outline: none;">
-                                <div class="photo" style="background-image: url('img/constructor/ketchup.png');"></div>
-                                <input type="checkbox" name="options" id="sauce5">
-                                <div class="name"> Ketchup</div>
-                                <div class="price">5 UAH</div>
-                            </label>
-                        </div>
-
-
 
                     </div>
             </div>

@@ -12,7 +12,6 @@ import java.util.UUID;
  */
 @Component
 public interface BurgersDAO extends MongoRepository<Burger, String> {
-    public Burger findByName(String name);
     public Burger findById(UUID id);
-
+    public Burger findByName(String name);
 }

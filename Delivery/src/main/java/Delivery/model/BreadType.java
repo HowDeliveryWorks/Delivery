@@ -4,8 +4,8 @@ package Delivery.model;
  * Created by igor on 08.04.17.
  */
 public enum BreadType {
-    WihiteBread ("White Bread"),
-    BlackBread ("Black Bread");
+    WihiteBread ("White Bun"),
+    BlackBread ("Black Bun");
 
     BreadType(String name) {
         this.name = name;

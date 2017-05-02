@@ -26,7 +26,7 @@ public class ApplicationMailerTest {
         Burger burger = new Burger(UUID.randomUUID(), "New York", MeatType.Beef, Roasting.Medium, BreadType.WihiteBread, false, ingredients, 400, 210, "burger-1.png");
         ArrayList<String> ing2 = new ArrayList<>();
         Collections.addAll(ing2, "Iceberg Lettuce", "Sauce Salsa", "Secret Sauce", "Chess Viola");
-        Burger burger2 = new Burger(UUID.randomUUID(), "Boston", MeatType.Duck, Roasting.WellDone, BreadType.WihiteBread, true, ing2, 360, 265, "burger-5.png");
+        Burger burger2 = new Burger(UUID.randomUUID(), "Boston", MeatType.Falafel, Roasting.WellDone, BreadType.WihiteBread, true, ing2, 360, 265, "burger-5.png");
         ArrayList<Burger> burgers = new ArrayList<>();
         Collections.addAll(burgers, burger, burger2);
         //Order order = new Order(0, "+380670000000","Kek Street 1", OrderPaymentMethod.Cash,"", burgers);

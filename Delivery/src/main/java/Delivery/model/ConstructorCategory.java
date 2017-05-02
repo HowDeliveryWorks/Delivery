@@ -1,12 +1,10 @@
-
-
 /**
  * Created by Max on 02.05.2017.
  */
 
 /**
  * TODO: Do total ingredients review and refactor.
- * TODO: Wire enums {@link BreadType} {@link MeatType} etc. to {@link IngredientCategory}
+ * TODO: Wire enums {@link BreadType} {@link MeatType} etc. to generic class/interface
  */
 
 /**
@@ -17,10 +15,6 @@ public class ConstructorCategory<T> {
 
     public ConstructorCategory(T arg) {
         category = arg;
-    }
-
-    public T getCategory() {
-        return category;
     }
 
     @Override
@@ -37,4 +31,6 @@ public enum ConstructorCategory {
     Roasting,
     Sauces
 }
+
+
 

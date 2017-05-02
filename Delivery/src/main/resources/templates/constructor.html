@@ -72,6 +72,7 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).BreadType}">
+                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.BreadType)}">-->
                             <label class="btn item" style="outline: none;">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
@@ -90,6 +91,7 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).MeatType}">
+                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.MeatType)}">-->
                             <label class="btn item" style="outline: none;">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
@@ -107,7 +109,8 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Roasting}">
-                            <label class="btn item" style="outline: none;">
+                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.Roasting)}">-->
+                        <label class="btn item" style="outline: none;">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="roast1">
@@ -124,7 +127,8 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Sauces}">
-                            <label class="btn item" style="outline: none;">
+                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.Sauces)}">-->
+                        <label class="btn item" style="outline: none;">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <input type="checkbox" name="options" id="sauce1">
                                 <div class="name" th:text="${ingredient.getName()}"> Yellow Mustard</div>

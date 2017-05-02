@@ -78,10 +78,6 @@ public class DeliveryApplicationTests {
         daoIngredients.deleteAll();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-//        IngredientCategory<BreadType> bt = new IngredientCategory<>(BreadType.WihiteBread);
-//        Ingredient ingredient = new Ingredient(UUID.randomUUID(), "White Bun", bt, 10, "whitebun.png");
-//        ingredients.add(ingredient);
-
 //        ConstructorCategory<BreadType> breadType1 = new ConstructorCategory<>(BreadType.WihiteBread);
 //        Ingredient ingredient1 = new Ingredient(UUID.randomUUID(), "White Bun", breadType1, 10, "whitebun.png");
 //        ingredients.add(ingredient1);
@@ -205,7 +201,6 @@ public class DeliveryApplicationTests {
 
         List<Ingredient> res1 = daoIngredients.findAll();
         System.out.print(res1);
-
 
 	}
 

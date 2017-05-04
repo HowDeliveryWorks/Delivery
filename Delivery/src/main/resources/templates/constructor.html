@@ -72,12 +72,10 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).BreadType}">
-<<<<<<< HEAD
+
                         <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.BreadType)}">-->
-                            <label class="btn item" style="outline: none;">
-=======
-                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('bread', '${ingredient.getName()}', ${ingredient.getPrice()})|">
->>>>>>> origin/Constructor_UI
+                        <label class="btn item" style="outline: none;" th:onclick="|fullinfo('bread', '${ingredient.getName()}', ${ingredient.getPrice()})|">
+
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="bun1">
@@ -95,12 +93,11 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).MeatType}">
-<<<<<<< HEAD
+
                         <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.MeatType)}">-->
-                            <label class="btn item" style="outline: none;">
-=======
+
                             <label class="btn item" style="outline: none;" th:onclick="|fullinfo('meat', '${ingredient.getName()}', '${ingredient.getPrice()}')|">
->>>>>>> origin/Constructor_UI
+
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="meat1">
@@ -117,12 +114,11 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Roasting}">
-<<<<<<< HEAD
+
                         <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.Roasting)}">-->
-                        <label class="btn item" style="outline: none;">
-=======
+
                             <label class="btn item" style="outline: none;" th:onclick="|fullinfo('roasting', '${ingredient.getName()}', '0')|">
->>>>>>> origin/Constructor_UI
+
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="roast1">
@@ -139,12 +135,11 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Sauces}">
-<<<<<<< HEAD
+
                         <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.Sauces)}">-->
-                        <label class="btn item" style="outline: none;">
-=======
+
                             <label class="btn item" style="outline: none;" th:onclick="|fullinfo('sause', '${ingredient.getName()}', '${ingredient.getPrice()}',this)|">
->>>>>>> origin/Constructor_UI
+
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <input type="checkbox" name="options" id="sauce1">
                                 <div class="name" th:text="${ingredient.getName()}"> Yellow Mustard</div>

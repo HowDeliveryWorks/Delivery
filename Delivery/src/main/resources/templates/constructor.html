@@ -72,7 +72,7 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).BreadType}">
-                            <label class="btn item" style="outline: none;">
+                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('bread', '${ingredient.getName()}', ${ingredient.getPrice()})|">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="bun1">
@@ -90,7 +90,7 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).MeatType}">
-                            <label class="btn item" style="outline: none;">
+                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('meat', '${ingredient.getName()}', '${ingredient.getPrice()}')|">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="meat1">
@@ -107,7 +107,7 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Roasting}">
-                            <label class="btn item" style="outline: none;">
+                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('roasting', '${ingredient.getName()}', '0')|">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="roast1">
@@ -124,7 +124,7 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Sauces}">
-                            <label class="btn item" style="outline: none;">
+                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('sause', '${ingredient.getName()}', '${ingredient.getPrice()}',this)|">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <input type="checkbox" name="options" id="sauce1">
                                 <div class="name" th:text="${ingredient.getName()}"> Yellow Mustard</div>
@@ -137,7 +137,7 @@
             </div>
         </div>
         <div class="col-md-5 b">
-            <div class="custom-info">
+            <form class="custom-info" name="customburger">
 
                 <article>Ausi ente me idem utor adeo ob ille. Hominem inferri hos effugio una vel istarum. Gnum ii
                     iste amen ab visu atra. Deo sic olim sese amen. Im co vereor opinio certas.
@@ -146,29 +146,29 @@
                 <div class="ingridients">
                     <span id="spiceTooltip"> </span>
                     <div class="spiciness">Spiciness:
-                        <button type="button" class="btn add-spiciness" data-toggle="button"></button>
+                        <button type="button" class="btn add-spiciness" data-toggle="button" th:onclick="|fullinfo('spice',null,null,this)|"></button>
                     </div>
-                    <div class="bun">Bun:<span>White Bread</span></div>
-                    <div class="meat">Meat:<span>Beef</span></div>
-                    <div class="roasting">Roasting:<span>Medium</span></div>
-                    <div class="sauces">Sauses:
+                    <div class="bun" id="customBun">Bun:<span>White Bread</span></div>
+                    <div class="meat" id="customMeat">Meat:<span>Beef</span></div>
+                    <div class="roasting" id="customRoasting">Roasting:<span>Medium Rare</span></div>
+                    <div class="sauces" id="customSauces">Sauses:
                         <ul>
-                            <li>Aioli</li>
+
                             <li>Ketchup</li>
-                            <li>BBQ Sause</li>
+
                         </ul>
                     </div>
 
                     <div class="row">
                         <div class="col-md-3 col-md-offset-5">
-                            <div class="total">225 UAH</div>
+                            <div class="total" id="customPrice">50 UAH</div>
                         </div>
                         <div class="col-md-4">
                             <a href="#" class="add">Add To Cart</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

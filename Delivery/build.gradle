@@ -35,6 +35,7 @@ dependencies {
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 	compile('org.thymeleaf:thymeleaf')
+	compile('org.json:json:20160810')
 }
 //
 //plugins {

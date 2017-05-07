@@ -1,5 +1,6 @@
 package Delivery.DAO;
 
+import Delivery.enums.BurgerType;
 import Delivery.model.Burger;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.UUID;
  */
 @Component
 public interface BurgersDAO extends MongoRepository<Burger, String> {
-    public Burger findByName(String name);
     public Burger findById(UUID id);
-
+    public Burger findByName(String name);
+    public List<Burger> findByBurgerType(BurgerType burgerType);
 }

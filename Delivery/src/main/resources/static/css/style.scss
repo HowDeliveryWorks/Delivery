@@ -9,6 +9,9 @@ body{
 	a:visited{
 		text-decoration: none;
 	}
+	ul{
+		list-style: none;
+	}
 }
 
 header{
@@ -797,3 +800,203 @@ textarea{resize:none;}
 .show{
   visibility: visible;
 }
+
+/*_________________CONSTRUCTOR______________*/
+.item-list{
+
+	.item{
+		display: block;
+		margin-top: 15px;
+		padding: 10px;
+		cursor: pointer;
+		height: 80px;
+		border: 1px solid white;
+		// .col-md-5,.col-md-7{
+		// 	height: 60px;
+		// }
+		input{
+			position: absolute;
+			clip: rect(0, 0, 0, 0);
+			pointer-events: none;
+		}
+		.photo{
+			background-size: 59px 55px;
+			background-position: top right;
+			background-repeat: no-repeat;
+		}
+		.col-md-6{
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+
+		.name{
+			position: relative;
+			font-weight: bold;
+			color: $red;
+			text-align: left;
+			white-space: normal;
+
+		}
+		.price{
+			color: $black;
+			font-weight: normal;
+			text-align: left;
+
+		}
+
+
+		&:hover{
+			border: $divider;
+			color: $black;
+		}
+	}
+}
+
+
+.tab-pane .btn-group{
+	width: 100%;
+	.photo{
+		background-image: url('../img/constructor/whitebun.png');
+		background-size: 59px 55px;
+		background-position: top center;
+		background-repeat: no-repeat;
+		width: 90px;
+		height: 60px;
+		float: left;
+		position: relative;
+
+	}
+}
+
+.proba2{
+	text-align: left;
+}
+.btn.active{
+	border: $divider;
+	color: inherit;
+
+}
+.btn:focus{
+	border: $divider;
+	color: black;
+}
+.btn:visited{
+	color: inherit;
+}
+.btn:active{
+	color: inherit;
+}
+.btn.active{
+	// background-color:rgba(255,207,62,0.1);
+	background: -webkit-linear-gradient(-45deg, rgba(222,239,255,0) 0%,rgba(223,238,251,0) 2%,rgba(243,219,133,0) 63%,rgba(255,207,62,0.25) 100%); /* Chrome10-25,Safari5.1-6 */
+
+}
+
+.add-spiciness{
+	width: 20px;
+	height:27px;
+	@include background-icon($spicy, 20px, 20px);
+	background-position: top center;
+	background-color: transparent;
+	border-width: 0;
+	opacity:0.5;
+	margin-left:15px;
+
+}
+.add-spiciness:active,.add-spiciness.active{
+	outline:none;
+	opacity:1;
+	@include background-icon($spicy, 20px, 20px);
+	background-position: top center;
+	border-width: 0;
+}
+.add-spiciness:focus{outline:none;border-width: 0;}
+
+#spiceTooltip{
+	position: absolute;
+	display:inline-block;
+	content:" ";
+	width:13px;
+	left: 13px;
+	height:26px;
+	@include background-icon($question, 11px, 11px);
+	background-position: center left;
+	cursor:pointer;
+}
+#spiceTooltip:after{
+	opacity:0;
+	visibility:hidden;
+	color: $red;
+	font-size: 12px;
+	border-left: $divider;
+	padding: 2px 7px;
+	width: 270px;
+	display: block;
+	position: absolute;
+	left: 140px;
+	top: 3px;
+
+	content: "We will add to your burger habanero pepper";
+}
+#spiceTooltip:hover{
+	&:after{
+		visibility:visible;
+
+		opacity:0.9;
+		transition: 0.4s;
+	}
+}
+
+.tab-content{
+	height: 350px;
+	border: $divider;
+	border-top-width:0;
+	padding-left: 15px;
+}
+
+.custom-info{
+	margin-top: 25px;
+	padding: 25px;
+	// border: $divider;
+
+	article{
+		margin-bottom: 25px;
+	}
+	.add{
+		padding: 10px 15px;
+		color: $black;
+		background-color: $yellow;
+		border: $divider;
+
+		&:hover{
+			color: lighten($black, 20%);
+		}
+	}
+
+	.ingridients{
+		div{
+			font-weight: bold;
+			padding: 3px;
+			color: $red;
+			span, ul li{
+				padding-left: 7px;
+				font-weight: normal;
+				color: $black;
+			}
+		}
+
+		.total{
+			font-size: 16px;
+			text-align: right;
+			padding-right: 10px;
+
+		}
+	}
+
+}
+.b{margin:0;padding:0;padding-right:15px;}
+
+#roasting .item-list .item .name{
+	margin-top: 15px;
+}
+

@@ -1,5 +1,6 @@
 package Delivery.model;
 
+import Delivery.enums.BurgerType;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
@@ -26,6 +27,7 @@ public class Burger {
     private int weight;
     private int price;
     private String photo;
+    private BurgerType burgerType;
 
     @Override
     public String toString() {

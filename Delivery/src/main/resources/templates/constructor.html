@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Cart</title>
 
@@ -152,8 +152,8 @@
             </div>
         </div>
         <div class="col-md-5 b">
-            <form class="custom-info" name="customburger">
-
+            <!--<form class="custom-info" name="customburger">-->
+            <div class="custom-info" name="customburger">
                 <article>Ausi ente me idem utor adeo ob ille. Hominem inferri hos effugio una vel istarum. Gnum ii
                     iste amen ab visu atra. Deo sic olim sese amen. Im co vereor opinio certas.
                 </article>
@@ -178,12 +178,17 @@
                         <div class="col-md-3 col-md-offset-5">
                             <div class="total" id="customPrice">50 UAH</div>
                         </div>
-                        <div class="col-md-4">
-                            <a href="#" class="add">Add To Cart</a>
-                        </div>
+                        <!--<div class="col-md-4">-->
+                            <!--<a href="#" class="add">Add To Cart</a>-->
+                        <!--</div>-->
+                        <form class="col-md-4" action="#" th:action="@{/newCustomBurger}" method="post" onsubmit="addjson()">
+                            <!--th:object="${currentCart}"-->
+                            <button type="submit" id="addToCartId" name="addtocartname" value="">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
+            <!--</form>-->
         </div>
     </div>
 

@@ -3,25 +3,20 @@ package Delivery.controllers;
 import Delivery.DAO.BurgersDAO;
 import Delivery.DAO.IngredientsDAO;
 import Delivery.DeliveryApplication;
+import Delivery.enums.BurgerType;
 import Delivery.model.*;
 import Delivery.services.ApplicationMailer;
 import Delivery.util.Utils;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,8 +56,9 @@ public class BurgersController {
 
     @GetMapping("/menu")
     public String getAllBurgers(HttpServletRequest request, Model model){
-        model.addAttribute("burgers", dao.findAll());
-        List a = dao.findAll();
+
+        model.addAttribute("burgers", dao.findByBurgerType(BurgerType.PreOrdered));
+//        List a = dao.findAll();
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "store";
     }
@@ -171,7 +167,12 @@ public class BurgersController {
             BurgerInfo burgerInfo = new BurgerInfo(burger);
 
             cartInfo.removeBurger(burgerInfo);
-            //model.addAttribute("currentCart", cartInfo);
+
+            //Deletes burger from DB if it is custom
+            if (burger.getBurgerType().equals(BurgerType.Custom)) {
+                dao.delete(burger);
+            }
+
 
         }
         // Redirect to cart page.
@@ -189,6 +190,25 @@ public class BurgersController {
 
         // Redirect to shoppingCart page.
         return "redirect:/cart";
+    }
+
+    @RequestMapping(value = "/newCustomBurger", method=RequestMethod.POST)
+    public String processForm(HttpServletRequest request,
+                              @RequestParam(value="addtocartname") String json) {
+        System.out.println(json);
+        JSONObject jsonObject = new JSONObject(json);
+
+        Integer customBurgerCounter = Utils.getCustomBurgersNumbersInSession(request);
+        Burger burger = Utils.getBurgerFromJSON(jsonObject, customBurgerCounter);
+        dao.insert(burger);
+
+        if (burger != null) {
+            CartInfo cartInfo = Utils.getCartInSession(request);
+            BurgerInfo burgerInfo = new BurgerInfo(burger);
+
+            cartInfo.addBurger(burgerInfo, 1);
+        }
+        return "forward:/cart";
     }
 
     // GET: Enter customer information.
@@ -310,7 +330,6 @@ public class BurgersController {
     @GetMapping("/constructor")
     public String constructor(HttpServletRequest request, Model model){
         model.addAttribute("ingredients", daoIngredients.findAll());
-        List a = daoIngredients.findAll();
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "constructor";
     }

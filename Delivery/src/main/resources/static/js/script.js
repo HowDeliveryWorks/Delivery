@@ -30,7 +30,6 @@ function incrItem(elem,price){
     $(elem).parent().next().children(".span-price").text((curr*price));
     $(elem).prev().text(curr++);
 
-
 }
 
 function decrItem(elem,price){
@@ -57,8 +56,8 @@ function calcPrice(bun,meat) {
 }
 
 var customBurger = {
-	roasting: "Medium Rare",
-	bread: {
+    roasting: "Medium Rare",
+        bread: {
 		name: "White Bun",
 		price: 10
 	},
@@ -66,15 +65,17 @@ var customBurger = {
 		name: "Beef",
 		price: 60
 	},
-	sauses: [
+	sauces: [
         {name:"Ketchup",price:5}
 	],
 	spicy: false,
-	price: function () {
+	price: 0,
+	calc: function () {
 		var sum = 100 + this.bread.price + this.meat.price;
-		for(var i=0;i<this.sauses.length;i++){
-			var sum = sum + this.sauses[i].price;
+		for(var i=0;i<this.sauces.length;i++){
+			var sum = sum + this.sauces[i].price;
 		}
+		this.price = sum;
 		return sum;
     }
 }
@@ -104,21 +105,21 @@ function fullinfo(panel,name,price,elem) {
     if(panel=="sause"){
 
         if(elem.classList.contains('active')){
-            for (var i = 0; i < customBurger.sauses.length; i++) {
-            	if(customBurger.sauses[i].name == name) customBurger.sauses.splice(i,1);
+            for (var i = 0; i < customBurger.sauces.length; i++) {
+            	if(customBurger.sauces[i].name == name) customBurger.sauces.splice(i,1);
             }
         }
         else{
 			var newSause = {"name":name, "price":+price};
-			customBurger.sauses.push(newSause);
+			customBurger.sauces.push(newSause);
         }
 
         $('#customSauces ul').text('');
 
-        if(customBurger.sauses.length==0) $('#customSauces ul').append("<span>No sauces chosen</span>");
+        if(customBurger.sauces.length==0) $('#customSauces ul').append("<span>No sauces chosen</span>");
         else{
-            for (var i = 0; i < customBurger.sauses.length; i++) {
-                $('#customSauces ul').append("<li>"+customBurger.sauses[i].name+"</li>");
+            for (var i = 0; i < customBurger.sauces.length; i++) {
+                $('#customSauces ul').append("<li>"+customBurger.sauces[i].name+"</li>");
             }
 		}
     }
@@ -132,7 +133,7 @@ function fullinfo(panel,name,price,elem) {
 	}
 
 	console.log(customBurger.spicy);
-	$('#customPrice').text(customBurger.price() + " UAH");
+	$('#customPrice').text(customBurger.calc() + " UAH");
 }
 
 $(document).ready(function() {
@@ -152,3 +153,10 @@ $(document).ready(function() {
 	fullinfo();
 
 });
+
+function addjson() {
+    // document.getElementById('addToCartId').value = customBurger.toJSON();
+    document.getElementById('addToCartId').value = JSON.stringify(customBurger);
+    console.log(document.getElementById('addToCartId').value);
+    // console.log(typeof document.getElementById('addToCartId').value);
+}

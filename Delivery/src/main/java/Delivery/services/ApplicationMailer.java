@@ -28,6 +28,7 @@ public class ApplicationMailer
     public void sendMail(String to, String subject, String body)
     {
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("<howdeliveryworks@gmail.com>");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(body);

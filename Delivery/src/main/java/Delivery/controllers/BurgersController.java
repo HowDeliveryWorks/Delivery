@@ -88,11 +88,9 @@ public class BurgersController {
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
         CartInfo cartInfo = Utils.getCartInSession(request);
         order.setBurgers(cartInfo.getCartLines());
-        String customerText = order.toString();
-        String ownerText = order.toString();
         try
         {
-            am.sendMail(order.getEmail(),"Your Burgers Order", customerText);
+            am.sendMail(order.getEmail(),"Your Burgers Order", am.customerText(order));
         }
         catch (Exception e)
         {
@@ -100,7 +98,7 @@ public class BurgersController {
         }
         try
         {
-            am.sendMail("howdeliveryworks@gmail.com","We got a new order!", ownerText);
+            am.sendMail("howdeliveryworks@gmail.com","We got a new order!", am.ownerText(order));
         }
         catch (Exception e)
         {

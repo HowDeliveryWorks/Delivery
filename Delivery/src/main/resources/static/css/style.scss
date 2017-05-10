@@ -355,7 +355,7 @@ footer{
 	}
 }
 
-.form-control{border-radius:0 !important; }
+.form-control{border-radius:0 !important; height: 44px; }
 
 .form-data{
 	padding: 20px;
@@ -364,7 +364,6 @@ footer{
 		font-size: 15px;
 		color: $red;
 		}
-
 	
 }
 .required{
@@ -722,7 +721,7 @@ textarea{resize:none;}
 
 	input, textarea{
 		width: 130%;
-		padding: 20px 25px;
+		padding: 0 25px;
 	}
 
 	textarea{

@@ -299,7 +299,8 @@ footer {
       text-align: right; }
 
 .form-control {
-  border-radius: 0 !important; }
+  border-radius: 0 !important;
+  height: 44px; }
 
 .form-data {
   padding: 20px; }
@@ -573,7 +574,7 @@ textarea {
 
 .about form input, .about form textarea {
   width: 130%;
-  padding: 20px 25px; }
+  padding: 0 25px; }
 .about form textarea {
   color: grey; }
 .about form button {

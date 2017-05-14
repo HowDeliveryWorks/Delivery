@@ -25,5 +25,4 @@ public class Order {
     private OrderPaymentMethod paymentMethod;
     private String comment;
     private List<CartLineInfo> burgers;
-
 }

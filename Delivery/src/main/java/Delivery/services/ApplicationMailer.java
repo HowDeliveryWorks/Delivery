@@ -74,6 +74,16 @@ public class ApplicationMailer
         sb.append("Order's number: ");
         sb.append(order.getNumber());
         sb.append(System.getProperty("line.separator")); // new line
+        sb.append("Address: ");
+        sb.append(order.getAddress());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Phone number: ");
+        sb.append(order.getPhone());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Comment:");
+        sb.append(System.getProperty("line.separator"));
+        sb.append(order.getComment());
+        sb.append(System.getProperty("line.separator"));
         sb.append(System.getProperty("line.separator"));
         sb.append("Order list:");
         sb.append(System.getProperty("line.separator"));
@@ -81,6 +91,7 @@ public class ApplicationMailer
         sb.append("For the total of: ");
         sb.append(order.getBurgers().stream().mapToDouble(CartLineInfo::getAmount).sum());
         sb.append(" UAH");
+
         return sb.toString();
     }
 

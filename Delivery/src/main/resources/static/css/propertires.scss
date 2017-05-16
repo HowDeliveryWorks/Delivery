@@ -48,6 +48,9 @@
 
  $question: url(../img/question.png);
 
+ $menu: url(../img/bar-menu.png);
+
+
 
  @mixin background-icon($image, $width, $height){
  	background-image: $image;

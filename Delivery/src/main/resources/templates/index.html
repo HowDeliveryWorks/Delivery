@@ -1,5 +1,6 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,  initial-scale=1">
 <head>
 	<title>Cart</title>
 
@@ -10,6 +11,7 @@
 	<script src="js/jquery-3.1.0.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
 
 </head>
 <body>
@@ -37,13 +39,15 @@
 	<div class="row second">
 		<div class="col-md-2"><img src="img/logo1.png"></div>
 		<div class="col-md-5"></div>
-		<div class="col-md-5 menu">
+		<div class="col-md-5 menu mobile-hidden" id="menuPanel">
 			<ul>
+				<div class="close" onclick="$('#menuPanel').hide(500);"></div>
 				<li><a th:href="@{/contacts}">CONTACTS</a></li>
 				<li><a th:href="@{/menu}">STORE</a></li>
 				<li  class="active"><a th:href="@{/}">HOME</a></li>
 			</ul>
 		</div>
+		<div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
 	</div>
 	
 </div>
@@ -58,10 +62,10 @@
 <div class="body index">
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 img-main">
 			<div class="image"><img src="img/main-burger.png"></div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 text">
 			<div class="about">
 				<div class="header">About Us</div>
 				<article>Expendere rea eos scientiam assentiri tantumque aliquibus. Is ex aliquot saporem corpore at obscure. Cui veri quo dat sine ibi nudi dare. Nonnisi aperire et diversi majoris visione an vi. Rom ponderibus respondeam imaginarer hic externarum. Nudi suam de ha nunc ecce at in sine. Ne longo tenus ii du ferri et. Via tes excludat .</article>

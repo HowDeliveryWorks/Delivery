@@ -18,9 +18,8 @@ header{
 	font-family: 'Minion Pro';
 	width:100%;
 	background-image: url('../img/1.png');
+    background-repeat: no-repeat;
 	height: 300px;
-
-
 
 	/* todo: shaddow */
 
@@ -95,6 +94,7 @@ header{
 
 
 .btn-account{
+    width: 120px;
 	padding: 7px 12px;
 	border: 1px solid white;
 	background-color: transparent;
@@ -173,7 +173,7 @@ header{
 			}
 		}
 
-		ul :first-child{
+		ul :nth-child(2){
 			border-width:0;
 		}
 	}
@@ -304,24 +304,6 @@ header{
 				margin: auto;
 			}
 		}
-	}
-
-
-	.btn-order{
-
-		padding: 15px 10px ;
-		background-color: #ffc000;
-		color: white;
-		font-size: 16px;
-		font-family: 'Minion Bold';
-		text-align: center;
-		border-width:0;
-		border-radius: 10px;
-		width: 100%;
-	}
-	.btn-order:hover{
-		background-color: $yellow;
-		text-decoration: none;
 	}
 }
 
@@ -469,6 +451,7 @@ textarea{resize:none;}
 		float: left;
 		padding: 15px;
 		position: relative;
+        margin-top: 10px;
 		// top: -190px;
 		// text-align: center;
 	}
@@ -528,7 +511,7 @@ textarea{resize:none;}
 		width: 100%;
 		// margin:auto;
 		// margin-left: 11%;
-		height: 190px;
+		height: 200px;
 		transition: opacity 0.5s, visibility 0.5s;
 		opacity:0;
 		padding: 22px 35px ;
@@ -538,7 +521,7 @@ textarea{resize:none;}
 			-moz-column-count:2;
 			-webkit-column-count:2;
 			column-count:2;
-			height: 90px;
+			height: 100px;
 			padding:0; margin:0;
 			margin-bottom: 5px;
 
@@ -573,7 +556,7 @@ textarea{resize:none;}
 
 .custom .burger{
 	background-image: url('../img/custom.jpg');
-	background-size: 125% 100%;
+    background-size: 450px 400px;
 	background-repeat: no-repeat;
 	background-position: center center;
 	.name {
@@ -581,7 +564,7 @@ textarea{resize:none;}
 		background-color: rgba(0,0,0,0.65);
 		color: $lighttext;
 		font-size: 27px;
-		padding: 45px 20px;
+		padding: 22px 20px;
 		top: 95px;
 		span{
 			color: $yellow;
@@ -617,8 +600,8 @@ textarea{resize:none;}
 		}
 		.name{
 			overflow-y: hidden;
-			-webkit-transform: scale(1.0,2.05);
-			transform: scale(1.0,2.05);
+			-webkit-transform: scale(1.0,2.2);
+			transform: scale(1.0,2.2);
 			transition-delay: 0s;
 			transition: 0.3s;
 			color: transparent;
@@ -989,6 +972,7 @@ textarea{resize:none;}
 			font-size: 16px;
 			text-align: right;
 			padding-right: 10px;
+            line-height: 3;
 
 		}
 	}
@@ -1000,3 +984,40 @@ textarea{resize:none;}
 	margin-top: 15px;
 }
 
+.burgerinfo{
+  display: none;
+  height: 17px;
+  width: 17px;
+  @include background-icon($question,17px,17px);
+  position: absolute;
+  top: 32px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.close-ingr{
+  @include background-icon($close,17px,17px);
+  //z-index: 10;
+  opacity: 1;
+}
+
+.finish .totals{display: block;}
+
+.btn-order{
+  display: block;
+  padding: 15px 10px ;
+  background-color: #ffc000;
+  color: white;
+  font-size: 16px;
+  font-family: 'Minion Bold';
+  text-align: center;
+  border-width:0;
+  border-radius: 10px;
+  width: 100%;
+}
+.btn-order:hover{
+  background-color: $yellow;
+  text-decoration: none;
+}
+
+.tab-content{ height: auto; padding-bottom: 15px; min-height: 350px;}

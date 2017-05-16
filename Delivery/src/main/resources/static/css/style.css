@@ -63,6 +63,7 @@ header {
   font-family: 'Minion Pro';
   width: 100%;
   background-image: url("../img/1.png");
+  background-repeat: no-repeat;
   height: 300px;
   /* todo: shaddow */ }
   header .container {
@@ -112,6 +113,7 @@ header {
   height: 700px; }
 
 .btn-account {
+  width: 120px;
   padding: 7px 12px;
   border: 1px solid white;
   background-color: transparent;
@@ -170,7 +172,7 @@ header {
         text-decoration: none; }
       .container .second .menu ul a:focus {
         text-decoration: none; }
-    .container .second .menu ul :first-child {
+    .container .second .menu ul :nth-child(2) {
       border-width: 0; }
 
 .body {
@@ -262,19 +264,6 @@ header {
     .cart .totals .proceed button {
       width: 100%;
       margin: auto; }
-  .cart .btn-order {
-    padding: 15px 10px;
-    background-color: #ffc000;
-    color: white;
-    font-size: 16px;
-    font-family: 'Minion Bold';
-    text-align: center;
-    border-width: 0;
-    border-radius: 10px;
-    width: 100%; }
-  .cart .btn-order:hover {
-    background-color: #ffcf3e;
-    text-decoration: none; }
 
 footer {
   width: 100%;
@@ -390,7 +379,8 @@ textarea {
     width: 48.899%;
     float: left;
     padding: 15px;
-    position: relative; }
+    position: relative;
+    margin-top: 10px; }
   .burger .price {
     font-family: 'Minion Bold';
     text-align: right;
@@ -429,7 +419,7 @@ textarea {
     top: 85px;
     left: 0;
     width: 100%;
-    height: 190px;
+    height: 200px;
     transition: opacity 0.5s, visibility 0.5s;
     opacity: 0;
     padding: 22px 35px; }
@@ -440,7 +430,7 @@ textarea {
       -moz-column-count: 2;
       -webkit-column-count: 2;
       column-count: 2;
-      height: 90px;
+      height: 100px;
       padding: 0;
       margin: 0;
       margin-bottom: 5px; }
@@ -463,7 +453,7 @@ textarea {
 /*_________________________________CUSTOM_BURGER_________________________*/
 .custom .burger {
   background-image: url("../img/custom.jpg");
-  background-size: 125% 100%;
+  background-size: 450px 400px;
   background-repeat: no-repeat;
   background-position: center center; }
   .custom .burger .name {
@@ -471,7 +461,7 @@ textarea {
     background-color: rgba(0, 0, 0, 0.65);
     color: #fffce2;
     font-size: 27px;
-    padding: 45px 20px;
+    padding: 22px 20px;
     top: 95px; }
     .custom .burger .name span {
       color: #ffcf3e; }
@@ -501,8 +491,8 @@ textarea {
       transform: none; }
     .custom .burger:hover .name {
       overflow-y: hidden;
-      -webkit-transform: scale(1, 2.05);
-      transform: scale(1, 2.05);
+      -webkit-transform: scale(1, 2.2);
+      transform: scale(1, 2.2);
       transition-delay: 0s;
       transition: 0.3s;
       color: transparent;
@@ -786,7 +776,8 @@ textarea {
   .custom-info .ingridients .total {
     font-size: 16px;
     text-align: right;
-    padding-right: 10px; }
+    padding-right: 10px;
+    line-height: 3; }
 
 .b {
   margin: 0;
@@ -795,5 +786,47 @@ textarea {
 
 #roasting .item-list .item .name {
   margin-top: 15px; }
+
+.burgerinfo {
+  display: none;
+  height: 17px;
+  width: 17px;
+  background-image: url(../img/question.png);
+  background-size: 17px 17px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 32px;
+  right: 10px;
+  cursor: pointer; }
+
+.close-ingr {
+  background-image: url(../img/cancel.png);
+  background-size: 17px 17px;
+  background-repeat: no-repeat;
+  opacity: 1; }
+
+.finish .totals {
+  display: block; }
+
+.btn-order {
+  display: block;
+  padding: 15px 10px;
+  background-color: #ffc000;
+  color: white;
+  font-size: 16px;
+  font-family: 'Minion Bold';
+  text-align: center;
+  border-width: 0;
+  border-radius: 10px;
+  width: 100%; }
+
+.btn-order:hover {
+  background-color: #ffcf3e;
+  text-decoration: none; }
+
+.tab-content {
+  height: auto;
+  padding-bottom: 15px;
+  min-height: 350px; }
 
 /*# sourceMappingURL=style.css.map */

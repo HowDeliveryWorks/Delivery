@@ -2,6 +2,11 @@
 
 var count = 0;
 
+function showDescription(elem) {
+    $(elem).parent().children(".description").toggle(500);
+    $(elem).toggleClass('close-ingr');
+}
+
 function setCount(){
 	var counter = document.getElementById('counter');
 	count++;
@@ -159,4 +164,11 @@ function addjson() {
     document.getElementById('addToCartId').value = JSON.stringify(customBurger);
     console.log(document.getElementById('addToCartId').value);
     // console.log(typeof document.getElementById('addToCartId').value);
+}
+
+function hideDescription(elem) {
+    if($(window).width()<750){
+        $(elem).hide(500);
+        $(elem).parent().children(".burgerinfo").removeClass('close-ingr');
+    }
 }

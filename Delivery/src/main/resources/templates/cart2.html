@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,  initial-scale=1">
 <head>
 	<title>Cart</title>
 
@@ -12,8 +13,8 @@
 	<script src="js/script.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
 
 </head>
 <body>
@@ -41,13 +42,15 @@
 	<div class="row second">
 		<div class="col-md-2"><img src="img/logo1.png"></div>
 		<div class="col-md-5"></div>
-		<div class="col-md-5 menu">
+		<div class="col-md-5 menu mobile-hidden" id="menuPanel">
 			<ul>
+				<div class="close" onclick="$('#menuPanel').hide(500);"></div>
 				<li><a th:href="@{/contacts}">CONTACTS</a></li>
 				<li class="active"><a th:href="@{/menu}">STORE</a></li>
 				<li><a th:href="@{/}">HOME</a></li>
 			</ul>
 		</div>
+		<div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
 	</div>
 	
 </div>
@@ -56,7 +59,7 @@
 <div class="body">
 	<div class="header">Cart</div>
 
-	<div class="cart">
+	<div class="cart finish">
 		<div class="row">
 			<div class="col-md-8">
 
@@ -185,13 +188,13 @@
 
 </div>
 
-<footer>
-<div class="container">
-	<div class="logo"><img src="img/logo2.png"></div>
-	<div class="ua"><img src="img/ukraine.png"><p>ua</p></div>
-	<div class="privacy-policy">Privacy Policy 2017</div>
-</div>
-</footer>
+<!--<footer>-->
+<!--<div class="container">-->
+	<!--<div class="logo"><img src="img/logo2.png"></div>-->
+	<!--<div class="ua"><img src="img/ukraine.png"><p>ua</p></div>-->
+	<!--<div class="privacy-policy">Privacy Policy 2017</div>-->
+<!--</div>-->
+<!--</footer>-->
 
 
 <!--This is modal window-->
@@ -199,12 +202,9 @@
 
 
 	<div class="info">
-		<div class="modal-header">
-			<!--<a th:href="@{/menuUpdate}">-->
-				<button></button>
-			<!--</a>-->
-		</div>
-		<div class="text">Your order is accepted. Please wait for call from manager to confirm the order.</div>
+		<!--<div class="modal-header"><a th:href="@{/menuUpdate}"><button></button></a></div>-->
+		<!--<div class="text">Your order is accepted. Please wait for call from manager to confirm the order.</div>-->
+		<div class="loader"></div>
 	</div>
 </div>
 <!--...-->

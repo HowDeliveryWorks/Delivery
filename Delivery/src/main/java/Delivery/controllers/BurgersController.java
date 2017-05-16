@@ -2,6 +2,7 @@ package Delivery.controllers;
 
 import Delivery.DAO.BurgersDAO;
 import Delivery.DAO.IngredientsDAO;
+import Delivery.DAO.OrdersDAO;
 import Delivery.DeliveryApplication;
 import Delivery.enums.BurgerType;
 import Delivery.model.*;
@@ -25,6 +26,9 @@ import java.util.UUID;
  */
 @Controller
 public class BurgersController {
+
+    @Autowired
+    private OrdersDAO ordersDAO;
 
     @Autowired
     private BurgersDAO dao;
@@ -83,11 +87,12 @@ public class BurgersController {
     }
 
     @PostMapping("/cart2")
-    public String ordersForm(HttpServletRequest request, @ModelAttribute Order order, Model model){
+    public String ordersForm(HttpSession session, HttpServletRequest request, @ModelAttribute Order order, Model model){
         ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
         CartInfo cartInfo = Utils.getCartInSession(request);
         order.setBurgers(cartInfo.getCartLines());
+        ordersDAO.insert(order);
         try
         {
             am.sendMail(order.getEmail(),"Your Burgers Order", am.customerText(order));
@@ -105,6 +110,7 @@ public class BurgersController {
             e.printStackTrace();
         }
         Utils.removeCartInSession(request);
+        session.invalidate();
         return "redirect:/menu";
     }
 

@@ -26,7 +26,7 @@ public class BurgerInfo {
     private boolean newProduct=false;
 
     // Upload file.
-    private CommonsMultipartFile fileData;
+//    private CommonsMultipartFile fileData;
 
     public BurgerInfo(Burger burger) {
         this.id = burger.getId();
@@ -40,13 +40,13 @@ public class BurgerInfo {
         this.price = burger.getPrice();
     }
 
-    public CommonsMultipartFile getFileData() {
-        return fileData;
-    }
-
-    public void setFileData(CommonsMultipartFile fileData) {
-        this.fileData = fileData;
-    }
+//    public CommonsMultipartFile getFileData() {
+//        return fileData;
+//    }
+//
+//    public void setFileData(CommonsMultipartFile fileData) {
+//        this.fileData = fileData;
+//    }
 
     public boolean isNewProduct() {
         return newProduct;

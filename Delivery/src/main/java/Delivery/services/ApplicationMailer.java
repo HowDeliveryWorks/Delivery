@@ -39,7 +39,7 @@ public class ApplicationMailer
     {
         StringBuilder sb = new StringBuilder(); // more efficient when u work with StringBuilder rather than String itself
         sb.append("Order's number: ");
-        sb.append(order.getNumber());
+        sb.append(order.getId());
         sb.append(System.getProperty("line.separator")); // new line
         sb.append(System.getProperty("line.separator"));
         sb.append("Address: ");
@@ -72,7 +72,7 @@ public class ApplicationMailer
     {
         StringBuilder sb = new StringBuilder(); // more efficient when u work with StringBuilder rather than String itself
         sb.append("Order's number: ");
-        sb.append(order.getNumber());
+        sb.append(order.getId());
         sb.append(System.getProperty("line.separator")); // new line
         sb.append("Address: ");
         sb.append(order.getAddress());

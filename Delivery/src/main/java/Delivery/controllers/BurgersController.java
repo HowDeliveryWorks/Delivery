@@ -6,6 +6,7 @@ import Delivery.DAO.OrdersDAO;
 import Delivery.DeliveryApplication;
 import Delivery.enums.BurgerType;
 import Delivery.model.*;
+import Delivery.sequence.SequenceDao;
 import Delivery.services.ApplicationMailer;
 import Delivery.util.Utils;
 import org.json.JSONObject;
@@ -35,6 +36,11 @@ public class BurgersController {
 
     @Autowired
     private IngredientsDAO daoIngredients;
+
+    @Autowired
+    private SequenceDao sequenceDao;
+
+    private static final String ORDER_SEQ_KEY = "order";
 
     @GetMapping("/contacts")
     public String contacts(HttpServletRequest request, Model model){
@@ -92,6 +98,7 @@ public class BurgersController {
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
         CartInfo cartInfo = Utils.getCartInSession(request);
         order.setBurgers(cartInfo.getCartLines());
+        order.setId(sequenceDao.getNextSequenceId(ORDER_SEQ_KEY));
         ordersDAO.insert(order);
         try
         {

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface OrdersDAO extends MongoRepository<Order, String> {
-    public Order findByNumber(Integer number);
+    public Order findById(long id);
     public Order findByName(String name);
     public Order findByEmail(String email);
     public Order findByPhone(String phone);

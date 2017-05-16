@@ -1,19 +1,20 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,  initial-scale=1">
 <head>
 	<title>Cart</title>
 
 
 
-
-
-	<script src="js/jquery-3.1.0.min.js"></script>
-	<script src="js/script.js"></script>
-
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+
+
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/script.js"></script>
+
 
 </head>
 <body>
@@ -41,13 +42,15 @@
 	<div class="row second">
 		<div class="col-md-2"><img src="img/logo1.png"></div>
 		<div class="col-md-5"></div>
-		<div class="col-md-5 menu">
+		<div class="col-md-5 menu mobile-hidden" id="menuPanel">
 			<ul>
+                <div class="close" onclick="$('#menuPanel').hide(500);"></div>
 				<li><a th:href="@{/contacts}">CONTACTS</a></li>
 				<li class="active"><a th:href="@{/menu}">STORE</a></li>
 				<li><a th:href="@{/}">HOME</a></li>
 			</ul>
 		</div>
+        <div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
 	</div>
 	
 </div>
@@ -59,10 +62,10 @@
     <div class="item-list">
         <div class="row">
 
-            <div class="col-md-4" th:each="burger : ${burgers}">
+            <div class="col-md-4 " th:each="burger : ${burgers}">
                 <div class="burger">
                     <div class="name" th:text="${burger.getName()}">New York</div>
-
+                    <div class="burgerinfo" onclick='showDescription(this)'></div>
                     <div class="size" th:text="${burger.getWeight()}  + 'g'">400g</div>
                     <div class="spicy" th:if="${burger.getSpicy()} == true"></div>
 
@@ -90,7 +93,7 @@
 			<div class="col-md-4 custom">
 				<div class="burger">
 					<a th:href="@{/constructor}">let's make</a>
-					<div class="name">Make <span>Your Ideal</span> Burger
+					<div class="name">Make <br><span>Your Ideal</span><br>Burger
 					</div>
 
 				</div>
@@ -110,4 +113,5 @@
 <!--</div>-->
 <!--</footer>-->
 </body>
+
 </html>

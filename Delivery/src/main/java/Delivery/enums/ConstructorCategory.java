@@ -24,12 +24,13 @@ public class ConstructorCategory<T> {
 }
 */
 
-package Delivery.model;
+package Delivery.enums;
 public enum ConstructorCategory {
     BreadType,
-    MeatType,
+    Meat,
     Roasting,
-    Sauces
+    Sauce,
+    Misc
 }
 
 

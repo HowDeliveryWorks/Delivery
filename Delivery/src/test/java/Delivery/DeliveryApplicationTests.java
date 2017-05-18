@@ -1,10 +1,10 @@
 package Delivery;
 
-import Delivery.DAO.BurgersDAO;
-import Delivery.DAO.IngredientsDAO;
+import Delivery.DAO.*;
+import Delivery.entity.*;
 import Delivery.enums.BurgerType;
-import Delivery.model.*;
-import org.junit.Assert;
+import Delivery.enums.ConstructorCategory;
+import Delivery.enums.Roasting;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,119 +21,167 @@ public class DeliveryApplicationTests {
     private BurgersDAO daoBurgers;
 
     @Autowired
-    private IngredientsDAO daoIngredients;
+    private BreadTypeDAO daoBreadType;
+
+    @Autowired
+    private SaucesDAO daoSauces;
+
+    @Autowired
+    private MiscIngredientsDAO daoMiscIngredients;
+
+    @Autowired
+    private MeatDAO daoMeat;
 
 	@Test
 	public void contextLoads() {
+
+        /******************************
+         * {@link BreadTypeDAO} usage *
+         ******************************/
+
+        daoBreadType.deleteAll();
+        ArrayList<BreadType> breadTypes = new ArrayList<>();
+
+        BreadType breadWhiteBun = new BreadType(UUID.randomUUID(), "White Bun", ConstructorCategory.BreadType, 40, "whitebun.png");
+        breadTypes.add(breadWhiteBun);
+
+        BreadType breadBlackBun = new BreadType(UUID.randomUUID(), "Black Bun", ConstructorCategory.BreadType, 50, "blackbun.png");
+        breadTypes.add(breadBlackBun);
+
+        daoBreadType.insert(breadTypes);
+
+        List<BreadType> breadList = daoBreadType.findAll();
+        System.out.print(breadList);
+
+        /*************************
+         * {@link MeatDAO} usage *
+         *************************/
+
+        daoMeat.deleteAll();
+        ArrayList<Meat> meat = new ArrayList<>();
+
+        Meat meatChicken = new Meat(UUID.randomUUID(), "Chicken", ConstructorCategory.Meat, 50, "chicken-breast.png", false);
+        meat.add(meatChicken);
+
+        Meat meatBeef = new Meat(UUID.randomUUID(), "Beef", ConstructorCategory.Meat, 60, "Beef.png", false);
+        meat.add(meatBeef);
+
+        Meat meatPork = new Meat(UUID.randomUUID(), "Pork", ConstructorCategory.Meat, 60, "pork.png", false);
+        meat.add(meatPork);
+
+        Meat meatVeal = new Meat(UUID.randomUUID(), "Veal", ConstructorCategory.Meat, 60, "vealmain.png", false);
+        meat.add(meatVeal);
+
+        Meat meatFalafel = new Meat(UUID.randomUUID(), "Falafel", ConstructorCategory.Meat, 40, "falafel.jpg", false);
+        meat.add(meatFalafel);
+
+        daoMeat.insert(meat);
+
+        List<Meat> meatList = daoMeat.findAll();
+        System.out.print(meatList);
+
+        /******************************
+         * {@link SaucesDAO} usage *
+         ******************************/
+
+        daoSauces.deleteAll();
+        ArrayList<Sauce> sauces = new ArrayList<>();
+
+        Sauce sauceYellowMustard = new Sauce(UUID.randomUUID(), "Yellow Mustard", ConstructorCategory.Sauce, 10, "yellow.png");
+        sauces.add(sauceYellowMustard);
+
+        Sauce sauceAioli = new Sauce(UUID.randomUUID(), "Aioli", ConstructorCategory.Sauce, 10, "aioli.png");
+        sauces.add(sauceAioli);
+
+        Sauce sauceBBQ = new Sauce(UUID.randomUUID(), "BBQ Sauce", ConstructorCategory.Sauce, 10, "bbq.png");
+        sauces.add(sauceBBQ);
+
+        Sauce sauceMayo = new Sauce(UUID.randomUUID(), "Mayo", ConstructorCategory.Sauce, 10, "mayo.png");
+        sauces.add(sauceMayo);
+
+        Sauce sauceKetchup = new Sauce(UUID.randomUUID(), "Ketchup", ConstructorCategory.Sauce, 10, "ketchup.png");
+        sauces.add(sauceKetchup);
+
+        daoSauces.insert(sauces);
+
+        List<Sauce> saucesList = daoSauces.findAll();
+        System.out.print(saucesList);
+
+        /********************************
+         * {@link MiscIngredientsDAO} usage *
+         ********************************/
+        daoMiscIngredients.deleteAll();
+        ArrayList<MiscIngredient> miscIngredients = new ArrayList<>();
+
+        /** Template to create new, other type ingredients */
+//        MiscIngredient miscChedder = new MiscIngredient(UUID.randomUUID(), "Chedder", ConstructorCategory.Misc, 25, "chedder.png");
+//        miscIngredients.add(miscChedder);
+
+        MiscIngredient roastingRare = new MiscIngredient(UUID.randomUUID(), "Rare", ConstructorCategory.Roasting, 0, "rare.png");
+        miscIngredients.add(roastingRare);
+
+        MiscIngredient roastingMediumRare = new MiscIngredient(UUID.randomUUID(), "Medium Rare", ConstructorCategory.Roasting, 0, "mediumrare.png");
+        miscIngredients.add(roastingMediumRare);
+
+        MiscIngredient roastingMedium = new MiscIngredient(UUID.randomUUID(), "Medium", ConstructorCategory.Roasting, 0, "medium.png");
+        miscIngredients.add(roastingMedium);
+
+        MiscIngredient roastingMediumWell = new MiscIngredient(UUID.randomUUID(), "Medium Well", ConstructorCategory.Roasting, 0, "mediumwell.png");
+        miscIngredients.add(roastingMediumWell);
+
+        MiscIngredient roastingWellDone = new MiscIngredient(UUID.randomUUID(), "Well Done", ConstructorCategory.Roasting, 0, "welldone.png");
+        miscIngredients.add(roastingWellDone);
+
+        daoMiscIngredients.insert(miscIngredients);
+
+        List<MiscIngredient> ingredientList = daoMiscIngredients.findAll();
+        System.out.print(ingredientList);
 
         /****************************
          * {@link BurgersDAO} usage *
          ****************************/
 
         daoBurgers.deleteAll();
-	    ArrayList<Burger> burgers = new ArrayList<>();
+        ArrayList<Burger> burgers = new ArrayList<>();
 
-	    ArrayList<String> ing = new ArrayList<>();
-	    Collections.addAll(ing,"Mayo", "Iceberg Lettuce", "Red Onion", "Chess", "Tomato", "Pickles", "BBQ sauce");
-        Burger burger = new Burger(UUID.randomUUID(), "New York", MeatType.Beef, Roasting.Medium, BreadType.WihiteBread, false, ing, 400, 210, "burger-1.png", BurgerType.PreOrdered);
+        ArrayList<MiscIngredient> ing = new ArrayList<>();
+        Collections.addAll(ing, sauceBBQ, sauceMayo);
+        Burger burger = new Burger(UUID.randomUUID(), "New York", meatChicken, Roasting.None, breadWhiteBun, false, ing, 400, 210, "burger-1.png", BurgerType.PreOrdered);
         burgers.add(burger);
 
-        ArrayList<String> ing1 = new ArrayList<>();
-        Collections.addAll(ing1,"Mayo", "Iceberg Lettuce", "Tomato", "BBQ sauce", "Chess", "Bacon", "Pickles", "Onion Rings");
-        Burger burger1 = new Burger(UUID.randomUUID(), "The Burger", MeatType.Chicken, Roasting.WellDone, BreadType.WihiteBread, false, ing1, 390, 290, "burger-2.png", BurgerType.PreOrdered);
+        ArrayList<MiscIngredient> ing1 = new ArrayList<>();
+        Collections.addAll(ing1, sauceKetchup, sauceYellowMustard, sauceAioli);
+        Burger burger1 = new Burger(UUID.randomUUID(), "The Burger", meatChicken, Roasting.WellDone, breadWhiteBun, false, ing1, 390, 290, "burger-2.png", BurgerType.PreOrdered);
         burgers.add(burger1);
 
-        ArrayList<String> ing2 = new ArrayList<>();
-        Collections.addAll(ing2,"Iceberg Lettuce", "Sauce Salsa", "Secret Sauce", "Chess Viola");
-        Burger burger2 = new Burger(UUID.randomUUID(), "Boston", MeatType.Veal, Roasting.WellDone, BreadType.WihiteBread, true, ing2, 360, 265, "burger-5.png", BurgerType.PreOrdered);
+        ArrayList<MiscIngredient> ing2 = new ArrayList<>();
+        Collections.addAll(ing2, sauceKetchup, sauceMayo);
+        Burger burger2 = new Burger(UUID.randomUUID(), "Boston",meatVeal, Roasting.WellDone, breadWhiteBun, true, ing2, 360, 265, "burger-5.png", BurgerType.PreOrdered);
         burgers.add(burger2);
 
-        ArrayList<String> ing3 = new ArrayList<>();
-        Collections.addAll(ing3,"Berry Sauce", "Iceberg Lettuce", "Chess Dar Blue", "Caramelized Apples");
-        Burger burger3 = new Burger(UUID.randomUUID(), "Carolina", MeatType.Veal, Roasting.WellDone, BreadType.WihiteBread, false, ing3, 320, 225, "burger-4.png", BurgerType.PreOrdered);
+        ArrayList<MiscIngredient> ing3 = new ArrayList<>();
+        Collections.addAll(ing3, sauceBBQ);
+        Burger burger3 = new Burger(UUID.randomUUID(), "Carolina", meatVeal, Roasting.WellDone, breadWhiteBun, false, ing3, 320, 225, "burger-4.png", BurgerType.PreOrdered);
         burgers.add(burger3);
 
-        ArrayList<String> ing4 = new ArrayList<>();
-        Collections.addAll(ing4,"Onion", "Mozzarella", "Bulgarian Pepper", "BBQ sauce", "Iceberg Lettuce", "Tomato", "Eggplant", "Zucchini");
-        Burger burger4 = new Burger(UUID.randomUUID(), "Florida", MeatType.Beef, Roasting.Medium, BreadType.BlackBread, false, ing4, 360, 165, "burger-3.png", BurgerType.PreOrdered);
+        ArrayList<MiscIngredient> ing4 = new ArrayList<>();
+        Collections.addAll(ing4, sauceYellowMustard, sauceMayo);
+        Burger burger4 = new Burger(UUID.randomUUID(), "Florida", meatBeef, Roasting.Medium, breadBlackBun, true, ing4, 360, 165, "burger-3.png", BurgerType.PreOrdered);
         burgers.add(burger4);
 
-        ArrayList<String> ing5 = new ArrayList<>();
-        Collections.addAll(ing5,"Iceberg Lettuce", "Tomato", "Mustard", "Red Onion", "Mayo", "Chess Gauda", "Catchup");
-        Burger burger5 = new Burger(UUID.randomUUID(), "Williams", MeatType.Beef, Roasting.MediumWell, BreadType.WihiteBread, true, ing5, 310, 160, "burger-6.png", BurgerType.PreOrdered);
+        ArrayList<MiscIngredient> ing5 = new ArrayList<>();
+        Collections.addAll(ing5, sauceAioli);
+        Burger burger5 = new Burger(UUID.randomUUID(), "Williams", meatBeef, Roasting.MediumWell, breadBlackBun, true, ing5, 310, 160, "burger-6.png", BurgerType.PreOrdered);
         burgers.add(burger5);
 
-        ArrayList<String> ing6 = new ArrayList<>();
-        Collections.addAll(ing6,"Tomato", "Mozzarella", "Iceberg Lettuce", "Sauce Pesto");
-        Burger burger6 = new Burger(UUID.randomUUID(), "Kentucky", MeatType.Chicken, Roasting.WellDone, BreadType.WihiteBread, false, ing6, 340, 170, "burger-7.png", BurgerType.PreOrdered);
+        ArrayList<MiscIngredient> ing6 = new ArrayList<>();
+        Collections.addAll(ing6, sauceBBQ, sauceMayo);
+        Burger burger6 = new Burger(UUID.randomUUID(), "Kentucky", meatChicken, Roasting.None, breadWhiteBun, false, ing6, 340, 170, "burger-7.png", BurgerType.PreOrdered);
         burgers.add(burger6);
         daoBurgers.insert(burgers);
 
-        List<Burger> res = daoBurgers.findAll();
-        System.out.print(res);
-
-
-        /********************************
-         * {@link IngredientsDAO} usage *
-         ********************************/
-        daoIngredients.deleteAll();
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
-
-        Ingredient ingredient = new Ingredient(UUID.randomUUID(), "White Bun", ConstructorCategory.BreadType, 10, "whitebun.png");
-        ingredients.add(ingredient);
-
-        Ingredient ingredient2 = new Ingredient(UUID.randomUUID(), "Black Bun", ConstructorCategory.BreadType, 20, "blackbun.png");
-        ingredients.add(ingredient2);
-
-        Ingredient ingredient3 = new Ingredient(UUID.randomUUID(), "Chicken", ConstructorCategory.MeatType, 50, "chicken-breast.png");
-        ingredients.add(ingredient3);
-
-        Ingredient ingredient4 = new Ingredient(UUID.randomUUID(), "Beef", ConstructorCategory.MeatType, 60, "Beef.png");
-        ingredients.add(ingredient4);
-
-        Ingredient ingredient5 = new Ingredient(UUID.randomUUID(), "Pork", ConstructorCategory.MeatType, 60, "pork.png");
-        ingredients.add(ingredient5);
-
-        Ingredient ingredient6 = new Ingredient(UUID.randomUUID(), "Veal", ConstructorCategory.MeatType, 60, "vealmain.png");
-        ingredients.add(ingredient6);
-
-        Ingredient ingredient7 = new Ingredient(UUID.randomUUID(), "Falafel", ConstructorCategory.MeatType, 40, "falafel.jpg");
-        ingredients.add(ingredient7);
-
-        Ingredient ingredient8 = new Ingredient(UUID.randomUUID(), "Rare", ConstructorCategory.Roasting, 0, "rare.png");
-        ingredients.add(ingredient8);
-
-        Ingredient ingredient9 = new Ingredient(UUID.randomUUID(), "Medium Rare", ConstructorCategory.Roasting, 0, "mediumrare.png");
-        ingredients.add(ingredient9);
-
-        Ingredient ingredient10 = new Ingredient(UUID.randomUUID(), "Medium", ConstructorCategory.Roasting, 0, "medium.png");
-        ingredients.add(ingredient10);
-
-        Ingredient ingredient11 = new Ingredient(UUID.randomUUID(), "Medium Well", ConstructorCategory.Roasting, 0, "mediumwell.png");
-        ingredients.add(ingredient11);
-
-        Ingredient ingredient12 = new Ingredient(UUID.randomUUID(), "Well Done", ConstructorCategory.Roasting, 0, "welldone.png");
-        ingredients.add(ingredient12);
-
-        Ingredient ingredient13 = new Ingredient(UUID.randomUUID(), "Yellow Mustard", ConstructorCategory.Sauces, 5, "yellow.png");
-        ingredients.add(ingredient13);
-
-        Ingredient ingredient14 = new Ingredient(UUID.randomUUID(), "Aioli", ConstructorCategory.Sauces, 5, "aioli.png");
-        ingredients.add(ingredient14);
-
-        Ingredient ingredient15 = new Ingredient(UUID.randomUUID(), "BBQ Sauce", ConstructorCategory.Sauces, 5, "bbq.png");
-        ingredients.add(ingredient15);
-
-        Ingredient ingredient16 = new Ingredient(UUID.randomUUID(), "Mayo", ConstructorCategory.Sauces, 5, "mayo.png");
-        ingredients.add(ingredient16);
-
-        Ingredient ingredient17 = new Ingredient(UUID.randomUUID(), "Ketchup", ConstructorCategory.Sauces, 5, "ketchup.png");
-        ingredients.add(ingredient17);
-
-        daoIngredients.insert(ingredients);
-
-        List<Ingredient> res1 = daoIngredients.findAll();
-        System.out.print(res1);
+        List<Burger> burgerList = daoBurgers.findAll();
+        System.out.print(burgerList);
 
 	}
 

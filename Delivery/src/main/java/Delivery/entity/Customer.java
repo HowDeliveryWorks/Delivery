@@ -1,4 +1,4 @@
-package Delivery.model;
+package Delivery.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

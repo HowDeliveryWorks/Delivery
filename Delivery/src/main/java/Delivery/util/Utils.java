@@ -1,17 +1,17 @@
 package Delivery.util;
 
+import Delivery.entity.*;
 import Delivery.enums.BurgerType;
+import Delivery.enums.Roasting;
 import Delivery.model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.UUID;
+import java.util.*;
 
 public class Utils {
+
     // Products in Cart, stored in Session.
     public static CartInfo getCartInSession(HttpServletRequest request) {
 
@@ -67,10 +67,14 @@ public class Utils {
      * @param jsonObject - income JSON object
      * @return - {@link Burger} object
      */
-    public static Burger getBurgerFromJSON(JSONObject jsonObject, Integer number) {
+    public static Burger getBurgerFromJSON(JSONObject jsonObject, Integer number, List<Meat> meatList,
+                                           List<BreadType> breadTypeList, List<Sauce> saucesList) {
 
         //Ingredients list
-        ArrayList<String> ing = new ArrayList<>();
+        ArrayList<String> stringIngredientsList = new ArrayList<>();
+
+        //Sauces list
+        ArrayList<String> stringSaucesList = new ArrayList<>();
 
         //Get roasting
         String roasting = jsonObject.getString("roasting");
@@ -90,7 +94,7 @@ public class Utils {
         for (int i = 0; i < saucesObject.length(); i++) {
             JSONObject saucesArrayObject = saucesObject.getJSONObject(i);
             String saucesArrayObjectName = saucesArrayObject.getString("name");
-            ing.add(saucesArrayObjectName);
+            stringSaucesList.add(saucesArrayObjectName);
         }
 
         //Get spice
@@ -99,56 +103,55 @@ public class Utils {
         //Get overall price
         int price = jsonObject.getInt("price");
 
-        Burger burger = new Burger(UUID.randomUUID(), "Custom Burger #" + number, getMeatType(meatType), getRoasting(roasting), getBreadType(breadName), spice, ing, 350, price, "burger-1.png", BurgerType.Custom);
+        //PrepareMeat
+        Meat currentMeat = null;
+        for (Meat meat : meatList){
+            if (meatType.equals(meat.getName())) {
+                currentMeat = meat;
+                break;
+            }
+        }
+
+        //PrepareBreadType
+        BreadType currentBreadType = null;
+        for (BreadType breadType : breadTypeList){
+            if (breadName.equals(breadType.getName())) {
+                currentBreadType = breadType;
+                break;
+            }
+        }
+        //Prepare Misc Ingredients
+        ArrayList<MiscIngredient> miscIngredientArrayList = new ArrayList<>();
+
+        //Sauces first
+        ArrayList<MiscIngredient> sauceArrayList = new ArrayList<>();
+        for (String miscString : stringSaucesList) {
+            Sauce currentSauce = null;
+            for (Sauce sauceOne : saucesList){
+                if (miscString.equals(sauceOne.getName())) {
+                    currentSauce = sauceOne;
+                    break;
+                }
+            }
+            sauceArrayList.add(currentSauce);
+        }
+
+        //Add them all to main ingredient list
+        miscIngredientArrayList.addAll(sauceArrayList);
+
+        //Other TODO
+
+        Burger burger = new Burger(UUID.randomUUID(), "Custom Burger #" + number, currentMeat, getRoasting(roasting), currentBreadType, spice, miscIngredientArrayList, 350, price, "burger-1.png", BurgerType.Custom);
         return burger;
     }
 
     /**
      * Converts string to enum
-     * @param bread - Income String
-     * @return - {@link BreadType} enum
+     * @param roasting - Income String
+     * @return - {@link Roasting} enum
      */
-    public static BreadType getBreadType(String bread) {
-        BreadType breadType = null;
-        switch (bread) {
-            case "White Bun": breadType = BreadType.WihiteBread;
-                break;
-            case "Black Bun": breadType = BreadType.BlackBread;
-                break;
-
-            default: breadType = null;
-                break;
-        }
-        return breadType;
-    }
-
-    /**
-     * Converts string to enum
-     * @param meat - Income String
-     * @return - {@link MeatType} enum
-     */
-    public static MeatType getMeatType(String meat) {
-        MeatType meatType = null;
-        switch (meat) {
-            case "Chicken": meatType = MeatType.Chicken;
-                break;
-            case "Beef": meatType = MeatType.Beef;
-                break;
-            case "Pork": meatType = MeatType.Pork;
-                break;
-            case "Veal": meatType = MeatType.Veal;
-                break;
-            case "Falafel": meatType = MeatType.Falafel;
-                break;
-
-            default: meatType = null;
-                break;
-        }
-        return meatType;
-    }
-
     public static Roasting getRoasting(String roasting) {
-        Roasting roastingFinal = null;
+        Roasting roastingFinal;
         switch (roasting) {
             case "Rare": roastingFinal = Roasting.Rare;
                 break;
@@ -159,6 +162,8 @@ public class Utils {
             case "Medium Well": roastingFinal = Roasting.MediumWell;
                 break;
             case "Well Done": roastingFinal = Roasting.WellDone;
+                break;
+            case "None": roastingFinal = Roasting.None;
                 break;
 
             default: roastingFinal = null;

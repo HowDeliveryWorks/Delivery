@@ -74,9 +74,9 @@
                         <div class="desc-header">Ingridients:</div>
                         <article>
                             <ul class="ingridients">
-                                <li th:text="${burger.getBreadType()}">White Bread</li>
-                                <li th:text="${burger.getMeatType()}">Beef</li>
-                                <li th:each="ing : ${burger.getIngredients()}" th:text="${ing}">salad</li>
+                                <li th:text="${burger.getBreadType().getName()}">White Bread</li>
+                                <li th:text="${burger.getMeat().getName()}">Beef</li>
+                                <li th:each="ing : ${burger.getIngredients()}" th:text="${ing.getName()}">salad</li>
                             </ul>
                         </article>
                         <div class="roasting"><p>Roasting: </p><p  th:text="${burger.getRoasting()}"> medium well</p></div>
@@ -84,7 +84,7 @@
 
                     <div class="price" th:text="${burger.getPrice()} + ' UAH'">210 UAH</div>
                     <div class="add">
-						<a th:href="@{/buyBurger(id=${burger.getId()})}" class="btn-add" id="addToCart" onclick="addToCart(this)"></a>
+						<a th:href="@{/buyBurgerMenu(id=${burger.getId()})}" class="btn-add" id="addToCart" onclick="addToCart(this)"></a>
 					</div>
 
                 </div>

@@ -1,5 +1,6 @@
-package Delivery.model;
+package Delivery.entity;
 
+import Delivery.enums.ConstructorCategory;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ingredient {
+public abstract class Ingredient {
 
     @Id
     private UUID id;

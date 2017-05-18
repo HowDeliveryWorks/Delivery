@@ -1,5 +1,10 @@
 package Delivery.model;
 
+import Delivery.entity.Burger;
+import Delivery.entity.Meat;
+import Delivery.entity.BreadType;
+import Delivery.entity.MiscIngredient;
+import Delivery.enums.Roasting;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +20,11 @@ public class BurgerInfo {
 
     private UUID id;
     private String name;
-    private MeatType meatType;
+    private Meat meat;
     private Roasting roasting;
     private BreadType breadType;
     private Boolean spicy;
-    private ArrayList<String> ingredients;
+    private ArrayList<MiscIngredient> ingredients;
     private int weight;
     private int price;
 
@@ -31,7 +36,7 @@ public class BurgerInfo {
     public BurgerInfo(Burger burger) {
         this.id = burger.getId();
         this.name = burger.getName();
-        this.meatType = burger.getMeatType();
+        this.meat = burger.getMeat();
         this.roasting = burger.getRoasting();
         this.breadType = burger.getBreadType();
         this.spicy = burger.getSpicy();

@@ -75,16 +75,13 @@
 
                     <div class="btn-group row item-list" data-toggle="buttons">
 
-                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).BreadType}">
-
-                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.BreadType)}">-->
-                        <label class="btn item" style="outline: none;" th:onclick="|fullinfo('bread', '${ingredient.getName()}', ${ingredient.getPrice()})|">
-
-                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
+                        <div class="col-md-6" th:each="breadType : ${breadTypes}">
+                        <label class="btn item" style="outline: none;" th:onclick="|fullinfo('bread', '${breadType.getName()}', ${breadType.getPrice()})|">
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${breadType.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="bun1">
-                                <div class="name" th:text="${ingredient.getName()}">W</div>
-                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">0 UAH</div>
+                                <div class="name" th:text="${breadType.getName()}">W</div>
+                                <div class="price" th:text="${breadType.getPrice()} + ' UAH'">0 UAH</div>
                             </label>
                         </div>
 
@@ -95,18 +92,15 @@
                 <div id="meat" class="tab-pane fade">
 
                     <div class="btn-group row item-list" data-toggle="buttons">
+                        <div class="col-md-6" th:each="meatType : ${meat} ">
+                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('meat', '${meatType.getName()}', '${meatType.getPrice()}')|">
 
-                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).MeatType}">
-
-                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.MeatType)}">-->
-
-                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('meat', '${ingredient.getName()}', '${ingredient.getPrice()}')|">
-
-                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
+            
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${meatType.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
                                 <input type="radio" name="options" id="meat1">
-                                <div class="name" th:text="${ingredient.getName()}"> Chick</div>
-                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">2 UAH</div>
+                                <div class="name" th:text="${meatType.getName()}"> Chick</div>
+                                <div class="price" th:text="${meatType.getPrice()} + ' UAH'">2 UAH</div>
                             </label>
                         </div>
 
@@ -117,9 +111,7 @@
 
                     <div class="btn-group row item-list" data-toggle="buttons">
 
-                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Roasting}">
-
-                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.Roasting)}">-->
+                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.enums.ConstructorCategory).Roasting}">
 
                             <label class="btn item" style="outline: none;" th:onclick="|fullinfo('roasting', '${ingredient.getName()}', '0')|">
 
@@ -138,16 +130,13 @@
 
                     <div class="btn-group row item-list" data-toggle="buttons">
 
-                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.model.ConstructorCategory).Sauces}">
+                        <div class="col-md-6" th:each="sauce : ${sauces}">
+                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('sause', '${sauce.getName()}', '${sauce.getPrice()}',this)|">
 
-                        <!--<div class="col-md-4" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() instanceof T(Delivery.model.Sauces)}">-->
-
-                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('sause', '${ingredient.getName()}', '${ingredient.getPrice()}',this)|">
-
-                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${sauce.getPhoto()} + ')'"></div>
                                 <input type="checkbox" name="options" id="sauce1">
-                                <div class="name" th:text="${ingredient.getName()}"> Yellow Mustard</div>
-                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">5 UAH</div>
+                                <div class="name" th:text="${sauce.getName()}"> Yellow Mustard</div>
+                                <div class="price" th:text="${sauce.getPrice()} + ' UAH'">5 UAH</div>
                             </label>
                         </div>
 

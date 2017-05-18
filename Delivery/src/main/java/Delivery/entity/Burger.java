@@ -1,6 +1,7 @@
-package Delivery.model;
+package Delivery.entity;
 
 import Delivery.enums.BurgerType;
+import Delivery.enums.Roasting;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
@@ -18,11 +19,11 @@ public class Burger {
     @Id
     private UUID id;
     private String name;
-    private MeatType meatType;
+    private Meat meat;
     private Roasting roasting;
     private BreadType breadType;
     private Boolean spicy;
-    private ArrayList<String> ingredients;
+    private ArrayList<MiscIngredient> ingredients;
 
     private int weight;
     private int price;

@@ -1,7 +1,7 @@
 package Delivery.DAO;
 
 import Delivery.enums.BurgerType;
-import Delivery.model.Burger;
+import Delivery.entity.Burger;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Component;
 

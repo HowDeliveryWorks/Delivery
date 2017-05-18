@@ -1,10 +1,13 @@
 package Delivery.controllers;
 
-import Delivery.DAO.BurgersDAO;
-import Delivery.DAO.IngredientsDAO;
-import Delivery.DAO.OrdersDAO;
+import Delivery.DAO.*;
 import Delivery.DeliveryApplication;
+import Delivery.entity.BreadType;
+import Delivery.entity.Burger;
+import Delivery.entity.Meat;
+import Delivery.entity.Sauce;
 import Delivery.enums.BurgerType;
+import Delivery.enums.Roasting;
 import Delivery.model.*;
 import Delivery.sequence.SequenceDao;
 import Delivery.services.ApplicationMailer;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,13 +33,21 @@ import java.util.UUID;
 public class BurgersController {
 
     @Autowired
+    private BurgersDAO daoBurgers;
+
     private OrdersDAO ordersDAO;
 
     @Autowired
-    private BurgersDAO dao;
+    private MiscIngredientsDAO daoMiscIngredients;
 
     @Autowired
-    private IngredientsDAO daoIngredients;
+    private MeatDAO daoMeat;
+
+    @Autowired
+    private SaucesDAO daoSauces;
+
+    @Autowired
+    private BreadTypeDAO daoBreadType;
 
     @Autowired
     private SequenceDao sequenceDao;
@@ -67,7 +79,7 @@ public class BurgersController {
     @GetMapping("/menu")
     public String getAllBurgers(HttpServletRequest request, Model model){
 
-        model.addAttribute("burgers", dao.findByBurgerType(BurgerType.PreOrdered));
+        model.addAttribute("burgers", daoBurgers.findByBurgerType(BurgerType.PreOrdered));
 //        List a = dao.findAll();
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "store";
@@ -127,7 +139,7 @@ public class BurgersController {
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
         Burger burger = null;
         if (id != null) {
-            burger = dao.findById(id);
+            burger = daoBurgers.findById(id);
         }
         if (burger != null) {
 
@@ -142,12 +154,32 @@ public class BurgersController {
         return "forward:/cart";
     }
 
+    @RequestMapping({ "/buyBurgerMenu" })
+    public String listProductHandlerMenu(HttpServletRequest request, Model model, //
+                                     @RequestParam(value = "id", defaultValue = "") UUID id) {
+        Burger burger = null;
+        if (id != null) {
+            burger = daoBurgers.findById(id);
+        }
+        if (burger != null) {
+
+            // Cart info stored in Session.
+            CartInfo cartInfo = Utils.getCartInSession(request);
+
+            BurgerInfo burgerInfo = new BurgerInfo(burger);
+
+            cartInfo.addBurger(burgerInfo, 1);
+        }
+        // Redirect to cart page.
+        return "forward:/menu";
+    }
+
     @RequestMapping({ "/removeBurger" })
     public String listProductUnHandler(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
         Burger burger = null;
         if (id != null) {
-            burger = dao.findById(id);
+            burger = daoBurgers.findById(id);
         }
         if (burger != null) {
 
@@ -167,7 +199,7 @@ public class BurgersController {
                                        @RequestParam(value = "id", defaultValue = "") UUID id) {
         Burger burger = null;
         if (id != null) {
-            burger = dao.findById(id);
+            burger = daoBurgers.findById(id);
             System.out.println(burger.toString());
         }
         if (burger != null) {
@@ -181,7 +213,7 @@ public class BurgersController {
 
             //Deletes burger from DB if it is custom
             if (burger.getBurgerType().equals(BurgerType.Custom)) {
-                dao.delete(burger);
+                daoBurgers.delete(burger);
             }
 
 
@@ -203,6 +235,17 @@ public class BurgersController {
         return "redirect:/cart";
     }
 
+
+    @GetMapping("/constructor")
+    public String constructor(HttpServletRequest request, Model model){
+        model.addAttribute("ingredients", daoMiscIngredients.findAll());
+        model.addAttribute("meat", daoMeat.findAll());
+        model.addAttribute("breadTypes", daoBreadType.findAll());
+        model.addAttribute("sauces", daoSauces.findAll());
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        return "constructor";
+    }
+
     @RequestMapping(value = "/newCustomBurger", method=RequestMethod.POST)
     public String processForm(HttpServletRequest request,
                               @RequestParam(value="addtocartname") String json) {
@@ -210,8 +253,11 @@ public class BurgersController {
         JSONObject jsonObject = new JSONObject(json);
 
         Integer customBurgerCounter = Utils.getCustomBurgersNumbersInSession(request);
-        Burger burger = Utils.getBurgerFromJSON(jsonObject, customBurgerCounter);
-        dao.insert(burger);
+        List<Meat> meatList = daoMeat.findAll();
+        List<BreadType> breadTypeList = daoBreadType.findAll();
+        List<Sauce> saucesList = daoSauces.findAll();
+        Burger burger = Utils.getBurgerFromJSON(jsonObject, customBurgerCounter, meatList, breadTypeList, saucesList);
+        daoBurgers.insert(burger);
 
         if (burger != null) {
             CartInfo cartInfo = Utils.getCartInSession(request);
@@ -336,12 +382,5 @@ public class BurgersController {
         //request.getSession().setAttribute("currentCart", cartInfo);
 
         return "index";
-    }
-
-    @GetMapping("/constructor")
-    public String constructor(HttpServletRequest request, Model model){
-        model.addAttribute("ingredients", daoIngredients.findAll());
-        CartInfo cartInfo = Utils.getCartInSession(request);
-        return "constructor";
     }
 }

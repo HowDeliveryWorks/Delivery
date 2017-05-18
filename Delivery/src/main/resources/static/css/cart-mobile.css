@@ -66,5 +66,47 @@
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.5), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff, -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2); }
   87.5% {
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff; } }
+@media screen and (max-width: 990px) {
+  .cart .cart-header .col-md-1, .cart .item .col-md-1 {
+    width: calc(100%/10);
+    float: left; }
+  .cart .cart-header .col-md-2, .cart .item .col-md-2 {
+    width: calc(100%/5);
+    float: left; }
+  .cart .cart-header .col-md-5, .cart .item .col-md-5 {
+    width: calc(100%/(10/3));
+    float: left; }
 
-/*# sourceMappingURL=propertires.css.map */
+  .totals .col-md-9 {
+    width: calc(100%/(12/9));
+    float: left; }
+  .totals .col-md-3 {
+    width: calc(100%/(12/3));
+    float: left; }
+
+  .cart .totals .row {
+    height: 80px; }
+
+  .cart .totals .cart-header {
+    height: 60px; } }
+@media screen and (max-width: 750px) {
+  .cart .cart-header .col-md-2, .cart .item .col-md-2 {
+    width: 100%;
+    float: left; }
+  .cart .cart-header .col-md-5, .cart .item .col-md-5 {
+    width: 100%;
+    float: left; }
+
+  .totals .col-md-9 {
+    width: 100%;
+    float: left; }
+  .totals .col-md-3 {
+    width: 100%;
+    float: left; }
+
+  .cart .item .col-md-1 {
+    width: 19%;
+    height: 45%;
+    float: right; } }
+
+/*# sourceMappingURL=cart-mobile.css.map */

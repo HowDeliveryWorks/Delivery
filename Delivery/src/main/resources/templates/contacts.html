@@ -1,12 +1,8 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,  initial-scale=1">
 <head>
-	<title>Cart</title>
-
-
-
-
+	<title>Contact Us</title>
 
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/script.js"></script>
@@ -14,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css">
 
 </head>
 <body>
@@ -41,13 +38,15 @@
 	<div class="row second">
 		<div class="col-md-2"><img src="img/logo1.png"></div>
 		<div class="col-md-5"></div>
-		<div class="col-md-5 menu">
+		<div class="col-md-5 menu mobile-hidden" id="menuPanel">
 			<ul>
+				<div class="close" onclick="$('#menuPanel').hide(500);"></div>
 				<li class="active"><a href="#">CONTACTS</a></li>
 				<li><a th:href="@{/menu}">STORE</a></li>
 				<li><a th:href="@{/}">HOME</a></li>
 			</ul>
 		</div>
+		<div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
 	</div>
 	
 </div>
@@ -55,10 +54,10 @@
 
 <div class="body index">
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-5 img">
 			<div class="image"><img src="img/ma.png" style="height: 460px;width: 306px;"></div>
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-7 contacts">
 			<div class="about">
 				<div class="header">Contact Us</div>
 				<div class="form-data">

@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Order {
     @Id
-    private Integer number = 0;
+    private long id = 0;
     private String name;
     private String email;
     private String phone;
@@ -25,5 +25,4 @@ public class Order {
     private OrderPaymentMethod paymentMethod;
     private String comment;
     private List<CartLineInfo> burgers;
-
 }

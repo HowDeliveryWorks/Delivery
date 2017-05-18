@@ -38,8 +38,12 @@ public class ApplicationMailer
     public String customerText(Order order)
     {
         StringBuilder sb = new StringBuilder(); // more efficient when u work with StringBuilder rather than String itself
+        sb.append("Hey ");
+        sb.append(order.getName());
+        sb.append("! It seems like you made a new order!");
+        sb.append(System.getProperty("line.separator"));
         sb.append("Order's number: ");
-        sb.append(order.getNumber());
+        sb.append(order.getId());
         sb.append(System.getProperty("line.separator")); // new line
         sb.append(System.getProperty("line.separator"));
         sb.append("Address: ");
@@ -72,8 +76,18 @@ public class ApplicationMailer
     {
         StringBuilder sb = new StringBuilder(); // more efficient when u work with StringBuilder rather than String itself
         sb.append("Order's number: ");
-        sb.append(order.getNumber());
+        sb.append(order.getId());
         sb.append(System.getProperty("line.separator")); // new line
+        sb.append("Address: ");
+        sb.append(order.getAddress());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Phone number: ");
+        sb.append(order.getPhone());
+        sb.append(System.getProperty("line.separator"));
+        sb.append("Comment:");
+        sb.append(System.getProperty("line.separator"));
+        sb.append(order.getComment());
+        sb.append(System.getProperty("line.separator"));
         sb.append(System.getProperty("line.separator"));
         sb.append("Order list:");
         sb.append(System.getProperty("line.separator"));
@@ -81,6 +95,7 @@ public class ApplicationMailer
         sb.append("For the total of: ");
         sb.append(order.getBurgers().stream().mapToDouble(CartLineInfo::getAmount).sum());
         sb.append(" UAH");
+
         return sb.toString();
     }
 

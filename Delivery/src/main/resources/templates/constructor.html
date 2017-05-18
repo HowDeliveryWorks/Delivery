@@ -90,7 +90,7 @@
 
                     <div class="btn-group row item-list" data-toggle="buttons">
 
-                        <div class="col-md-4" th:each="meatType : ${meat}">
+                        <div class="col-md-4" th:each="meatType : ${meat} ">
                             <label class="btn item" style="outline: none;" th:onclick="|fullinfo('meat', '${meatType.getName()}', '${meatType.getPrice()}')|">
 
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${meatType.getPhoto()} + ')'"></div>

@@ -1,6 +1,7 @@
 'use strict'
 
 var count = 0;
+var currEnabledRoasting = "Medium Rare";
 
 function showDescription(elem) {
     $(elem).parent().children(".description").toggle(500);
@@ -64,7 +65,7 @@ var customBurger = {
     roasting: "Medium Rare",
         bread: {
 		name: "White Bun",
-		price: 10
+		price: 40
 	},
 	meat:{
 		name: "Beef",
@@ -155,7 +156,7 @@ $(document).ready(function() {
     var div3 = $('#sauce .item-list').find("label");
     $(div3[4]).addClass('active');
 
-	fullinfo();
+    $('#customPrice').text(customBurger.calc() + " UAH");
 
 });
 
@@ -171,4 +172,21 @@ function hideDescription(elem) {
         $(elem).hide(500);
         $(elem).parent().children(".burgerinfo").removeClass('close-ingr');
     }
+}
+
+function meatEdit(roasting,name,price) {
+    console.log(roasting);
+    if(roasting=='true'){
+        $('#roastingTab').addClass('hide');
+        $('#customRoasting').addClass('hide');
+        currEnabledRoasting =  customBurger.roasting;
+        customBurger.roasting = "None";
+    }
+    else {$('#roastingTab').removeClass('hide');$('#customRoasting').removeClass('hide');customBurger.roasting = currEnabledRoasting;}
+
+    customBurger.meat.price = +price;
+    customBurger.meat.name = name;
+    $('#customMeat span').text(name);
+
+    $('#customPrice').text(customBurger.calc() + " UAH");
 }

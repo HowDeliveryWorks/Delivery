@@ -65,7 +65,7 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#bread">Bread Type</a></li>
                 <li><a data-toggle="tab" href="#meat">Meat Type</a></li>
-                <li><a data-toggle="tab" href="#roasting">Roasting</a></li>
+                <li id="roastingTab"><a data-toggle="tab" href="#roasting">Roasting</a></li>
                 <li><a data-toggle="tab" href="#sauce">Sauces</a></li>
             </ul>
 
@@ -93,7 +93,7 @@
 
                     <div class="btn-group row item-list" data-toggle="buttons">
                         <div class="col-md-6" th:each="meatType : ${meat} ">
-                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('meat', '${meatType.getName()}', '${meatType.getPrice()}')|">
+                            <label class="btn item" style="outline: none;" th:onclick="|meatEdit('${meatType.roastingEnabled}', '${meatType.getName()}', '${meatType.getPrice()}')|">
 
             
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${meatType.getPhoto()} + ')'"></div>
@@ -152,6 +152,7 @@
                 </article>
 
                 <div class="ingridients">
+                    <div class="burger-items">
                     <span id="spiceTooltip"> </span>
                     <div class="spiciness">Spiciness:
                         <button type="button" class="btn add-spiciness" data-toggle="button" th:onclick="|fullinfo('spice',null,null,this)|"></button>
@@ -165,6 +166,7 @@
                             <li>Ketchup</li>
 
                         </ul>
+                    </div>
                     </div>
 
                     <div class="row">

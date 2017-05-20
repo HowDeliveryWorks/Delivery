@@ -60,7 +60,7 @@ public class DeliveryApplicationTests {
         daoMeat.deleteAll();
         ArrayList<Meat> meat = new ArrayList<>();
 
-        Meat meatChicken = new Meat(UUID.randomUUID(), "Chicken", ConstructorCategory.Meat, 50, "chicken-breast.png", false);
+        Meat meatChicken = new Meat(UUID.randomUUID(), "Chicken", ConstructorCategory.Meat, 50, "chicken-breast.png", true);
         meat.add(meatChicken);
 
         Meat meatBeef = new Meat(UUID.randomUUID(), "Beef", ConstructorCategory.Meat, 60, "Beef.png", false);
@@ -72,7 +72,7 @@ public class DeliveryApplicationTests {
         Meat meatVeal = new Meat(UUID.randomUUID(), "Veal", ConstructorCategory.Meat, 60, "vealmain.png", false);
         meat.add(meatVeal);
 
-        Meat meatFalafel = new Meat(UUID.randomUUID(), "Falafel", ConstructorCategory.Meat, 40, "falafel.jpg", false);
+        Meat meatFalafel = new Meat(UUID.randomUUID(), "Falafel", ConstructorCategory.Meat, 40, "falafel.jpg", true);
         meat.add(meatFalafel);
 
         daoMeat.insert(meat);

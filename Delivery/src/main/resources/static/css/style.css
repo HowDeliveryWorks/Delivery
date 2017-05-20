@@ -884,5 +884,10 @@ textarea {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+.hide {
+  display: none; }
+
+.burger-items {
+  min-height: 200px; }
 
 /*# sourceMappingURL=style.css.map */

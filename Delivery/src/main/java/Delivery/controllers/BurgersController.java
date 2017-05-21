@@ -35,6 +35,7 @@ public class BurgersController {
     @Autowired
     private BurgersDAO daoBurgers;
 
+    @Autowired
     private OrdersDAO ordersDAO;
 
     @Autowired

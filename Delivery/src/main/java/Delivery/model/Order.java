@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Order {
     @Id
-    private long id = 0;
+    private long id;
     private String name;
     private String email;
     private String phone;

@@ -28,6 +28,7 @@ public class SequenceDaoImpl implements SequenceDao {
         //return new increased id
         FindAndModifyOptions options = new FindAndModifyOptions();
         options.returnNew(true);
+        options.upsert(true);
 
         //this is the magic happened.
         SequenceId seqId =

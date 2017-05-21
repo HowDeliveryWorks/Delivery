@@ -622,8 +622,6 @@ textarea {
 .order-done-info {
   visibility: hidden;
   position: absolute;
-  width: 100%;
-  height: 175%;
   top: 0;
   left: 0;
   text-align: center;
@@ -889,5 +887,111 @@ textarea {
 
 .burger-items {
   min-height: 200px; }
+
+.account {
+  height: 400px;
+  width: 800px;
+  background-color: #313131;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 5px; }
+  .account p {
+    color: #B7B8BF;
+    font-size: 18px;
+    font-weight: 300; }
+  .account .content {
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: 60px;
+    box-sizing: border-box; }
+    .account .content .button {
+      color: #ffcf3e;
+      text-decoration: none;
+      cursor: pointer; }
+    .account .content .button:hover {
+      color: #d54b00; }
+    .account .content h2 {
+      color: #ffcf3e;
+      font-family: 'Ovo', serif;
+      font-size: 30px;
+      margin-bottom: 16px; }
+  .account .movebox {
+    height: 500px;
+    width: 50%;
+    background-color: white;
+    margin: 0 30px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+    .account .movebox h2 {
+      color: #2E334A; }
+    .account .movebox p {
+      color: #313131;
+      margin: 0; }
+    .account .movebox .error {
+      position: relative;
+      font-size: 14px;
+      color: #d54b00; }
+    .account .movebox .error {
+      display: none; }
+    .account .movebox input {
+      font-size: 14px;
+      padding: 5px 15px; }
+    .account .movebox p {
+      margin-bottom: 5px;
+      margin-top: 5px; }
+    .account .movebox .login {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 60px;
+      box-sizing: border-box;
+      visibility: hidden; }
+    .account .movebox .signup {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 60px;
+      box-sizing: border-box; }
+
+#background {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-family: 'Minion Pro';
+  display: none; }
+  #background .btn-order {
+    border-radius: 0;
+    font-size: 16px;
+    padding: 7px 35px;
+    margin-right: 3px;
+    width: inherit;
+    float: right; }
+  #background .close {
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    background-image: url(../img/cancel.png);
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    top: 0;
+    right: 0;
+    background-position: center center; }
 
 /*# sourceMappingURL=style.css.map */

@@ -144,6 +144,12 @@ function fullinfo(panel,name,price,elem) {
 
 $(document).ready(function() {
 
+
+    $('.btn-account').on('click', function () {
+        $('#background').fadeIn(300);
+    });
+
+
 	var div = $('#bread .item-list').find("label");
 	$(div[0]).addClass('active');
 
@@ -157,6 +163,10 @@ $(document).ready(function() {
     $(div3[4]).addClass('active');
 
     $('#customPrice').text(customBurger.calc() + " UAH");
+    var windowHeight = $(document).height();
+    var windowWidth = $(document).width();
+    $('#orderDone').height(windowHeight);
+    $('#orderDone').width(windowWidth);
 
 });
 

@@ -732,14 +732,11 @@ textarea{resize:none;}
 	text-align: center;
 }
 
-
-
-
 .order-done-info{
   visibility:hidden;
   position: absolute;
-  width:100%;
-  height: 175%;
+  //width:100%;
+  //height: 100vh;
   top:0;
   left:0;
   text-align: center;
@@ -1048,3 +1045,104 @@ textarea{resize:none;}
 }
 
 .burger-items{min-height: 200px;}
+
+@mixin centre($axis: "both"){
+	position:absolute;
+	@if $axis == "y"{
+		top:50%;
+		-webkit-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+	@if $axis == "both"{
+		top:50%;
+		left:50%;
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+}
+
+.account {
+	height:400px;
+	width:800px;
+	background-color: $black;
+	display: inline-block;
+	@include centre;
+	border-radius: 5px;
+	p {
+		color: #B7B8BF;
+		font-size: 18px;
+		font-weight: 300;
+	}
+
+	.content {
+		float:left;
+		width:50%;
+		height:100%;
+		padding:60px;
+		box-sizing: border-box;
+		.button{color: $yellow; text-decoration:none;cursor: pointer;}
+		.button:hover{color: $red;}
+		h2 {
+			color: $yellow;
+			font-family: 'Ovo', serif;
+			font-size:30px;
+			margin-bottom: 16px;
+		}
+	}
+	.movebox {
+		height:500px;
+		width:50%;;
+		background-color:white;
+		margin: 0 30px;
+		@include centre(y);
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+		h2 {color:#2E334A;}
+		p {color: $black;margin:0;}
+		.error{position:relative; font-size: 14px; color: $red;}
+		.error{display:none;}
+
+		input{
+			font-size: 14px;
+			padding: 5px 15px;
+		}
+		p{ margin-bottom: 5px; margin-top: 5px;}
+
+		.login {
+			position:absolute;
+			top:0;
+			left:0;
+			padding:60px;
+			box-sizing: border-box;
+			visibility:hidden;
+		}
+		.signup {
+			position:absolute;
+			top:0;
+			left:0;
+			padding:60px;
+			box-sizing: border-box;
+
+		}
+	}
+}
+
+#background {
+	height:100%;
+	width:100%;
+	position: fixed;
+	top:0;
+	left: 0;
+	background-color: rgba(0,0,0,0.7);
+	font-family: 'Minion Pro';
+	display: none;
+
+	.btn-order{border-radius: 0; font-size: 16px; padding: 7px 35px; margin-right: 3px; width: inherit; float: right;}
+	.close{position: absolute; width:95px; height:95px;@include background-icon($close, 15px, 15px);top:0;right: 0;background-position: center center;}
+}
+

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <meta name="viewport" content="width=device-width,  initial-scale=1">
-<head>
+	<head>
 	<title>Cart</title>
-
-
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/script.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 
-	<script src="js/jquery-3.1.0.min.js"></script>
+
+
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/mobile.css">
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>-->
 
 </head>
 <body>
@@ -72,10 +74,6 @@
 			</div>
 		</div>
 	</div>
-	
-
-
-
 	</div>
 
 
@@ -86,5 +84,7 @@
 	<!--<div class="privacy-policy">Privacy Policy 2017</div>-->
 <!--</div>-->
 <!--</footer>-->
+<div th:replace="login :: #background"></div>
+
 </body>
 </html>

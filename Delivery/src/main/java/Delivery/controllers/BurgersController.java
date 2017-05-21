@@ -2,14 +2,10 @@ package Delivery.controllers;
 
 import Delivery.DAO.*;
 import Delivery.DeliveryApplication;
-import Delivery.entity.BreadType;
-import Delivery.entity.Burger;
-import Delivery.entity.Meat;
-import Delivery.entity.Sauce;
+import Delivery.entity.*;
 import Delivery.enums.BurgerType;
-import Delivery.enums.Roasting;
 import Delivery.model.*;
-import Delivery.sequence.SequenceDao;
+import Delivery.DAO.SequenceDAO;
 import Delivery.services.ApplicationMailer;
 import Delivery.util.Utils;
 import org.json.JSONObject;
@@ -22,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,7 +46,7 @@ public class BurgersController {
     private BreadTypeDAO daoBreadType;
 
     @Autowired
-    private SequenceDao sequenceDao;
+    private SequenceDAO sequenceDAO;
 
     private static final String ORDER_SEQ_KEY = "order";
 
@@ -111,7 +106,7 @@ public class BurgersController {
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
         CartInfo cartInfo = Utils.getCartInSession(request);
         order.setBurgers(cartInfo.getCartLines());
-        order.setId(sequenceDao.getNextSequenceId(ORDER_SEQ_KEY));
+        order.setId(sequenceDAO.getNextSequenceId(ORDER_SEQ_KEY));
         ordersDAO.insert(order);
         try
         {

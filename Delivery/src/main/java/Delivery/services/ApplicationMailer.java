@@ -4,7 +4,7 @@ package Delivery.services;
  * Created by LevelNone on 21.04.2017.
  */
 import Delivery.model.CartLineInfo;
-import Delivery.model.Order;
+import Delivery.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;

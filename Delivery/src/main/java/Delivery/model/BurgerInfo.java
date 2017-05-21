@@ -4,6 +4,7 @@ import Delivery.entity.Burger;
 import Delivery.entity.Meat;
 import Delivery.entity.BreadType;
 import Delivery.entity.MiscIngredient;
+import Delivery.enums.BurgerType;
 import Delivery.enums.Roasting;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,8 @@ public class BurgerInfo {
     private ArrayList<MiscIngredient> ingredients;
     private int weight;
     private int price;
+    private String photo;
+    private BurgerType burgerType;
 
     private boolean newProduct=false;
 
@@ -43,6 +46,8 @@ public class BurgerInfo {
         this.ingredients = burger.getIngredients();
         this.weight = burger.getWeight();
         this.price = burger.getPrice();
+        this.photo = burger.getPhoto();
+        this.burgerType = burger.getBurgerType();
     }
 
 //    public CommonsMultipartFile getFileData() {

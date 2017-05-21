@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class SequenceDAOImpl implements SequenceDAO {
+public class SequenceDaoImpl implements SequenceDAO {
 
     @Autowired
     private MongoOperations mongoOperation;

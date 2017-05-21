@@ -93,6 +93,12 @@ public class BurgersController {
         return "cart";
     }
 
+    @GetMapping("/sorry")
+    public String sorry(HttpServletRequest request, Model model){
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        return "sorry";
+    }
+
     @GetMapping("/cart2")
     public String cart2(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);

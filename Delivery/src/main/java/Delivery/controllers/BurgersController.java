@@ -253,7 +253,7 @@ public class BurgersController {
         System.out.println(json);
         JSONObject jsonObject = new JSONObject(json);
 
-        Integer customBurgerCounter = Utils.getCustomBurgersNumbersInSession(request);
+        Integer customBurgerCounter = Utils.getCustomBurgersNumberInSession(request);
         List<Meat> meatList = daoMeat.findAll();
         List<BreadType> breadTypeList = daoBreadType.findAll();
         List<Sauce> saucesList = daoSauces.findAll();

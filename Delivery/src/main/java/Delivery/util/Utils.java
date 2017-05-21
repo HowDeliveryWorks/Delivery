@@ -29,7 +29,7 @@ public class Utils {
         return cartInfo;
     }
 
-    public static Integer getCustomBurgersNumbersInSession(HttpServletRequest request) {
+    public static Integer getCustomBurgersNumberInSession(HttpServletRequest request) {
 
         // Get CustomBurgerNumber from Session.
         Integer customBurgerCounter = (Integer) request.getSession().getAttribute("customBurgerNumber");
@@ -43,6 +43,7 @@ public class Utils {
 
         } else {
             customBurgerCounter++;
+            request.getSession().setAttribute("customBurgerNumber", customBurgerCounter);
         }
         return customBurgerCounter;
     }

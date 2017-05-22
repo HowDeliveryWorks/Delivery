@@ -1,0 +1,102 @@
+@mixin centre($axis: "both"){
+  position:absolute;
+  @if $axis == "y"{
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  @if $axis == "both"{
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.account {
+  height:400px;
+  width:800px;
+  background-color: #2E334A;
+  display: inline-block;
+  @include centre;
+  border-radius: 5px;
+  .content {
+    float:left;
+    width:50%;
+    height:100%;
+    padding:60px;
+    box-sizing: border-box;
+  }
+  .movebox {
+    height:450px;
+    width:50%;;
+    background-color:white;
+    margin: 0 30px;
+    @include centre(y);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    h2 {
+      color:#2E334A;
+    }
+    p {
+      margin:0;
+    }
+    .login {
+      position:absolute;
+      top:0;
+      left:0;
+      padding:60px;
+      box-sizing: border-box;
+      visibility:hidden;
+    }
+    .signup {
+      position:absolute;
+      top:0;
+      left:0;
+      padding:60px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color:#B7B8BF;
+  font-weight: 400;
+}
+
+h2 {
+  color: #8EC9D2;
+  font-family: 'Ovo', serif;
+  font-size:30px;
+  margin-bottom: 16px;
+}
+
+p {
+  color: #B7B8BF;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.background {
+  height:100%;
+  width:100%;
+  position: absolute;
+  //background: url(https://images.unsplash.com/photo-1428677361686-f9d23be145c9?fit=crop&fm=jpg&h=1100&q=80&w=1925) no-repeat center   center fixed;
+  //-webkit-background-size: cover;
+  //-moz-background-size: cover;
+  //-o-background-size: cover;
+  //background-size: cover;
+}
+
+body {
+  margin:0;
+  padding:0;
+  //font-family: 'Muli', sans-serif;
+}
+

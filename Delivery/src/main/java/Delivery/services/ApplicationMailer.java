@@ -3,8 +3,12 @@ package Delivery.services;
 /**
  * Created by LevelNone on 21.04.2017.
  */
+import Delivery.entity.Ingredient;
+import Delivery.enums.BurgerType;
+import Delivery.enums.Roasting;
+import Delivery.model.BurgerInfo;
 import Delivery.model.CartLineInfo;
-import Delivery.model.Order;
+import Delivery.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -102,10 +106,39 @@ public class ApplicationMailer
     private static void appendCartLineInfo(StringBuilder sb, Order order)
     {
         for (CartLineInfo cli: order.getBurgers()) {
+            BurgerInfo burgerInfo = cli.getBurgerInfo();
             sb.append("x");
             sb.append(cli.getQuantity());
             sb.append(" ");
-            sb.append(cli.getBurgerInfo().getName());
+            sb.append(burgerInfo.getName());
+            if(burgerInfo.getBurgerType() == BurgerType.Custom)
+            {
+                sb.append(":");
+                sb.append(System.getProperty("line.separator"));
+                if(burgerInfo.getSpicy())
+                {
+                    sb.append("\t\u2022 Spicy");
+                    sb.append(System.getProperty("line.separator"));
+                }
+                sb.append("\t\u2022 ");
+                sb.append(burgerInfo.getMeat().getName());
+                if (burgerInfo.getRoasting() != Roasting.None)
+                {
+                    sb.append(System.getProperty("line.separator"));
+                    sb.append("\t\u2022 ");
+                    sb.append("Roasting: ");
+                    sb.append(burgerInfo.getRoasting().toString());
+                }
+                sb.append(System.getProperty("line.separator"));
+                sb.append("\t\u2022 ");
+                sb.append(burgerInfo.getBreadType().getName());
+                for (Ingredient i : burgerInfo.getIngredients())
+                {
+                    sb.append(System.getProperty("line.separator"));
+                    sb.append("\t\u2022 ");
+                    sb.append(i.getName());
+                }
+            }
             sb.append(System.getProperty("line.separator"));
         }
     }

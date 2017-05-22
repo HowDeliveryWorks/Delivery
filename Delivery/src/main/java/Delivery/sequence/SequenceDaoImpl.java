@@ -1,5 +1,6 @@
 package Delivery.sequence;
 
+import Delivery.DAO.SequenceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class SequenceDaoImpl implements SequenceDao {
+public class SequenceDaoImpl implements SequenceDAO {
 
     @Autowired
     private MongoOperations mongoOperation;

@@ -1,5 +1,6 @@
-package Delivery.model;
+package Delivery.entity;
 
+import Delivery.entity.Role;
 import lombok.Data;
 
 import java.util.Set;

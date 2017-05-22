@@ -1,6 +1,6 @@
 package Delivery.DAO;
 
-import Delivery.model.User;
+import Delivery.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Component;
 

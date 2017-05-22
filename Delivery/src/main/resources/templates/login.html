@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<meta name="viewport" content="width=device-width,  initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+<body>
+
+<!--TODO: Close button -->
+<!--TODO: Btn-order button -->
+<div id="background">
+    <div class="close" onclick="$(this).parent().fadeOut(200)"></div>
+    <div class="account" id="account">
+        <div class="movebox">
+            <form class="signup" name="signUp" action="" onsubmit="return validate()">
+                <h2>Register here</h2>
+
+                <p>Full name</p>
+                <input required></input>
+                <p>E-mail</p>
+                <input type="email" required></input>
+                <p>Password</p>
+                <input type="password" required name="password"></input>
+                <p>Password again </p>
+                <input type="password" required name="passwordRepeater"></input>
+                <div class="error" id="samePassError">Passwords are not the same</div>
+                <br/>
+                <br/>
+                <a href="#">
+                    <button class="btn-order" type="submit" onclick="$('.movebox .error').hide();">Register</button>
+                </a>
+            </form>
+            <form class="login">
+                <h2>Login here</h2>
+                <p>E-mail</p>
+                <input></input>
+                <p>Password</p>
+                <input type="password"></input>
+                <br/>
+                <br/>
+                <a href="#">
+                    <button class="btn-order" type="submit">Login</button>
+                </a>
+            </form>
+        </div>
+        <div class="content">
+            <h2>Don't have an account?</h2>
+            <p>Order easier and faster, save your address(es), check your order details, and more</p>
+            <p>
+                <p class="button to-left">Register here</p>
+        </div>
+        <div class="content">
+            <h2>Have an account?</h2>
+            <p>Already registered? If you have an account with us, please log in.</p>
+            <p class="button to-right">Login here</p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+    <script>
+        var $toRight = $('.to-right'),
+            $toLeft = $('.to-left'),
+            $movebox = $('.movebox'),
+            $signup = $('.signup'),
+            $login = $('.login'),
+            config = {},
+            tl = new TimelineMax();
+
+        function toRight () {
+            tl.to($movebox, 1, {x: 340, ease: Elastic.easeOut})
+                .to($signup, 0, {autoAlpha: 0}, '-=1')
+                .to($login, 0, {autoAlpha: 1}, '-=1');
+        }
+        function toLeft () {
+            tl.to ( $movebox, 1, { x: 0, ease: Elastic.easeOut })
+                .to ( $signup, 0, { autoAlpha:1 }, '-=1')
+                .to ( $login, 0, { autoAlpha:0 }, '-=1');
+        }
+
+        $toRight.on('click', function(){
+            toRight()
+        })
+
+        $toLeft.on('click', function(){
+            toLeft();
+        })
+
+        function validate(){
+
+            $('.movebox .error').hide();
+
+            var pass1 = document.forms["signUp"]["password"].value;
+            var pass2 = document.forms["signUp"]["passwordRepeater"].value;
+
+            if(pass1!=pass2){
+                $('#samePassError').show();
+                return false;
+            }
+
+            else{return true;}
+        }
+
+    </script>
+</div>
+
+
+
+</body>
+</html>

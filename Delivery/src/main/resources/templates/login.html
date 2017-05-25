@@ -16,17 +16,18 @@
     <div class="close" onclick="$(this).parent().fadeOut(200)"></div>
     <div class="account" id="account">
         <div class="movebox">
-            <form class="signup" name="signUp" action="" onsubmit="return validate()">
+            <form class="signup" id="signup-from" name="signUp" th:action="@{/registration}" th:object="${user}" method="post" onsubmit="return validate()">
                 <h2>Register here</h2>
 
                 <p>Full name</p>
-                <input required></input>
+                <input th:field="*{username}"  required></input>
                 <p>E-mail</p>
-                <input type="email" required></input>
+                <div id="emailerror"></div>
+                <input type="email" th:field="*{email}" required></input>
                 <p>Password</p>
-                <input type="password" required name="password"></input>
+                <input type="password" th:field="*{password}"  required name="password"></input>
                 <p>Password again </p>
-                <input type="password" required name="passwordRepeater"></input>
+                <input type="password" th:field="*{passwordConfirm}"  required name="passwordRepeater"></input>
                 <div class="error" id="samePassError">Passwords are not the same</div>
                 <br/>
                 <br/>
@@ -34,16 +35,19 @@
                     <button class="btn-order" type="submit" onclick="$('.movebox .error').hide();">Register</button>
                 </a>
             </form>
-            <form class="login">
+            <form class="login" th:action="@{/login}" method="post" id="login">
                 <h2>Login here</h2>
+
+                <div id="loginerror"></div>
+
                 <p>E-mail</p>
-                <input></input>
+                <input id="username" name="username"></input>
                 <p>Password</p>
-                <input type="password"></input>
+                <input type="password" id="password" name="password" ></input>
                 <br/>
                 <br/>
                 <a href="#">
-                    <button class="btn-order" type="submit">Login</button>
+                    <button class="btn-order" type="submit" onclick="tryLogin()">Login</button>
                 </a>
             </form>
         </div>
@@ -100,13 +104,17 @@
                 return false;
             }
 
+
             else{return true;}
+        }
+
+        function tryLogin() {
+            var json = "<p>Wrong Username or password</p>";
+            $('#loginerror').html(json);
         }
 
     </script>
 </div>
-
-
 
 </body>
 </html>

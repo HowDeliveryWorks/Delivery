@@ -37,6 +37,7 @@ dependencies {
 	compile('org.thymeleaf:thymeleaf')
 	compile('org.json:json:20160810')
 	compile("org.springframework.boot:spring-boot-starter-security")
+	compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4")
 }
 //
 //plugins {

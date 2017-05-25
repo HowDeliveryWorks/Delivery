@@ -54,7 +54,7 @@ public class UserController {
 
         System.out.println("user added: " + user.getUsername());
 
-        securityService.autologin(user.getUsername(), user.getPasswordConfirm());
+        securityService.autologin(user.getEmail(), user.getPasswordConfirm());
 
         return "sorry";
     }

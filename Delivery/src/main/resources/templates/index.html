@@ -28,8 +28,8 @@
 			</div>
 			<div class="col-md-4"></div>
 			<div class="col-md-3 right-header">
-				<button class="btn-account">My account</button>
-				<!--<button class="btn-account" th:if="${#authorization.expression('isAuthenticated()')}" th:inline="text">[[${#httpServletRequest.remoteUser}]]</button>-->
+				<button class="btn-account" th:if="${#authorization.expression('!isAuthenticated()')}">My account</button>
+				<button class="btn-account" th:if="${#authorization.expression('isAuthenticated()')}" sec:authentication="name"></button>
 				<a th:href="@{/cart}"> <button class="btn-cart">
 					<div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
 				</button></a>

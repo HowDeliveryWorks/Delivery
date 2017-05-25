@@ -16,7 +16,7 @@
     <div class="close" onclick="$(this).parent().fadeOut(200)"></div>
     <div class="account" id="account">
         <div class="movebox">
-            <form class="signup" id="signup-from" name="signUp" th:action="@{/registration}" th:object="${user}" method="post" onsubmit="return validate()">
+            <form class="signup" id="signup-from" name="signUp" onsubmit="return validate()" th:action="@{/registration}" th:object="${user}" method="post">
                 <h2>Register here</h2>
 
                 <p>Full name</p>

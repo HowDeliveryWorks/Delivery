@@ -95,7 +95,7 @@ header{
 
 
 .btn-account{
-    width: 120px;
+    min-width: 120px;
 	padding: 7px 12px;
 	border: 1px solid white;
 	background-color: transparent;
@@ -143,6 +143,7 @@ header{
 
 .container .second{
 	margin-top: 45px;
+	position: relative;
 
 	.menu{
 		text-align: right;
@@ -186,7 +187,7 @@ header{
 	background-color: white;
 	// height: 200px;
 	margin: auto;
-	top: -80px;
+	top: -40px;
 	padding: 40px 30px;
 
 	.header{
@@ -1147,3 +1148,59 @@ textarea{resize:none;}
 	.close{position: absolute; width:95px; height:95px;@include background-icon($close, 15px, 15px);top:0;right: 0;background-position: center center;}
 }
 
+.customburger-info, .profile-info{
+	.burger{border-bottom-width:0;}
+	.info{padding:30px 15px;}
+	.header{
+		font-family: 'Minion Bold';
+		background-color: $black;
+		color: white;
+		padding: 15px 0;
+		font-size: 20px;
+	}
+	.empty{
+		text-align: center;
+		font-family: 'Minion Pro';
+		font-size:20px;
+		color: $black;
+		padding: 15px 20px;
+
+		a{color: $red; padding-left: 15px; &:hover{color:lighten($red,10%);}}
+	}
+}
+.profile-info p{
+	font-family: 'Minion Pro';
+	font-size:20px;
+	color: $black;
+	span{
+		width: 50%;
+		float: left;
+		padding-right: 15px;
+		text-align: right;
+		color: $red;}
+}
+
+/* Raiting */
+#raiting{text-align: center;margin: -31px 30px 0; border: $divider; border-top-width: 0;}
+.customburger-info .burger:hover, .customburger-info .burger:hover + #raiting{border-color: rgba(51,51,51,0.21);}
+div.stars { display: inline-block;}
+input.star { display: none; }
+label.star {
+	float: right;
+	padding: 10px;
+	font-size: 30px;
+	color: $black;
+	transition: all .2s;
+	cursor: pointer;
+}
+label.star:hover {color:gold; transition: all .25s;}
+label.star:hover ~ label.star:before {color: gold; transition: all .25s;}
+label.star:before {content: "\2606";}
+
+label.checked:before{
+	content: "\2605";
+	color:gold;
+	transition: all .25s;
+}
+
+/* Raiting end */

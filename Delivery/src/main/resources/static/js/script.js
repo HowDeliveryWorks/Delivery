@@ -168,6 +168,7 @@ $(document).ready(function() {
     $('#orderDone').height(windowHeight);
     $('#orderDone').width(windowWidth);
 
+
 });
 
 function addjson() {
@@ -200,3 +201,27 @@ function meatEdit(roasting,name,price) {
 
     $('#customPrice').text(customBurger.calc() + " UAH");
 }
+
+
+function loadstars(){
+
+    var form = $('.stars').children('form');
+    for(var i=0; i<form.length;i++){
+        var currStars = $(form[i]).attr('id');
+        currStars = currStars.slice(-4);
+        currStars = currStars.replace(/\D+/g,"");
+        var allStars = $(form[i]).children("label");
+
+        for(var j=0; j<currStars;j++){
+            $(allStars[4-j]).addClass('checked');
+        }
+
+    }
+};
+
+function findNumber(str){
+    return str.replace(/\D+/g,"");
+};
+
+
+

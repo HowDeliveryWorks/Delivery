@@ -7,7 +7,9 @@
   .nav-tabs{margin-top: 15px;}
 }
 @media screen and (max-width: 990px){
-  .item-list .col-md-4{width:calc(100%/3); float: left;}
+  .item-list .col-md-4{width:calc(100%/3); float: left; label.star{font-size: 24px;}}
+  .customburger-info .col-md-4{width:calc(100%/2); float:left;}
+
   .img{width: calc(100%/(12/5)); float: left;}
   .contacts{width: calc(100%/(12/7)); float: left;}
   .container .second .menu{top: -70px;}
@@ -147,7 +149,8 @@
     height: 41px;
     position: absolute;
     right: 25px;
-    top: 130px;
+    //top: 130px;
+    bottom: 10px;
   }
 
   .burger{
@@ -155,6 +158,7 @@
     margin-right: 10px;
 
   }
+  #raiting{margin: -31px 10px 0;}
 
   .custom .burger{
     .name{
@@ -238,7 +242,7 @@
 
 @media screen and (max-width: 510px){
   .index .image img{width: 100%; height: auto; border-width: 10px;}
-  .item-list .col-md-4{width:100%;}
+  .item-list .col-md-4, .customburger-info .col-md-4{width:100%;}
   .main{background-position: -220px top;}
   .anti-slider{margin-top: 45px;}
   .main{ height: 850px;}

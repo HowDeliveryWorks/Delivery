@@ -79,6 +79,12 @@
   .item-list .col-md-4 {
     width: calc(100%/3);
     float: left; }
+    .item-list .col-md-4 label.star {
+      font-size: 24px; }
+
+  .customburger-info .col-md-4 {
+    width: calc(100%/2);
+    float: left; }
 
   .img {
     width: calc(100%/(12/5));
@@ -242,11 +248,14 @@
     height: 41px;
     position: absolute;
     right: 25px;
-    top: 130px; }
+    bottom: 10px; }
 
   .burger {
     margin-left: 10px;
     margin-right: 10px; }
+
+  #raiting {
+    margin: -31px 10px 0; }
 
   .custom .burger .name {
     top: 0;
@@ -360,7 +369,7 @@
     height: auto;
     border-width: 10px; }
 
-  .item-list .col-md-4 {
+  .item-list .col-md-4, .customburger-info .col-md-4 {
     width: 100%; }
 
   .main {

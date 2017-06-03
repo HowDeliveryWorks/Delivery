@@ -2,68 +2,9 @@
 
 const elements = {};
 
+let currEnabledRoasting = "Medium Rare";
 
-var count = 0;
-var currEnabledRoasting = "Medium Rare";
-
-function showDescription(elem) {
-    $(elem).parent().children(".description").toggle(500);
-    $(elem).toggleClass('close-ingr');
-}
-
-function setCount() {
-    var counter = document.getElementById('counter');
-    count++;
-    // console.log(count);
-    // console.log($('#counter').innerHTML);
-    counter.innerHTML = count;
-}
-
-function addToCart(elem) {
-    $(elem).toggleClass("add-done");
-    setTimeout(function () {
-        $(elem).removeClass("add-done");
-    }, 2000);
-
-    setCount();
-
-}
-
-
-function incrItem(elem, price) {
-    var curr = $(elem).prev().text();
-    console.log(curr);
-    curr = +curr;
-
-    console.log(curr++);
-    $(elem).parent().next().children(".span-price").text((curr * price));
-    $(elem).prev().text(curr++);
-
-}
-
-function decrItem(elem, price) {
-    var curr = $(elem).next().text();
-    console.log(curr);
-    curr = +curr;
-    if (curr > 1) {
-        curr = curr - 1;
-        $(elem).next().text(curr);
-    }
-    $(elem).parent().next().children(".span-price").text(curr * price);
-
-}
-
-
-function showOrderDone() {
-    $('#orderDone').addClass('show');
-}
-
-
-function calcPrice(bun, meat) {
-    return 50 + bun + meat;
-}
-
-var customBurger = {
+let customBurger = {
     roasting: "Medium Rare",
     bread: {
         name: "White Bun",
@@ -80,112 +21,56 @@ var customBurger = {
     spicy: false,
     price: 0,
     calc: function () {
-        var sum = 30 + this.bread.price + this.meat.price;
-        var newarray = [this.sauces,this.misk].reduce((a,b)=>(a.concat(b)));
+        let sum = 30 + this.bread.price + this.meat.price;
+        const newarray = [this.sauces,this.misk].reduce((a, b ) => (a.concat(b)));
         newarray.map((elem) => sum += elem.price);
         this.price = sum;
         return sum;
     },
     checktype: function(type) { return this[type]; }
+};
+
+
+function showDescription(elem) {
+    $(elem).parent().children(".description").toggle(500);
+    $(elem).toggleClass('close-ingr');
 }
 
-function showArgs(burger) {
-    for (var i = 1; i < arguments.length; i++) {
-        console.log(arguments[i]);
-    }
+
+function addToCart(elem) {
+    $(elem).toggleClass("add-done");
+    setTimeout(function () {
+        $(elem).removeClass("add-done");
+    }, 2000);
 }
 
-function fullinfo(panel, name, price, elem) {
 
-    if (panel === "bread") {
-        customBurger.bread.price = +price;
-        customBurger.bread.name = name;
-        $('#customBun span').text(name);
-    }
-    if (panel === "meat") {
-        customBurger.meat.price = +price;
-        customBurger.meat.name = name;
-        $('#customMeat span').text(name);
-    }
-    if (panel === "roasting") {
-        customBurger.roasting = name;
-        $('#customRoasting span').text(name);
-    }
-    if (panel === "sause") {
 
-        if (elem.classList.contains('active')) {
-            for (var i = 0; i < customBurger.sauces.length; i++) {
-                if (customBurger.sauces[i].name === name) customBurger.sauces.splice(i, 1);
-            }
-        }
-        else {
-            var newSause = {"name": name, "price": +price};
-            customBurger.sauces.push(newSause);
-        }
-
-        $('#customSauces span').text('');
-
-        if (customBurger.sauces.length == 0) $('#customSauces span').text("No sauces chosen");
-        else {
-            $('#customSauces span').text(
-                customBurger.sauces.map((elem) => (elem.name)
-            ).join(", ")
-        )
-            ;
-        }
-    }
-    if (panel === "misk") {
-
-        if (elem.classList.contains('active')) {
-            for (var i = 0; i < customBurger.misk.length; i++) {
-                if (customBurger.misk[i].name === name) customBurger.misk.splice(i, 1);
-            }
-        }
-        else {
-            var newMisk = {"name": name, "price": +price};
-            customBurger.sauces.push(newMisk);
-        }
-
-        $('#customMisk span').text('');
-
-        if (customBurger.misk.length === 0) $('#customMisk span').text("No additional ingridients chosen");
-        else {
-            $('#customMisk span').text(
-                customBurger.misk.map((elem) => (elem.name)
-            ).join(", ")
-        )
-            ;
-        }
-    }
-    if (panel === "spice")customBurger.spicy = !elem.classList.contains('active');
-
-    console.log(customBurger.spicy);
-    $('#customPrice').text(customBurger.calc() + " UAH");
+function showOrderDone() {
+    $('#orderDone').addClass('show');
 }
 
 $(document).ready(function () {
-
 
     $('.btn-account').on('click', function () {
         $('#background').fadeIn(300);
     });
 
-
-    var div = $('#bread .item-list').find("label");
+    let div = $('#bread .item-list').find("label");
     $(div[0]).addClass('active');
 
-    var div1 = $('#meat .item-list').find("label");
+    let div1 = $('#meat .item-list').find("label");
     $(div1[1]).addClass('active');
 
-    var div2 = $('#roasting .item-list').find("label");
+    let div2 = $('#roasting .item-list').find("label");
     $(div2[1]).addClass('active');
 
-    var div3 = $('#sauce .item-list').find("label");
+    let div3 = $('#sauce .item-list').find("label");
     $(div3[4]).addClass('active');
 
     $('#customPrice').text(customBurger.calc() + " UAH");
-    var windowHeight = $(document).height();
-    var windowWidth = $(document).width();
+    let windowHeight = $(document).height();
+    let windowWidth = $(document).width();
     $('#orderDone').height(windowHeight);
     $('#orderDone').width(windowWidth);
 });
@@ -195,16 +80,16 @@ function addjson() {
     console.log(document.getElementById('addToCartId').value);
 }
 
-function hideDescription(elem) {
-    if ($(window).width() < 750) {
-        $(elem).hide(500);
-        $(elem).parent().children(".burgerinfo").removeClass('close-ingr');
-    }
-}
+// function hideDescription(elem) {
+//     if ($(window).width() < 750) {
+//         $(elem).hide(500);
+//         $(elem).parent().children(".burgerinfo").removeClass('close-ingr');
+//     }
+// }
 
 function meatEdit(roasting, name, price) {
     console.log(roasting);
-    if (roasting == 'true') {
+    if (roasting === 'true') {
         $('#roastingTab').addClass('hide');
         $('#customRoasting').addClass('hide');
         currEnabledRoasting = customBurger.roasting;
@@ -220,27 +105,61 @@ function meatEdit(roasting, name, price) {
     customBurger.meat.name = name;
     $('#customMeat span').text(name);
     $('#customPrice').text(customBurger.calc() + " UAH");
+
 }
 
 
 function loadstars() {
-
-    var form = $('.stars').children('form');
-    for (var i = 0; i < form.length; i++) {
-        var currStars = $(form[i]).attr('id');
+    let form = $('.stars').children('form');
+    for (let i = 0; i < form.length; i++) {
+        let currStars = $(form[i]).attr('id');
         currStars = currStars.slice(-4);
         currStars = currStars.replace(/\D+/g, "");
-        var allStars = $(form[i]).children("label");
+        let allStars = $(form[i]).children("label");
 
-        for (var j = 0; j < currStars; j++) {
+        for (let j = 0; j < currStars; j++) {
             $(allStars[4 - j]).addClass('checked');
         }
     }
-};
+}
 
 function findNumber(str) {
     return str.replace(/\D+/g, "");
-};
+}
+
+function checkSingle(type, name, price) {
+    const ingr = customBurger.checktype(type);
+    ingr.price = +price;
+    ingr.name = name;
+    const str = upperFirst(type);
+    $(`#custom${str} span`).text(name);
+    $('#customPrice').text(customBurger.calc() + " UAH");
+}
+
+function checkMultiple(type, name, price, elem) {
+    let ingr = customBurger.checktype(type);
+    let str = $(`#custom${upperFirst(type)} span`);
+    str.text('');
+
+    if (elem.classList.contains('active')) {
+        for (let i = 0; i < ingr.length; i++) {
+            if (ingr[i].name === name) ingr.splice(i, 1);
+        }
+    }
+    else { let newElem = { "name": name, "price": +price }; ingr.push(newElem); }
+
+    if (ingr.length === 0) str.text("No items chosen");
+    else str.text(ingr.map((elem) => (elem.name)).join(", "));
+    $('#customPrice').text(customBurger.calc() + " UAH");
+}
+
+function checkSpicy() {
+    customBurger.spicy = !$('.spiciness button').hasClass('active');
+}
+
+function upperFirst(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 
 

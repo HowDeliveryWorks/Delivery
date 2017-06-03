@@ -107,13 +107,13 @@
                 <div id="misk" class="tab-pane fade">
                     <div class="btn-group row item-list" data-toggle="buttons">
 
-                        <div class="col-md-6" th:each="sauce : ${sauces}">
-                            <label class="btn item" style="outline: none;" th:onclick="|checkMultiple('misk', '${sauce.getName()}', '${sauce.getPrice()}',this)|">
+                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.enums.ConstructorCategory).Misc}">
+                            <label class="btn item" style="outline: none;" th:onclick="|checkMultiple('misk', '${ingredient.getName()}', '${ingredient.getPrice()}',this)|">
 
-                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${sauce.getPhoto()} + ')'"></div>
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <input type="checkbox" name="options">
-                                <div class="name" th:text="${sauce.getName()}"> Yellow Mustard</div>
-                                <div class="price" th:text="${sauce.getPrice()} + ' UAH'">5 UAH</div>
+                                <div class="name" th:text="${ingredient.getName()}"> Yellow Mustard</div>
+                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">5 UAH</div>
                             </label>
                         </div>
 

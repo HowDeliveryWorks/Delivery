@@ -1,8 +1,7 @@
 'use strict';
 
-const elements = {
+const elements = {};
 
-};
 
 var count = 0;
 var currEnabledRoasting = "Medium Rare";
@@ -12,141 +11,159 @@ function showDescription(elem) {
     $(elem).toggleClass('close-ingr');
 }
 
-function setCount(){
-	var counter = document.getElementById('counter');
-	count++;
-	// console.log(count);
-	// console.log($('#counter').innerHTML);
-	counter.innerHTML = count;
+function setCount() {
+    var counter = document.getElementById('counter');
+    count++;
+    // console.log(count);
+    // console.log($('#counter').innerHTML);
+    counter.innerHTML = count;
 }
 
-function addToCart(elem){
-	$(elem).toggleClass("add-done");
-	setTimeout(function(){
-		$(elem).removeClass("add-done");
-	},2000);
+function addToCart(elem) {
+    $(elem).toggleClass("add-done");
+    setTimeout(function () {
+        $(elem).removeClass("add-done");
+    }, 2000);
 
-	setCount();
+    setCount();
 
 }
 
 
-function incrItem(elem,price){
-	var curr = $(elem).prev().text();
+function incrItem(elem, price) {
+    var curr = $(elem).prev().text();
     console.log(curr);
-	curr = +curr;
+    curr = +curr;
 
-	console.log(curr++);
-    $(elem).parent().next().children(".span-price").text((curr*price));
+    console.log(curr++);
+    $(elem).parent().next().children(".span-price").text((curr * price));
     $(elem).prev().text(curr++);
 
 }
 
-function decrItem(elem,price){
+function decrItem(elem, price) {
     var curr = $(elem).next().text();
     console.log(curr);
     curr = +curr;
-    if(curr>1){
-        curr = curr-1;
-    	$(elem).next().text(curr);
+    if (curr > 1) {
+        curr = curr - 1;
+        $(elem).next().text(curr);
     }
-    $(elem).parent().next().children(".span-price").text(curr*price);
+    $(elem).parent().next().children(".span-price").text(curr * price);
 
 }
 
 
 function showOrderDone() {
-	$('#orderDone').addClass('show');
+    $('#orderDone').addClass('show');
 }
 
 
-
-function calcPrice(bun,meat) {
-	return 50 + bun + meat;
+function calcPrice(bun, meat) {
+    return 50 + bun + meat;
 }
 
 var customBurger = {
     roasting: "Medium Rare",
-        bread: {
-		name: "White Bun",
-		price: 40
-	},
-	meat:{
-		name: "Beef",
-		price: 60
-	},
-	sauces: [
-        {name:"Ketchup",price:5}
-	],
-	spicy: false,
-	price: 0,
-	calc: function () {
-		var sum = 100 + this.bread.price + this.meat.price;
-		for(var i=0;i<this.sauces.length;i++){
-			var sum = sum + this.sauces[i].price;
-		}
-		this.price = sum;
-		return sum;
-    }
+    bread: {
+        name: "White Bun",
+        price: 40
+    },
+    meat: {
+        name: "Beef",
+        price: 60
+    },
+    sauces: [
+        {name: "Ketchup", price: 5}
+    ],
+    misk: [],
+    spicy: false,
+    price: 0,
+    calc: function () {
+        var sum = 30 + this.bread.price + this.meat.price;
+        var newarray = [this.sauces,this.misk].reduce((a,b)=>(a.concat(b)));
+        newarray.map((elem) => sum += elem.price);
+        this.price = sum;
+        return sum;
+    },
+    checktype: function(type) { return this[type]; }
 }
 
 function showArgs(burger) {
-	for(var i=1; i<arguments.length; i++){
-		console.log(arguments[i]);
-	}
+    for (var i = 1; i < arguments.length; i++) {
+        console.log(arguments[i]);
+    }
 }
 
-function fullinfo(panel,name,price,elem) {
+function fullinfo(panel, name, price, elem) {
 
-    if (panel == "bread") {
+    if (panel === "bread") {
         customBurger.bread.price = +price;
         customBurger.bread.name = name;
         $('#customBun span').text(name);
     }
-    if(panel=="meat"){
+    if (panel === "meat") {
         customBurger.meat.price = +price;
         customBurger.meat.name = name;
         $('#customMeat span').text(name);
     }
-    if(panel=="roasting"){
+    if (panel === "roasting") {
         customBurger.roasting = name;
         $('#customRoasting span').text(name);
     }
-    if(panel=="sause"){
+    if (panel === "sause") {
 
-        if(elem.classList.contains('active')){
+        if (elem.classList.contains('active')) {
             for (var i = 0; i < customBurger.sauces.length; i++) {
-            	if(customBurger.sauces[i].name == name) customBurger.sauces.splice(i,1);
+                if (customBurger.sauces[i].name === name) customBurger.sauces.splice(i, 1);
             }
         }
-        else{
-			var newSause = {"name":name, "price":+price};
-			customBurger.sauces.push(newSause);
+        else {
+            var newSause = {"name": name, "price": +price};
+            customBurger.sauces.push(newSause);
         }
 
-        $('#customSauces ul').text('');
+        $('#customSauces span').text('');
 
-        if(customBurger.sauces.length==0) $('#customSauces ul').append("<span>No sauces chosen</span>");
-        else{
-            for (var i = 0; i < customBurger.sauces.length; i++) {
-                $('#customSauces ul').append("<li>"+customBurger.sauces[i].name+"</li>");
-            }
-		}
+        if (customBurger.sauces.length == 0) $('#customSauces span').text("No sauces chosen");
+        else {
+            $('#customSauces span').text(
+                customBurger.sauces.map((elem) => (elem.name)
+            ).join(", ")
+        )
+            ;
+        }
     }
-    if(panel=="spice"){
-    	if(elem.classList.contains('active')){
-    		customBurger.spicy = false;
-		}
-		else {
-    		customBurger.spicy = true;
-		}
-	}
+    if (panel === "misk") {
 
-	console.log(customBurger.spicy);
-	$('#customPrice').text(customBurger.calc() + " UAH");
+        if (elem.classList.contains('active')) {
+            for (var i = 0; i < customBurger.misk.length; i++) {
+                if (customBurger.misk[i].name === name) customBurger.misk.splice(i, 1);
+            }
+        }
+        else {
+            var newMisk = {"name": name, "price": +price};
+            customBurger.sauces.push(newMisk);
+        }
+
+        $('#customMisk span').text('');
+
+        if (customBurger.misk.length === 0) $('#customMisk span').text("No additional ingridients chosen");
+        else {
+            $('#customMisk span').text(
+                customBurger.misk.map((elem) => (elem.name)
+            ).join(", ")
+        )
+            ;
+        }
+    }
+    if (panel === "spice")customBurger.spicy = !elem.classList.contains('active');
+
+    console.log(customBurger.spicy);
+    $('#customPrice').text(customBurger.calc() + " UAH");
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 
     $('.btn-account').on('click', function () {
@@ -154,8 +171,8 @@ $(document).ready(function() {
     });
 
 
-	var div = $('#bread .item-list').find("label");
-	$(div[0]).addClass('active');
+    var div = $('#bread .item-list').find("label");
+    $(div[0]).addClass('active');
 
     var div1 = $('#meat .item-list').find("label");
     $(div1[1]).addClass('active');
@@ -171,60 +188,58 @@ $(document).ready(function() {
     var windowWidth = $(document).width();
     $('#orderDone').height(windowHeight);
     $('#orderDone').width(windowWidth);
-
-
 });
 
 function addjson() {
-    // document.getElementById('addToCartId').value = customBurger.toJSON();
     document.getElementById('addToCartId').value = JSON.stringify(customBurger);
     console.log(document.getElementById('addToCartId').value);
-    // console.log(typeof document.getElementById('addToCartId').value);
 }
 
 function hideDescription(elem) {
-    if($(window).width()<750){
+    if ($(window).width() < 750) {
         $(elem).hide(500);
         $(elem).parent().children(".burgerinfo").removeClass('close-ingr');
     }
 }
 
-function meatEdit(roasting,name,price) {
+function meatEdit(roasting, name, price) {
     console.log(roasting);
-    if(roasting=='true'){
+    if (roasting == 'true') {
         $('#roastingTab').addClass('hide');
         $('#customRoasting').addClass('hide');
-        currEnabledRoasting =  customBurger.roasting;
+        currEnabledRoasting = customBurger.roasting;
         customBurger.roasting = "None";
     }
-    else {$('#roastingTab').removeClass('hide');$('#customRoasting').removeClass('hide');customBurger.roasting = currEnabledRoasting;}
+    else {
+        $('#roastingTab').removeClass('hide');
+        $('#customRoasting').removeClass('hide');
+        customBurger.roasting = currEnabledRoasting;
+    }
 
     customBurger.meat.price = +price;
     customBurger.meat.name = name;
     $('#customMeat span').text(name);
-
     $('#customPrice').text(customBurger.calc() + " UAH");
 }
 
 
-function loadstars(){
+function loadstars() {
 
     var form = $('.stars').children('form');
-    for(var i=0; i<form.length;i++){
+    for (var i = 0; i < form.length; i++) {
         var currStars = $(form[i]).attr('id');
         currStars = currStars.slice(-4);
-        currStars = currStars.replace(/\D+/g,"");
+        currStars = currStars.replace(/\D+/g, "");
         var allStars = $(form[i]).children("label");
 
-        for(var j=0; j<currStars;j++){
-            $(allStars[4-j]).addClass('checked');
+        for (var j = 0; j < currStars; j++) {
+            $(allStars[4 - j]).addClass('checked');
         }
-
     }
 };
 
-function findNumber(str){
-    return str.replace(/\D+/g,"");
+function findNumber(str) {
+    return str.replace(/\D+/g, "");
 };
 
 

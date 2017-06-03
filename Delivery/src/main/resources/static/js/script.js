@@ -1,7 +1,5 @@
 'use strict';
 
-const elements = {};
-
 let currEnabledRoasting = "Medium Rare";
 
 let customBurger = {
@@ -54,6 +52,16 @@ $(document).ready(function () {
 
     $('.btn-account').on('click', function () {
         $('#background').fadeIn(300);
+    });
+
+    $('.add a').on('click', function(event){
+
+        let count;
+        event.preventDefault();
+        $.get($(this).attr('href'), function(data){
+            var $result = $(data).find('#itemsNum');
+            $('#itemsNum').text($result.text());
+        });
     });
 
     let div = $('#bread .item-list').find("label");

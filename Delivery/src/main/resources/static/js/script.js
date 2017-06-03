@@ -1,4 +1,8 @@
-'use strict'
+'use strict';
+
+const elements = {
+
+};
 
 var count = 0;
 var currEnabledRoasting = "Medium Rare";

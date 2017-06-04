@@ -107,15 +107,44 @@ public class DeliveryApplicationTests {
         List<Sauce> saucesList = daoSauces.findAll();
         System.out.print(saucesList);
 
-        /********************************
+        /************************************
          * {@link MiscIngredientsDAO} usage *
-         ********************************/
+         ************************************/
         daoMiscIngredients.deleteAll();
         ArrayList<MiscIngredient> miscIngredients = new ArrayList<>();
 
-        /** Template to create new, other type ingredients */
-//        MiscIngredient miscChedder = new MiscIngredient(UUID.randomUUID(), "Chedder", ConstructorCategory.Misc, 25, "chedder.png");
-//        miscIngredients.add(miscChedder);
+
+        MiscIngredient miscPickles = new MiscIngredient(UUID.randomUUID(), "Pickles", ConstructorCategory.Misc, 10, "pickles.png");
+        miscIngredients.add(miscPickles);
+
+        MiscIngredient miscTomatos = new MiscIngredient(UUID.randomUUID(), "Tomatos", ConstructorCategory.Misc, 10, "tomato.png");
+        miscIngredients.add(miscTomatos);
+
+        MiscIngredient miscGarlic = new MiscIngredient(UUID.randomUUID(), "Garlic", ConstructorCategory.Misc, 5, "garlic.png");
+        miscIngredients.add(miscGarlic);
+
+        MiscIngredient miscOnion = new MiscIngredient(UUID.randomUUID(), "Onion", ConstructorCategory.Misc, 10, "onion.png");
+        miscIngredients.add(miscOnion);
+
+        MiscIngredient miscBlueCheese = new MiscIngredient(UUID.randomUUID(), "Blue Cheese", ConstructorCategory.Misc, 20, "bluelarge.png");
+        miscIngredients.add(miscBlueCheese);
+
+        MiscIngredient miscMozzarella = new MiscIngredient(UUID.randomUUID(), "Mozzarella", ConstructorCategory.Misc, 20, "mozzarella.png");
+        miscIngredients.add(miscMozzarella);
+
+        MiscIngredient miscParmesan = new MiscIngredient(UUID.randomUUID(), "Parmesan", ConstructorCategory.Misc, 20, "parmesan.png");
+        miscIngredients.add(miscParmesan);
+
+        MiscIngredient miscCheddar = new MiscIngredient(UUID.randomUUID(), "Cheddar", ConstructorCategory.Misc, 20, "cheddar.png");
+        miscIngredients.add(miscCheddar);
+
+        MiscIngredient miscBasil = new MiscIngredient(UUID.randomUUID(), "Basil", ConstructorCategory.Misc, 15, "basil.png");
+        miscIngredients.add(miscBasil);
+
+        MiscIngredient miscSalad = new MiscIngredient(UUID.randomUUID(), "Salad", ConstructorCategory.Misc, 10, "salad.png");
+        miscIngredients.add(miscSalad);
+
+        /*********** Roasting ***********/
 
         MiscIngredient roastingRare = new MiscIngredient(UUID.randomUUID(), "Rare", ConstructorCategory.Roasting, 0, "rare.png");
         miscIngredients.add(roastingRare);

@@ -16,53 +16,18 @@
 
 </head>
 <header>
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-5 contacts">
-                <div class="mobile">+38 (050) 555 55 55</div>
-                <div class="hours">7:00 - 23:00</div>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-4 right-header">
-                <button class="btn-account">My account</button>
-                <!--<button class="btn-account">My account My account My account</button>-->
-
-                <a th:href="@{/cart}"><button class="btn-cart">
-                    <div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
-                </button></a>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-
-        <div class="row second">
-            <div class="col-md-2"><img src="img/logo1.png"></div>
-            <div class="col-md-5"></div>
-            <div class="col-md-5 menu mobile-hidden" id="menuPanel">
-                <ul>
-                    <div class="close" onclick="$('#menuPanel').hide(500);"></div>
-                    <li><a th:href="@{/contacts}">CONTACTS</a></li>
-                    <li class="active"><a th:href="@{/menu}">STORE</a></li>
-                    <li><a th:href="@{/}">HOME</a></li>
-                </ul>
-            </div>
-            <div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
-        </div>
-
-    </div>
+    <div th:replace = "fragments/header :: header('')"></div>
 </header>
 
-<div class="body"><div class="profile-info">
-    <div class="header">Profile Info</div>
-    <div class="info">
-        <p><span>Name: </span>Tania Dmitrenko</p>
-        <p><span>E-mail: </span>Tania Dmitrenko</p>
+<div class="body">
+
+    <!--<div class="header">Profile Info</div>-->
+    <!--<div class="info">-->
         <!--<p><span>Name: </span>Tania Dmitrenko</p>-->
-    </div>
-</div>
+        <!--<p><span>E-mail: </span>Tania Dmitrenko</p>-->
+        <!--&lt;!&ndash;<p><span>Name: </span>Tania Dmitrenko</p>&ndash;&gt;-->
+    <!--</div>-->
+
 
     <div class="customburger-info">
         <div class="header">Your Burgers</div>
@@ -102,7 +67,7 @@
                     <a class="btn-add" onclick="addToCart(this)"></a>
                 </div>
             </div>
-            <div th:replace="login :: stars(3)"></div>
+            <div th:replace="fragments/login :: stars(3)"></div>
             </div>
 
             <div class="col-md-4">
@@ -130,7 +95,7 @@
                         <a class="btn-add"  onclick="addToCart(this)"></a>
                     </div>
                 </div>
-                <div th:replace="login :: stars(2)"></div>
+                <div th:replace="fragments/login :: stars(2)"></div>
             </div>
 
 

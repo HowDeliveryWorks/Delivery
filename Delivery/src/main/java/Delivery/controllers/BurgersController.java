@@ -264,7 +264,8 @@ public class BurgersController {
         List<Meat> meatList = daoMeat.findAll();
         List<BreadType> breadTypeList = daoBreadType.findAll();
         List<Sauce> saucesList = daoSauces.findAll();
-        Burger burger = Utils.getBurgerFromJSON(jsonObject, customBurgerCounter, meatList, breadTypeList, saucesList);
+        List<MiscIngredient> miscIngredientsList = daoMiscIngredients.findAll();
+        Burger burger = Utils.getBurgerFromJSON(jsonObject, customBurgerCounter, meatList, breadTypeList, saucesList, miscIngredientsList);
         daoBurgers.insert(burger);
 
         if (burger != null) {

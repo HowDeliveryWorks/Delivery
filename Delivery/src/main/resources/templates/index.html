@@ -6,53 +6,13 @@
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/script.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-
-
-
-
-
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/mobile.css">
 	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>-->
 
 </head>
 <body>
-<header class="main">
-
-	<div class="container">
-
-		<div class="row">
-			<div class="col-md-5 contacts">
-				<div class="mobile">+38 (050) 555 55 55</div>
-				<div class="hours">7:00 - 23:00</div>
-			</div>
-			<div class="col-md-4"></div>
-			<div class="col-md-3 right-header">
-				<button class="btn-account">My account</button>
-				<a th:href="@{/cart}"> <button class="btn-cart">
-					<div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
-				</button></a>
-			</div>
-		</div>
-
-		<div class="divider"></div>
-
-
-	<div class="row second">
-		<div class="col-md-2"><img src="img/logo1.png"></div>
-		<div class="col-md-5"></div>
-		<div class="col-md-5 menu mobile-hidden" id="menuPanel">
-			<ul>
-				<div class="close" onclick="$('#menuPanel').hide(500);"></div>
-				<li><a th:href="@{/contacts}">CONTACTS</a></li>
-				<li><a th:href="@{/menu}">STORE</a></li>
-				<li  class="active"><a th:href="@{/}">HOME</a></li>
-			</ul>
-		</div>
-		<div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
-	</div>
-	
-</div>
+<header class="main"><div th:replace = "fragments/header :: header('home')"></div>
 
 <div class="anti-slider">
 	<div class="sl-header">Java Burgers</div>
@@ -77,14 +37,7 @@
 	</div>
 
 
-<!--<footer>-->
-<!--<div class="container">-->
-	<!--<div class="logo"><img src="img/logo2.png"></div>-->
-	<!--<div class="ua"><img src="img/ukraine.png"><p>ua</p></div>-->
-	<!--<div class="privacy-policy">Privacy Policy 2017</div>-->
-<!--</div>-->
-<!--</footer>-->
-<div th:replace="login :: #background"></div>
+<div th:replace="fragments/login :: #background"></div>
 
 </body>
 </html>

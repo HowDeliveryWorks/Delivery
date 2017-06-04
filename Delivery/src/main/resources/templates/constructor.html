@@ -16,46 +16,7 @@
 
 </head>
 <body>
-<header>
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-5 contacts">
-                <div class="mobile">+38 (050) 555 55 55</div>
-                <div class="hours">7:00 - 23:00</div>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-3 right-header">
-                <button class="btn-account">My account</button>
-                <a th:href="@{/cart}">
-                    <button class="btn-cart">
-                        <div id="counter" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77
-                        </div>
-                    </button>
-                </a>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-
-        <div class="row second">
-            <div class="col-md-2"><img src="img/logo1.png"></div>
-            <div class="col-md-5"></div>
-            <div class="col-md-5 menu mobile-hidden" id="menuPanel">
-                <ul>
-                    <div class="close" onclick="$('#menuPanel').hide(500);"></div>
-                    <li><a th:href="@{/contacts}">CONTACTS</a></li>
-                    <li class="active"><a th:href="@{/menu}">STORE</a></li>
-                    <li><a th:href="@{/}">HOME</a></li>
-                </ul>
-            </div>
-            <div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
-        </div>
-
-    </div>
-</header>
+<header><div th:replace = "fragments/header :: header('store')"></div></header>
 
 <div class="body">
     <div class="header">Burger Constructor</div>
@@ -67,6 +28,7 @@
                 <li><a data-toggle="tab" href="#meat">Meat Type</a></li>
                 <li id="roastingTab"><a data-toggle="tab" href="#roasting">Roasting</a></li>
                 <li><a data-toggle="tab" href="#sauce">Sauces</a></li>
+                <li><a data-toggle="tab" href="#misk">Other</a></li>
             </ul>
 
             <div class="tab-content" >
@@ -76,10 +38,10 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-6" th:each="breadType : ${breadTypes}">
-                        <label class="btn item" style="outline: none;" th:onclick="|fullinfo('bread', '${breadType.getName()}', ${breadType.getPrice()})|">
+                        <label class="btn item" style="outline: none;" th:onclick="|checkSingle('bread', '${breadType.getName()}', ${breadType.getPrice()})|">
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${breadType.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
-                                <input type="radio" name="options" id="bun1">
+                                <input type="radio" name="options">
                                 <div class="name" th:text="${breadType.getName()}">W</div>
                                 <div class="price" th:text="${breadType.getPrice()} + ' UAH'">0 UAH</div>
                             </label>
@@ -113,7 +75,7 @@
 
                         <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.enums.ConstructorCategory).Roasting}">
 
-                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('roasting', '${ingredient.getName()}', '0')|">
+                            <label class="btn item" style="outline: none;" th:onclick="|checkSingle('roasting', '${ingredient.getName()}', '0')|">
 
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
                                 <!--TODO: Insert right id-->
@@ -131,10 +93,10 @@
                     <div class="btn-group row item-list" data-toggle="buttons">
 
                         <div class="col-md-6" th:each="sauce : ${sauces}">
-                            <label class="btn item" style="outline: none;" th:onclick="|fullinfo('sause', '${sauce.getName()}', '${sauce.getPrice()}',this)|">
+                            <label class="btn item" style="outline: none;" th:onclick="|checkMultiple('sauces', '${sauce.getName()}', '${sauce.getPrice()}',this)|">
 
                                 <div class="photo" th:style="'background-image: url(img/constructor/' + ${sauce.getPhoto()} + ')'"></div>
-                                <input type="checkbox" name="options" id="sauce1">
+                                <input type="checkbox" name="options">
                                 <div class="name" th:text="${sauce.getName()}"> Yellow Mustard</div>
                                 <div class="price" th:text="${sauce.getPrice()} + ' UAH'">5 UAH</div>
                             </label>
@@ -142,6 +104,21 @@
 
                     </div>
             </div>
+                <div id="misk" class="tab-pane fade">
+                    <div class="btn-group row item-list" data-toggle="buttons">
+
+                        <div class="col-md-6" th:each="ingredient : ${ingredients}" th:if="${ingredient.getConstructorCategory() == T(Delivery.enums.ConstructorCategory).Misc}">
+                            <label class="btn item" style="outline: none;" th:onclick="|checkMultiple('misk', '${ingredient.getName()}', '${ingredient.getPrice()}',this)|">
+
+                                <div class="photo" th:style="'background-image: url(img/constructor/' + ${ingredient.getPhoto()} + ')'"></div>
+                                <input type="checkbox" name="options">
+                                <div class="name" th:text="${ingredient.getName()}"> Yellow Mustard</div>
+                                <div class="price" th:text="${ingredient.getPrice()} + ' UAH'">5 UAH</div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-5 b">
@@ -155,29 +132,25 @@
                     <div class="burger-items">
                     <span id="spiceTooltip"> </span>
                     <div class="spiciness">Spiciness:
-                        <button type="button" class="btn add-spiciness" data-toggle="button" th:onclick="|fullinfo('spice',null,null,this)|"></button>
+                        <button type="button" class="btn add-spiciness" data-toggle="button" onclick="checkSpicy()"></button>
                     </div>
-                    <div class="bun" id="customBun">Bun:<span>White Bread</span></div>
+                    <div class="bun" id="customBread">Bun:<span>White Bread</span></div>
                     <div class="meat" id="customMeat">Meat:<span>Beef</span></div>
                     <div class="roasting" id="customRoasting">Roasting:<span>Medium Rare</span></div>
-                    <div class="sauces" id="customSauces">Sauses:
-                        <ul>
-
-                            <li>Ketchup</li>
-
-                        </ul>
-                    </div>
+                        <div class="sauces" id="customSauces">Sauces:
+                            <span>Ketchup</span>
+                        </div>
+                        <div class="misk" id="customMisk">Other:
+                            <span>No additional ingredients</span>
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4 col-md-offset-3">
                             <div class="total" id="customPrice">50 UAH</div>
                         </div>
-                        <!--<div class="col-md-4">-->
-                            <!--<a href="#" class="add">Add To Cart</a>-->
-                        <!--</div>-->
+
                         <form class="col-md-5" action="#" th:action="@{/newCustomBurger}" method="post" onsubmit="addjson()">
-                            <!--th:object="${currentCart}"-->
                             <button type="submit" id="addToCartId" name="addtocartname" value="" class="btn-order">Add to Cart</button>
                         </form>
                     </div>
@@ -188,7 +161,7 @@
     </div>
 
 </div>
-<div th:replace="login :: #background"></div>
+<div th:replace="fragments/login :: #background"></div>
 
 </body>
 </html>

@@ -15,7 +15,10 @@
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-3 right-header">
-            <button class="btn-account">My account</button>
+            <a href="#" class="exit">Sign out</a>
+            <button class="btn-account">
+                <a href="#" class="email">My account</a>
+            </button>
             <a th:href="@{/cart}"> <button class="btn-cart">
                 <div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
             </button></a>

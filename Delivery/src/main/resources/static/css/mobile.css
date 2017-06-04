@@ -115,6 +115,11 @@
   .cart .totals .pre-total, .cart .totals .total {
     height: 80px; } }
 @media screen and (max-width: 750px) {
+  a.exit {
+    position: static;
+    margin-bottom: 10px;
+    opacity: .6; }
+
   body {
     min-width: 100% !important; }
 

@@ -6,7 +6,7 @@ import Delivery.entity.*;
 import Delivery.enums.BurgerType;
 import Delivery.model.*;
 import Delivery.DAO.SequenceDAO;
-import Delivery.services.ApplicationMailer;
+import Delivery.mail.ApplicationMailer;
 import Delivery.util.Utils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

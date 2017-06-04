@@ -11,7 +11,7 @@ import java.util.UUID;
  * Created by Max on 15.05.2017.
  */
 public interface SaucesDAO extends MongoRepository<Sauce, String> {
-    public Sauce findById(UUID id);
-    public Sauce findByName(String name);
-    public List<Sauce> findByConstructorCategory(ConstructorCategory constructorCategory);
+    Sauce findById(UUID id);
+    Sauce findByName(String name);
+    List<Sauce> findByConstructorCategory(ConstructorCategory constructorCategory);
 }

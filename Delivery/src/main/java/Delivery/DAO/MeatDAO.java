@@ -8,6 +8,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 
 public interface MeatDAO extends MongoRepository<Meat, String>  {
-    public Meat findByName(String name);
-    public Meat findByRoastingEnabled(boolean roastingEnabled);
+    Meat findByName(String name);
+    Meat findByRoastingEnabled(boolean roastingEnabled);
 }

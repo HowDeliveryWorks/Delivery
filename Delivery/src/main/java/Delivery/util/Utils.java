@@ -142,8 +142,7 @@ public class Utils {
 
         //Other TODO
 
-        Burger burger = new Burger(UUID.randomUUID(), "Your Burger #" + number, currentMeat, getRoasting(roasting), currentBreadType, spice, miscIngredientArrayList, 350, price, "burger-1.png", BurgerType.Custom);
-        return burger;
+        return new Burger(UUID.randomUUID(), "Your Burger #" + number, currentMeat, getRoasting(roasting), currentBreadType, spice, miscIngredientArrayList, 350, price, "burger-1.png", BurgerType.Custom);
     }
 
     /**

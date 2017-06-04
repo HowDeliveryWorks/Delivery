@@ -11,7 +11,7 @@ import java.util.UUID;
  * Created by Max on 02.05.2017.
  */
 public interface MiscIngredientsDAO extends MongoRepository<MiscIngredient, String> {
-    public MiscIngredient findById(UUID id);
-    public MiscIngredient findByName(String name);
-    public List<MiscIngredient> findByConstructorCategory(ConstructorCategory constructorCategory);
+    MiscIngredient findById(UUID id);
+    MiscIngredient findByName(String name);
+    List<MiscIngredient> findByConstructorCategory(ConstructorCategory constructorCategory);
 }

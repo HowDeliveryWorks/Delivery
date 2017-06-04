@@ -1,4 +1,4 @@
-package Delivery.services;
+package Delivery.mail;
 
 /**
  * Created by LevelNone on 21.04.2017.
@@ -36,6 +36,7 @@ public class ApplicationMailer
         message.setTo(to);
         message.setSubject(subject);
         message.setText(body);
+        new Thread().start();
         mailSender.send(message);
     }
 

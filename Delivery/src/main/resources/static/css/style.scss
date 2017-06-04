@@ -175,7 +175,7 @@ header{
 			}
 		}
 
-		ul :nth-child(2){
+		ul :nth-child(1){
 			border-width:0;
 		}
 	}
@@ -1081,6 +1081,8 @@ textarea{resize:none;}
 		font-size: 18px;
 		font-weight: 300;
 	}
+
+	span.mobile-login, span.mobile-register{display: none;}
 
 	.content {
 		float:left;

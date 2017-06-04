@@ -30,7 +30,7 @@ let customBurger = {
 
 
 function showDescription(elem) {
-    $(elem).parent().children(".description").toggle(500);
+    $(elem).parent().children(".description").slideToggle(500);
     $(elem).toggleClass('close-ingr');
 }
 
@@ -49,6 +49,20 @@ function showOrderDone() {
 }
 
 $(document).ready(function () {
+
+    $('.account .mobile-login').on('click', function () {
+        $('.account .movebox .signup').fadeOut();
+        $('.account .movebox .login').css("visibility", "visible");
+        $('.account .movebox .login').fadeIn();
+
+    });
+
+    $('.account .mobile-register').on('click', function () {
+        $('.account .movebox .login').fadeOut();
+        $('.account .movebox .signup').css("visibility", "visible");
+        $('.account .movebox .signup').fadeIn();
+
+    });
 
     $('.btn-account').on('click', function () {
         $('#background').fadeIn(300);

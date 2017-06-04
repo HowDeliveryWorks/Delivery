@@ -29,18 +29,20 @@
         <div class="col-md-2"><img src="img/logo1.png"></div>
         <div class="col-md-5"></div>
         <div class="col-md-5 menu mobile-hidden" id="menuPanel">
-            <ul>
+            <div>
                 <div class="close" onclick="$('#menuPanel').hide(500);"></div>
-                <li th:classappend="${active == 'contacts' ? 'active' : ''}">
-                    <a th:href="@{/contacts}">CONTACTS</a>
-                </li>
-                <li th:classappend="${active == 'store' ? 'active' : ''}">
-                    <a th:href="@{/menu}">STORE</a>
-                </li>
-                <li th:classappend="${active == 'home' ? 'active' : ''}">
-                    <a th:href="@{/}">HOME</a>
-                </li>
-            </ul>
+                <ul>
+                    <li th:classappend="${active == 'contacts' ? 'active' : ''}">
+                        <a th:href="@{/contacts}">CONTACTS</a>
+                    </li>
+                    <li th:classappend="${active == 'store' ? 'active' : ''}">
+                        <a th:href="@{/menu}">STORE</a>
+                    </li>
+                    <li th:classappend="${active == 'home' ? 'active' : ''}">
+                        <a th:href="@{/}">HOME</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
     </div>

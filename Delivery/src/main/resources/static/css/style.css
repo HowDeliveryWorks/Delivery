@@ -210,7 +210,7 @@ header {
         text-decoration: none; }
       .container .second .menu ul a:focus {
         text-decoration: none; }
-    .container .second .menu ul :nth-child(2) {
+    .container .second .menu ul :nth-child(1) {
       border-width: 0; }
 
 .body {
@@ -908,6 +908,8 @@ textarea {
     color: #B7B8BF;
     font-size: 18px;
     font-weight: 300; }
+  .account span.mobile-login, .account span.mobile-register {
+    display: none; }
   .account .content {
     float: left;
     width: 50%;

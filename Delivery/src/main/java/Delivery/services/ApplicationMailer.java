@@ -117,25 +117,25 @@ public class ApplicationMailer
                 sb.append(System.getProperty("line.separator"));
                 if(burgerInfo.getSpicy())
                 {
-                    sb.append("\t\u2022 Spicy");
+                    sb.append("\t- Spicy");
                     sb.append(System.getProperty("line.separator"));
                 }
-                sb.append("\t\u2022 ");
+                sb.append("\t- ");
                 sb.append(burgerInfo.getMeat().getName());
                 if (burgerInfo.getRoasting() != Roasting.None)
                 {
                     sb.append(System.getProperty("line.separator"));
-                    sb.append("\t\u2022 ");
+                    sb.append("\t- ");
                     sb.append("Roasting: ");
                     sb.append(burgerInfo.getRoasting().toString());
                 }
                 sb.append(System.getProperty("line.separator"));
-                sb.append("\t\u2022 ");
+                sb.append("\t- ");
                 sb.append(burgerInfo.getBreadType().getName());
                 for (Ingredient i : burgerInfo.getIngredients())
                 {
                     sb.append(System.getProperty("line.separator"));
-                    sb.append("\t\u2022 ");
+                    sb.append("\t- ");
                     sb.append(i.getName());
                 }
             }

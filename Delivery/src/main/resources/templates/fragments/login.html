@@ -27,6 +27,7 @@
                 <input type="password" th:field="*{password}"  required name="password" id="p1"></input>
                 <p>Password again </p>
                 <input type="password" th:field="*{passwordConfirm}" required  name="passwordRepeater" id="p2"></input>
+
                 <div class="error" id="samePassError">Passwords are not the same</div>
                 <br/>
                 <br/>
@@ -64,7 +65,6 @@
             <p class="button to-right">Login here</p>
         </div>
     </div>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
     <script>
@@ -94,7 +94,6 @@
         $toLeft.on('click', function(){
             toLeft();
         })
-
         function tryLogin() {
             var json = "<p>Wrong Username or password</p>";
             $('#loginerror').html(json);

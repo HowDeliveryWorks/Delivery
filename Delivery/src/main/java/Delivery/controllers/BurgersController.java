@@ -15,11 +15,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by igor on 08.04.17.
@@ -62,14 +63,8 @@ public class BurgersController {
     public String contactsForm(@ModelAttribute Feedback feedback, Model model){
         ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
-        try
-        {
-            am.sendMail("howdeliveryworks@gmail.com","Feedback", feedback.toString());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        ExecutorService exec = Executors.newFixedThreadPool(1);
+        exec.submit(() -> am.sendMail("howdeliveryworks@gmail.com","Feedback", feedback.toString()));
         return "index";
     }
 
@@ -128,22 +123,10 @@ public class BurgersController {
         order.setBurgers(cartInfo.getCartLines());
         order.setId(sequenceDAO.getNextSequenceId(ORDER_SEQ_KEY));
         ordersDAO.insert(order);
-        try
-        {
-            am.sendMail(order.getEmail(),"Your Burgers Order", am.customerText(order));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        try
-        {
-            am.sendMail("howdeliveryworks@gmail.com","We got a new order!", am.ownerText(order));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        ExecutorService exec = Executors.newFixedThreadPool(2);
+        exec.submit(() -> am.sendMail(order.getEmail(),"Your Burgers Order", am.customerText(order)));
+        exec.submit(() -> am.sendMail("howdeliveryworks@gmail.com","We got a new order!", am.ownerText(order)));
+        exec.shutdown();
         Utils.removeCartInSession(request);
         session.invalidate();
         return "redirect:/menu";

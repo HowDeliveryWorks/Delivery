@@ -53,7 +53,7 @@ public class UserController {
         if (userService.save(user) == false) {
             return "error";
         }
-        System.out.println("user added: " + user.getUsername());
+        System.out.println("user added: " + user.getName());
 
         securityService.autologin(user.getEmail(), user.getPasswordConfirm());
         return "success";

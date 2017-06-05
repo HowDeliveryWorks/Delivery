@@ -79,6 +79,12 @@
   .item-list .col-md-4 {
     width: calc(100%/3);
     float: left; }
+    .item-list .col-md-4 label.star {
+      font-size: 24px; }
+
+  .customburger-info .col-md-4 {
+    width: calc(100%/2);
+    float: left; }
 
   .img {
     width: calc(100%/(12/5));
@@ -119,6 +125,33 @@
     width: 50%;
     float: left; }
 
+  #background {
+    z-index: 10; }
+
+  .account {
+    width: 100%; }
+    .account .movebox {
+      margin: 0;
+      width: calc(100% + 1px);
+      left: -1px; }
+    .account .movebox input {
+      border-width: 1px;
+      width: 100%; }
+    .account .content {
+      display: none; }
+    .account .movebox .signup, .account .movebox .login {
+      width: 100%; }
+    .account span.mobile-login, .account span.mobile-register {
+      position: absolute;
+      display: block;
+      line-height: 2.5;
+      font-size: 14px;
+      color: #313131;
+      opacity: .85;
+      visibility: visible !important; }
+    .account .movebox .login {
+      display: none; }
+
   header {
     background-size: 200% 100%; }
 
@@ -139,19 +172,18 @@
     text-align: center;
     color: white;
     z-index: 100; }
-    .container .second .menu ul {
+    .container .second .menu div {
       height: calc(100% + 70px);
       background-color: rgba(0, 0, 0, 0.85);
       left: 0;
+      top: 0;
       width: 100%;
       position: fixed;
       padding-left: 0;
-      margin-top: -70px;
-      padding-top: 220px; }
-      .container .second .menu ul .close {
-        position: absolute;
+      margin-top: -70px; }
+      .container .second .menu div .close {
         top: 120px;
-        right: 20px;
+        left: 85%;
         width: 20px;
         height: 20px;
         background-image: url(../img/cancel.png);
@@ -159,13 +191,23 @@
         background-repeat: no-repeat;
         background-position: left top;
         opacity: .7; }
-      .container .second .menu ul li {
-        padding: 0;
-        float: none;
-        border: 0 !important;
-        font-size: 27px;
-        padding-top: 25px;
-        padding-bottom: 25px; }
+      .container .second .menu div ul {
+        padding-left: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); }
+        .container .second .menu div ul li {
+          padding: 0;
+          float: none;
+          border: 0 !important;
+          font-size: 27px;
+          padding-top: 25px;
+          padding-bottom: 25px; }
 
   .container .mobile-hidden {
     display: none; }
@@ -242,11 +284,14 @@
     height: 41px;
     position: absolute;
     right: 25px;
-    top: 130px; }
+    bottom: 10px; }
 
   .burger {
     margin-left: 10px;
     margin-right: 10px; }
+
+  #raiting {
+    margin: -31px 10px 0; }
 
   .custom .burger .name {
     top: 0;
@@ -360,7 +405,7 @@
     height: auto;
     border-width: 10px; }
 
-  .item-list .col-md-4 {
+  .item-list .col-md-4, .customburger-info .col-md-4 {
     width: 100%; }
 
   .main {
@@ -425,6 +470,9 @@
     padding: 0; }
 
   .custom-info .ingridients .btn-order {
-    border-radius: 0; } }
+    border-radius: 0; }
+
+  .account .movebox .signup, .account .movebox .login {
+    padding: 60px 20px; } }
 
 /*# sourceMappingURL=mobile.css.map */

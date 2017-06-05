@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width,  initial-scale=1">
+<head>
+    <title>Cart</title>
+
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+
+</head>
+<header>
+    <div th:replace = "fragments/header :: header('')"></div>
+</header>
+
+<div class="body">
+
+    <!--<div class="header">Profile Info</div>-->
+    <!--<div class="info">-->
+        <!--<p><span>Name: </span>Tania Dmitrenko</p>-->
+        <!--<p><span>E-mail: </span>Tania Dmitrenko</p>-->
+        <!--&lt;!&ndash;<p><span>Name: </span>Tania Dmitrenko</p>&ndash;&gt;-->
+    <!--</div>-->
+
+
+    <div class="customburger-info">
+        <div class="header">Your Burgers</div>
+
+
+        <!--If customer has not ordered custom burgers yet-->
+        <!-------------------------------------->
+
+        <!--<div class="row empty">You have not your own burgers :( <a th:href="@{/constructor}"> Let's go to the constructor and make the ideal burger</a></div>-->
+
+        <!-------------------------------------->
+
+
+        <div class="row">
+            <div class="col-md-4">
+            <div class="burger">
+                <div class="name">New York</div>
+                <div class="burgerinfo" onclick='showDescription(this)'></div>
+                <div class="size">400g</div>
+                <div class="spicy"></div>
+
+                <div class="photo"></div>
+                <div class="description">
+                    <div class="desc-header">Ingridients:</div>
+                    <article>
+                        <ul class="ingridients">
+                            <li>White Bread</li>
+                            <li>Beef</li>
+                            <li>salad</li>
+                        </ul>
+                    </article>
+                    <div class="roasting"><p>Roasting: </p><p> medium well</p></div>
+                </div>
+
+                <div class="price">210 UAH</div>
+                <div class="add">
+                    <a class="btn-add" onclick="addToCart(this)"></a>
+                </div>
+            </div>
+            <div th:replace="fragments/login :: stars(3)"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="burger">
+                    <div class="name">New York</div>
+                    <div class="burgerinfo" onclick='showDescription(this)'></div>
+                    <div class="size">400g</div>
+                    <div class="spicy"></div>
+
+                    <div class="photo"></div>
+                    <div class="description">
+                        <div class="desc-header">Ingridients:</div>
+                        <article>
+                            <ul class="ingridients">
+                                <li>White Bread</li>
+                                <li>Beef</li>
+                                <li>salad</li>
+                            </ul>
+                        </article>
+                        <div class="roasting"><p>Roasting: </p><p> medium well</p></div>
+                    </div>
+
+                    <div class="price">210 UAH</div>
+                    <div class="add">
+                        <a class="btn-add"  onclick="addToCart(this)"></a>
+                    </div>
+                </div>
+                <div th:replace="fragments/login :: stars(2)"></div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+</html>

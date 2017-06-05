@@ -69,7 +69,7 @@ public class Utils {
      * @return - {@link Burger} object
      */
     public static Burger getBurgerFromJSON(JSONObject jsonObject, Integer number, List<Meat> meatList,
-                                           List<BreadType> breadTypeList, List<Sauce> saucesList) {
+                                           List<BreadType> breadTypeList, List<Sauce> saucesList, List<MiscIngredient> miscIngredientList) {
 
         //Ingredients list
         ArrayList<String> stringIngredientsList = new ArrayList<>();
@@ -96,6 +96,14 @@ public class Utils {
             JSONObject saucesArrayObject = saucesObject.getJSONObject(i);
             String saucesArrayObjectName = saucesArrayObject.getString("name");
             stringSaucesList.add(saucesArrayObjectName);
+        }
+
+        //Get misc
+        JSONArray miscObject = jsonObject.getJSONArray("misk");
+        for (int i = 0; i < miscObject.length(); i++) {
+            JSONObject miscArrayObject = miscObject.getJSONObject(i);
+            String miscArrayObjectName = miscArrayObject.getString("name");
+            stringIngredientsList.add(miscArrayObjectName);
         }
 
         //Get spice
@@ -137,13 +145,24 @@ public class Utils {
             sauceArrayList.add(currentSauce);
         }
 
+        //Then other Ingredients
+        ArrayList<MiscIngredient> miscArrayList = new ArrayList<>();
+        for (String miscString : stringIngredientsList) {
+            MiscIngredient currentMiscIngredient = null;
+            for (MiscIngredient miscIngredientOne : miscIngredientList){
+                if (miscString.equals(miscIngredientOne.getName())) {
+                    currentMiscIngredient = miscIngredientOne;
+                    break;
+                }
+            }
+            miscArrayList.add(currentMiscIngredient);
+        }
+
         //Add them all to main ingredient list
         miscIngredientArrayList.addAll(sauceArrayList);
+        miscIngredientArrayList.addAll(miscArrayList);
 
-        //Other TODO
-
-        Burger burger = new Burger(UUID.randomUUID(), "Your Burger #" + number, currentMeat, getRoasting(roasting), currentBreadType, spice, miscIngredientArrayList, 350, price, "burger-1.png", BurgerType.Custom);
-        return burger;
+        return new Burger(UUID.randomUUID(), "Your Burger #" + number, currentMeat, getRoasting(roasting), currentBreadType, spice, miscIngredientArrayList, 350, price, "burger-1.png", BurgerType.Custom);
     }
 
     /**

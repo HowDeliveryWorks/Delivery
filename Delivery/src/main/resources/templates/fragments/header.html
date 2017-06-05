@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container" th:fragment="header(active)">
+
+    <div class="row">
+        <div class="col-md-5 contacts">
+            <div class="mobile">+38 (050) 555 55 55</div>
+            <div class="hours">7:00 - 23:00</div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-4 right-header">
+            <button class="btn-account">
+                <!--If user is NOT signed in-->
+                <!--<a href="#" class="signin">My account</a>-->
+                <!--If user is signed in-->
+                <a href="#" class="profile">My account</a>
+                <span>&#124;</span>
+                <a href="#" class="signout">Sign Out</a>
+            </button>
+            <a th:href="@{/cart}"> <button class="btn-cart">
+                <div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
+            </button></a>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <div class="row second">
+        <div class="col-md-2"><img src="img/logo1.png"></div>
+        <div class="col-md-5"></div>
+        <div class="col-md-5 menu mobile-hidden" id="menuPanel">
+            <div>
+                <div class="close" onclick="$('#menuPanel').hide(500);"></div>
+                <ul>
+                    <li th:classappend="${active == 'contacts' ? 'active' : ''}">
+                        <a th:href="@{/contacts}">CONTACTS</a>
+                    </li>
+                    <li th:classappend="${active == 'store' ? 'active' : ''}">
+                        <a th:href="@{/menu}">STORE</a>
+                    </li>
+                    <li th:classappend="${active == 'home' ? 'active' : ''}">
+                        <a th:href="@{/}">HOME</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu-mobile" id="menuMob" onclick="$('#menuPanel').show(500);"></div>
+    </div>
+</div>
+
+</body>
+</html>

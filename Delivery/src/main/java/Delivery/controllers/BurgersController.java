@@ -6,7 +6,7 @@ import Delivery.entity.*;
 import Delivery.enums.BurgerType;
 import Delivery.model.*;
 import Delivery.DAO.SequenceDAO;
-import Delivery.services.ApplicationMailer;
+import Delivery.mail.ApplicationMailer;
 import Delivery.util.Utils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +101,12 @@ public class BurgersController {
 
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "sorry";
+    }
+
+    @GetMapping("/profile")
+    public String profile(HttpServletRequest request, Model model){
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        return "profile";
     }
 
     @GetMapping("/cart2")
@@ -276,7 +282,8 @@ public class BurgersController {
         List<Meat> meatList = daoMeat.findAll();
         List<BreadType> breadTypeList = daoBreadType.findAll();
         List<Sauce> saucesList = daoSauces.findAll();
-        Burger burger = Utils.getBurgerFromJSON(jsonObject, customBurgerCounter, meatList, breadTypeList, saucesList);
+        List<MiscIngredient> miscIngredientsList = daoMiscIngredients.findAll();
+        Burger burger = Utils.getBurgerFromJSON(jsonObject, customBurgerCounter, meatList, breadTypeList, saucesList, miscIngredientsList);
         daoBurgers.insert(burger);
 
         if (burger != null) {

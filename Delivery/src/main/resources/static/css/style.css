@@ -100,6 +100,7 @@ header {
   width: 100%;
   background-image: url("../img/1.png");
   background-repeat: no-repeat;
+  background-size: 100% auto;
   height: 300px;
   /* todo: shaddow */ }
   header .container {
@@ -149,17 +150,19 @@ header {
   height: 700px; }
 
 .btn-account {
-  width: 120px;
+  min-width: 120px;
   padding: 7px 12px;
   border: 1px solid white;
   background-color: transparent;
   font-size: 16px; }
-
-.btn-account:first-letter {
-  font-size: 12px; }
-
-.btn-account:hover {
-  background-color: rgba(255, 255, 255, 0.07); }
+  .btn-account span {
+    padding-left: 10px;
+    padding-right: 10px; }
+  .btn-account a {
+    color: white; }
+    .btn-account a:hover, .btn-account a:focus {
+      color: white;
+      opacity: .85; }
 
 .btn-cart {
   width: 40px;
@@ -189,7 +192,8 @@ header {
     text-align: center; }
 
 .container .second {
-  margin-top: 45px; }
+  margin-top: 45px;
+  position: relative; }
   .container .second .menu {
     text-align: right; }
     .container .second .menu ul {
@@ -208,7 +212,7 @@ header {
         text-decoration: none; }
       .container .second .menu ul a:focus {
         text-decoration: none; }
-    .container .second .menu ul :nth-child(2) {
+    .container .second .menu ul :nth-child(1) {
       border-width: 0; }
 
 .body {
@@ -216,7 +220,7 @@ header {
   width: 90%;
   background-color: white;
   margin: auto;
-  top: -80px;
+  top: -40px;
   padding: 40px 30px; }
   .body .header {
     text-align: center;
@@ -906,6 +910,8 @@ textarea {
     color: #B7B8BF;
     font-size: 18px;
     font-weight: 300; }
+  .account span.mobile-login, .account span.mobile-register {
+    display: none; }
   .account .content {
     float: left;
     width: 50%;
@@ -993,5 +999,80 @@ textarea {
     top: 0;
     right: 0;
     background-position: center center; }
+
+.customburger-info .burger, .profile-info .burger {
+  border-bottom-width: 0; }
+.customburger-info .info, .profile-info .info {
+  padding: 30px 15px; }
+.customburger-info .header, .profile-info .header {
+  font-family: 'Minion Bold';
+  background-color: #313131;
+  color: white;
+  padding: 15px 0;
+  font-size: 20px; }
+.customburger-info .empty, .profile-info .empty {
+  text-align: center;
+  font-family: 'Minion Pro';
+  font-size: 20px;
+  color: #313131;
+  padding: 15px 20px; }
+  .customburger-info .empty a, .profile-info .empty a {
+    color: #d54b00;
+    padding-left: 15px; }
+    .customburger-info .empty a:hover, .profile-info .empty a:hover {
+      color: #ff6009; }
+
+.profile-info p {
+  font-family: 'Minion Pro';
+  font-size: 20px;
+  color: #313131; }
+  .profile-info p span {
+    width: 50%;
+    float: left;
+    padding-right: 15px;
+    text-align: right;
+    color: #d54b00; }
+
+/* Raiting */
+#raiting {
+  text-align: center;
+  margin: -31px 30px 0;
+  border: 1px solid rgba(51, 51, 51, 0.21);
+  border-top-width: 0; }
+
+.customburger-info .burger:hover, .customburger-info .burger:hover + #raiting {
+  border-color: rgba(51, 51, 51, 0.21); }
+
+div.stars {
+  display: inline-block; }
+
+input.star {
+  display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 30px;
+  color: #313131;
+  transition: all .2s;
+  cursor: pointer; }
+
+label.star:hover {
+  color: gold;
+  transition: all .25s; }
+
+label.star:hover ~ label.star:before {
+  color: gold;
+  transition: all .25s; }
+
+label.star:before {
+  content: "\2606"; }
+
+label.checked:before {
+  content: "\2605";
+  color: gold;
+  transition: all .25s; }
+
+/* Raiting end */
 
 /*# sourceMappingURL=style.css.map */

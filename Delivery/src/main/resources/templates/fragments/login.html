@@ -10,8 +10,7 @@
 </head>
 <body>
 
-<!--TODO: Close button -->
-<!--TODO: Btn-order button -->
+<!------------------------------------------------>
 <div id="background">
     <div class="close" onclick="$(this).parent().fadeOut(200)" id="close"></div>
     <div class="account" id="account">
@@ -31,6 +30,7 @@
                 <div class="error" id="samePassError">Passwords are not the same</div>
                 <br/>
                 <br/>
+                <span class="mobile-login">Login here</span>
                 <a href="#">
                     <button class="btn-order" type="submit" onclick="$('.movebox .error').hide();">Register</button>
                 </a>
@@ -46,6 +46,7 @@
                 <input type="password" id="password" name="password" ></input>
                 <br/>
                 <br/>
+                <span class="mobile-register">Register here</span>
                 <a href="#">
                     <button class="btn-order" type="submit" onclick="tryLogin()">Login</button>
                 </a>
@@ -133,5 +134,47 @@
     </script>
 </div>
 
+<!------------------------------------------------>
+<!--Raiting-->
+<div id="raiting" th:fragment="stars(num)">
+    <div class="stars">
+        <form action="" th:id="${num}">
+            <input class="star star-5" id="star-5" type="radio" name="star"/>
+            <label class="star star-5" for="star-5"></label>
+            <input class="star star-4" id="star-4" type="radio" name="star"/>
+            <label class="star star-4" for="star-4"></label>
+            <input class="star star-3" id="star-3" type="radio" name="star"/>
+            <label class="star star-3" for="star-3"></label>
+            <input class="star star-2" id="star-2" type="radio" name="star"/>
+            <label class="star star-2" for="star-2"></label>
+            <input class="star star-1" id="star-1" type="radio" name="star"/>
+            <label class="star star-1" for="star-1"></label>
+        </form>
+    </div>
+
+    <script th:inline="javascript">
+
+       loadstars();
+
+        $('label.star').bind('click', function() {
+        var star = $(this);
+        var widget = $(this).parent();
+        var currId = star.attr('for');
+        var rate = +findNumber(currId);
+        var stars = widget.children("label");
+        var inputs = widget.children("input");
+        for(var i=0; i<5;i++){$(stars[i]).removeClass('checked');}
+
+        for(var i=0; i<rate;i++){
+//            console.log(stars[i]);
+            $(stars[4-i]).addClass('checked');
+            // $(inputs[i]).addClass('checked');
+        }
+
+    });</script>
+</div>
+
+
+>>>>>>> master:Delivery/src/main/resources/templates/fragments/login.html
 </body>
 </html>

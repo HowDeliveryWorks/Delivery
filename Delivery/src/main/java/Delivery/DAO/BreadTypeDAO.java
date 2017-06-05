@@ -11,7 +11,7 @@ import java.util.UUID;
  * Created by Max on 15.05.2017.
  */
 public interface BreadTypeDAO extends MongoRepository<BreadType, String> {
-    public BreadType findById(UUID id);
-    public BreadType findByName(String name);
-    public List<BreadType> findByConstructorCategory(ConstructorCategory constructorCategory);
+    BreadType findById(UUID id);
+    BreadType findByName(String name);
+    List<BreadType> findByConstructorCategory(ConstructorCategory constructorCategory);
 }

@@ -1,4 +1,26 @@
 @import 'propertires';
+
+@mixin centre($axis: "both"){
+  position:absolute;
+  @if $axis == "y"{
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  @if $axis == "both"{
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
 @media screen and (max-width: 1250px){
   body{
     min-width: 1250px !important;
@@ -7,7 +29,9 @@
   .nav-tabs{margin-top: 15px;}
 }
 @media screen and (max-width: 990px){
-  .item-list .col-md-4{width:calc(100%/3); float: left;}
+  .item-list .col-md-4{width:calc(100%/3); float: left; label.star{font-size: 24px;}}
+  .customburger-info .col-md-4{width:calc(100%/2); float:left;}
+
   .img{width: calc(100%/(12/5)); float: left;}
   .contacts{width: calc(100%/(12/7)); float: left;}
   .container .second .menu{top: -70px;}
@@ -29,8 +53,26 @@
   body{min-width: 100% !important;}
   header .divider{width: 100%;}
   .item-list .col-md-4{width:50%; float: left;}
+  #background{z-index:10;}
+  .account{
+    width: 100%;
+    .movebox{margin:0;width: calc(100% + 1px);left:-1px;}
+    .movebox input{ border-width:1px; width: 100%;}
+    .content{display:none;}
+    .movebox .signup, .movebox .login { width: 100%;}
+    span.mobile-login, span.mobile-register{
+      position: absolute;
+      display: block;
+      line-height: 2.5;
+      font-size: 14px;
+      color: $black;
+      opacity: .85;
+      visibility: visible !important;
+    }
+    .movebox .login{display: none;}
+  }
 
-  // .container .row{
+    // .container .row{
   // 	width: 100%;
   // 	position: fixed;
   // 	background-color: $black;
@@ -50,32 +92,40 @@
     z-index: 100;
 
 
-    ul {
+    div {
+
+      height: calc(100% + 70px);
+      background-color: rgba(0,0,0,0.85);
+      left: 0;
+      top:0;
+      width: 100%;
+      position: fixed;
+      padding-left:0;
+      margin-top:-70px;
+      //padding-top: 220px;
+
       .close{
-        position: absolute;
+        //position: absolute;
         top: 120px;
-        right: 20px;
+        left: 85%;
+        //right: 20px;
         width: 20px;
         height: 20px;
         @include background-icon($close, 15px, 15px);
         background-position: left top;
         opacity: .7;
       }
-      height: calc(100% + 70px);
-      background-color: rgba(0,0,0,0.85);
-      left: 0;
-      width: 100%;
-      position: fixed;
-      padding-left:0;
-      margin-top:-70px;
-      padding-top: 220px;
-      li{
-        padding:0;
-        float: none;
-        border:0 !important;
-        font-size: 27px;
-        padding-top: 25px;
-        padding-bottom: 25px;
+      ul {
+        padding-left: 0;
+        @include centre;
+        li {
+          padding: 0;
+          float: none;
+          border: 0 !important;
+          font-size: 27px;
+          padding-top: 25px;
+          padding-bottom: 25px;
+        }
       }
     }
   }
@@ -147,7 +197,8 @@
     height: 41px;
     position: absolute;
     right: 25px;
-    top: 130px;
+    //top: 130px;
+    bottom: 10px;
   }
 
   .burger{
@@ -155,6 +206,7 @@
     margin-right: 10px;
 
   }
+  #raiting{margin: -31px 10px 0;}
 
   .custom .burger{
     .name{
@@ -238,7 +290,7 @@
 
 @media screen and (max-width: 510px){
   .index .image img{width: 100%; height: auto; border-width: 10px;}
-  .item-list .col-md-4{width:100%;}
+  .item-list .col-md-4, .customburger-info .col-md-4{width:100%;}
   .main{background-position: -220px top;}
   .anti-slider{margin-top: 45px;}
   .main{ height: 850px;}
@@ -319,5 +371,5 @@
   }
   .custom-info .ingridients form.col-md-5{padding: 0;}
   .custom-info .ingridients .btn-order{border-radius: 0;}
-
+  .account .movebox {.signup, .login{padding: 60px 20px;}}
 }

@@ -50,10 +50,6 @@ function showOrderDone() {
 
 $(document).ready(function () {
 
-    $("#signup-form").submit(function(event) {
-        event.preventDefault();
-
-    });
 
     $('.account .mobile-login').on('click', function () {
         $('.account .movebox .signup').fadeOut();
@@ -69,9 +65,10 @@ $(document).ready(function () {
 
     });
 
-    $('.btn-account').on('click', function () {
-        if($( this ).has('signin')){console.log('success');$('#background').fadeIn(300);}
-        else{console.log('not success');}
+    $('.btn-account .signin').on('click', function () {
+        $('#background .panel').fadeOut();
+        $('#background .account').fadeIn();
+        $('#background').fadeIn(300);
     });
 
     $('.add a').on('click', function(event){

@@ -11,8 +11,9 @@
 <body>
 
 <!------------------------------------------------>
-<div class="background" th:fragment="registration">
+<div class="background" th:fragment="registration" id="background">
     <div class="close" onclick="$(this).parent().fadeOut(200)" id="close"></div>
+    <div class="panel">Thank you for registration</div>
     <div class="account" id="account">
         <div class="movebox">
             <form class="signup" id="signup-form" name="signUp" th:action="@{/registration}" th:object="${user}" method="post">
@@ -21,7 +22,7 @@
                 <p>Full name</p>
                 <input th:field="*{username}"  required></input>
                 <p>E-mail</p>
-                <div id="emailerror"></div>
+                <div id="emailerror" class="error">Email already taken</div>
                 <input type="email" th:field="*{email}" required></input>
                 <p>Password</p>
                 <input type="password" th:field="*{password}"  required name="password" id="p1"></input>
@@ -39,17 +40,16 @@
             <form class="login" th:action="@{/login}" method="post" id="login">
                 <h2>Login here</h2>
 
-                <div id="loginerror"></div>
-
+                <p id="logError" class="error">Wrong Username or password</p>
                 <p>E-mail</p>
-                <input id="username" name="username"></input>
+                <input id="username" name="username">
                 <p>Password</p>
-                <input type="password" id="password" name="password" ></input>
+                <input type="password" id="password" name="password" >
                 <br/>
                 <br/>
                 <span class="mobile-register">Register here</span>
                 <a href="#">
-                    <button class="btn-order" type="submit" onclick="tryLogin()">Login</button>
+                    <button class="btn-order" type="submit" onclick="$('#logError').show(1000)">Login</button>
                 </a>
             </form>
         </div>
@@ -94,10 +94,7 @@
         $toLeft.on('click', function(){
             toLeft();
         })
-        function tryLogin() {
-            var json = "<p>Wrong Username or password</p>";
-            $('#loginerror').html(json);
-        }
+
     </script>
 
     <script type="text/javascript">
@@ -116,13 +113,15 @@
                 // will pass the form data using the jQuery serialize function
                 $.post('/registration', $(this).serialize(), function(response) {
                     if(response === "success"){
-                        var elem = document.getElementById("close");
-                        if (typeof elem.onclick == "function") {
-                            elem.onclick.apply(elem);
-                        }
+//                        var elem = document.getElementById("close");
+//                        if (typeof elem.onclick == "function") {
+//                            elem.onclick.apply(elem);
+//                        }
+                        $('#background .account').fadeOut();
+                        $('#background .panel').fadeIn();
                     }
                     else {
-                        $('#emailerror').text("Email already taken");
+                        $('#emailerror').show();
                     }
                 });
 
@@ -172,10 +171,9 @@
 
     });</script>
 
-    <div class="background" th:fragment="message(str)">
-        <div class="close" onclick="$(this).parent().fadeOut(200)"></div>
-        <div class="panel" th:text="${num}"></div>
-    </div>
+
+
+
 </div>
 </body>
 </html>

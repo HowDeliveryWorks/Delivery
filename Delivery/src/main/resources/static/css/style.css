@@ -984,7 +984,8 @@ textarea {
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
   font-family: 'Minion Pro';
-  display: none; }
+  display: none;
+  z-index: 20; }
   .background .btn-order {
     border-radius: 0;
     font-size: 16px;
@@ -1002,6 +1003,25 @@ textarea {
     top: 0;
     right: 0;
     background-position: center center; }
+  .background .panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 40px 120px;
+    background-color: white;
+    color: #313131;
+    display: none;
+    font-size: 22px;
+    border-radius: 0;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 106px -17px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 106px -17px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 106px -17px rgba(0, 0, 0, 0.75); }
 
 .customburger-info .burger, .profile-info .burger {
   border-bottom-width: 0; }

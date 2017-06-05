@@ -50,6 +50,11 @@ function showOrderDone() {
 
 $(document).ready(function () {
 
+    $("#signup-form").submit(function(event) {
+        event.preventDefault();
+
+    });
+
     $('.account .mobile-login').on('click', function () {
         $('.account .movebox .signup').fadeOut();
         $('.account .movebox .login').css("visibility", "visible");
@@ -64,8 +69,9 @@ $(document).ready(function () {
 
     });
 
-    $('.btn-account .signin').on('click', function () {
-        $('#background').fadeIn(300);
+    $('.btn-account').on('click', function () {
+        if($( this ).has('signin')){console.log('success');$('#background').fadeIn(300);}
+        else{console.log('not success');}
     });
 
     $('.add a').on('click', function(event){

@@ -95,11 +95,14 @@ header{
 
 
 .btn-account{
+	display: inline-block;
+	text-align: center;
     min-width: 120px;
 	padding: 7px 12px;
 	border: 1px solid white;
 	background-color: transparent;
 	font-size: 16px;
+	cursor: auto;
 	span{padding-left: 10px; padding-right: 10px;}
 
 	a{
@@ -1139,7 +1142,7 @@ textarea{resize:none;}
 	}
 }
 
-#background {
+.background {
 	height:100%;
 	width:100%;
 	position: fixed;

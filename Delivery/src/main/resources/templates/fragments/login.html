@@ -11,7 +11,7 @@
 <body>
 
 <!------------------------------------------------>
-<div id="background">
+<div class="background" th:fragment="registration">
     <div class="close" onclick="$(this).parent().fadeOut(200)" id="close"></div>
     <div class="account" id="account">
         <div class="movebox">
@@ -171,6 +171,11 @@
         }
 
     });</script>
+
+    <div class="background" th:fragment="message(str)">
+        <div class="close" onclick="$(this).parent().fadeOut(200)"></div>
+        <div class="panel" th:text="${num}"></div>
+    </div>
 </div>
 </body>
 </html>

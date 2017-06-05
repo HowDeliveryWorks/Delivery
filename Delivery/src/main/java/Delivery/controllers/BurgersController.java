@@ -65,6 +65,7 @@ public class BurgersController {
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
         ExecutorService exec = Executors.newFixedThreadPool(1);
         exec.submit(() -> am.sendMail("howdeliveryworks@gmail.com","Feedback", feedback.toString()));
+        exec.shutdown();
         return "index";
     }
 

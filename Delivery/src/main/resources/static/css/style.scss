@@ -93,7 +93,6 @@ header{
 	//margin-top: -50px;
 }
 
-//a.exit{ visibility: hidden; opacity: 0; float: right; transition: 0.5s; padding-left: 10px;  display:block; }
 
 .btn-account{
     min-width: 120px;
@@ -101,34 +100,15 @@ header{
 	border: 1px solid white;
 	background-color: transparent;
 	font-size: 16px;
-	text-align: center;
-
-
-	a{
-		color: white;
-		&:hover,&:focus{color: white; opacity: .85;}
-	}
-}
-a.exit{
-	@extend .btn-account;
-	display: block;
-	position: absolute;
-
-	top: 3px;
-	right: 188px;
-	color: white;
-	&:hover,&:focus{color: white; opacity: .85;}
 }
 
-//.btn-account:first-letter{
-//	font-size: 12px;
-//}
+.btn-account:first-letter{
+	font-size: 12px;
+}
 
-//.btn-account:hover{
-//	background-color: rgba(255,255,255,0.07);
-//}
-.btn-account:hover + a.exit{ display: none;}
-
+.btn-account:hover{
+	background-color: rgba(255,255,255,0.07);
+}
 .btn-cart{
 	width: 40px;
 	height: 40px;

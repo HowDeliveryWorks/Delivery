@@ -5,10 +5,8 @@ import Delivery.services.SecurityService;
 import Delivery.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,19 +43,18 @@ public class UserController {
         return "sorry";
     }
 
-    @PostMapping(value = "/registration")
-    public Object registration(@ModelAttribute User user, Model model) {
-
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @ResponseBody
+    public String registration(@ModelAttribute User user, Model model) {
         if(userService.save(user) == false){
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return "error";
         }
-
         System.out.println("user added: " + user.getUsername());
 
         securityService.autologin(user.getEmail(), user.getPasswordConfirm());
-
-        return "sorry";
+        return "success";
     }
+
     @GetMapping(value = "/registration")
     public String regG(){
         return "sorry";

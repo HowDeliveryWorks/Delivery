@@ -29,6 +29,27 @@ public class Utils {
         return cartInfo;
     }
 
+    // User stored in Session.
+    public static User getUserInSession(HttpServletRequest request) {
+
+        // Get User from Session.
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+
+        if (currentUser != null) {
+            System.out.println("Got current user");
+        }
+
+        //TODO: User add #2. If no use suggest to LogIn or SignUp
+        // If null, create it.
+//        if (currentUser == null) {
+//            currentUser = new User();
+//
+//            // And store to Session.
+//            request.getSession().setAttribute("currentUser", currentUser);
+//        }
+        return currentUser;
+    }
+
     public static Integer getCustomBurgersNumberInSession(HttpServletRequest request) {
 
         // Get CustomBurgerNumber from Session.

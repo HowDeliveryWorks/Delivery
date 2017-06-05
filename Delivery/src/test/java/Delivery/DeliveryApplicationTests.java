@@ -32,6 +32,9 @@ public class DeliveryApplicationTests {
     @Autowired
     private MeatDAO daoMeat;
 
+    @Autowired
+    private UserDAO daoUsers;
+
 	@Test
 	public void contextLoads() {
 
@@ -212,6 +215,19 @@ public class DeliveryApplicationTests {
         List<Burger> burgerList = daoBurgers.findAll();
         System.out.print(burgerList);
 
+        /*************************
+         * {@link UserDAO} usage *
+         *************************/
+        daoUsers.deleteAll();
+        List<User> users = new ArrayList<>();
+        List<BurgerUserRating> maxBurgers = new ArrayList<>();
+        BurgerUserRating burgerRating1 = new BurgerUserRating(UUID.randomUUID(), burger1, 0);
+        BurgerUserRating burgerRating2 = new BurgerUserRating(UUID.randomUUID(), burger2, 0);
+        BurgerUserRating burgerRating3 = new BurgerUserRating(UUID.randomUUID(), burger3, 0);
+        Collections.addAll(maxBurgers, burgerRating1, burgerRating2, burgerRating3);
+        User max = new User(UUID.randomUUID(), "Max", "test", "max.sopilkov@gmail.com", "+380505055050", "Kyiv", null, maxBurgers);
+        users.add(max);
+        daoUsers.insert(users);
 	}
 
 }

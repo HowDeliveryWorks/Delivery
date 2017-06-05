@@ -54,7 +54,6 @@ public class BurgersController {
     public String contacts(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
         model.addAttribute("feedback", new Feedback());
-        model.addAttribute("user", new User());
         return "contacts";
     }
 
@@ -75,7 +74,7 @@ public class BurgersController {
 
     @GetMapping("/menu")
     public String getAllBurgers(HttpServletRequest request, Model model){
-        model.addAttribute("user", new User());
+
         model.addAttribute("burgers", daoBurgers.findByBurgerType(BurgerType.PreOrdered));
 //        List a = dao.findAll();
         CartInfo cartInfo = Utils.getCartInSession(request);
@@ -90,15 +89,12 @@ public class BurgersController {
 
     @GetMapping("/cart")
     public String cart(HttpServletRequest request, Model model){
-        model.addAttribute("user", new User());
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "cart";
     }
 
     @GetMapping("/sorry")
     public String sorry(HttpServletRequest request, Model model){
-        model.addAttribute("user", new User());
-
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "sorry";
     }
@@ -111,8 +107,6 @@ public class BurgersController {
 
     @GetMapping("/cart2")
     public String cart2(HttpServletRequest request, Model model){
-        model.addAttribute("user", new User());
-
         CartInfo cartInfo = Utils.getCartInSession(request);
         model.addAttribute("order", new Order());
         return "cart2";
@@ -120,8 +114,6 @@ public class BurgersController {
 
     @PostMapping("/cart2")
     public String ordersForm(HttpSession session, HttpServletRequest request, @ModelAttribute Order order, Model model){
-        model.addAttribute("user", new User());
-
         ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
         CartInfo cartInfo = Utils.getCartInSession(request);
@@ -153,8 +145,6 @@ public class BurgersController {
     @RequestMapping({ "/buyBurger" })
     public String listProductHandler(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
-        model.addAttribute("user", new User());
-
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -175,8 +165,6 @@ public class BurgersController {
     @RequestMapping({ "/buyBurgerMenu" })
     public String listProductHandlerMenu(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
-        model.addAttribute("user", new User());
-
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -197,8 +185,6 @@ public class BurgersController {
     @RequestMapping({ "/removeBurger" })
     public String listProductUnHandler(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
-        model.addAttribute("user", new User());
-
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -219,8 +205,6 @@ public class BurgersController {
     @RequestMapping({ "/shoppingCartRemoveProduct" })
     public String removeProductHandler(HttpServletRequest request, Model model, //
                                        @RequestParam(value = "id", defaultValue = "") UUID id) {
-        model.addAttribute("user", new User());
-
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -262,8 +246,6 @@ public class BurgersController {
 
     @GetMapping("/constructor")
     public String constructor(HttpServletRequest request, Model model){
-        model.addAttribute("user", new User());
-
         model.addAttribute("ingredients", daoMiscIngredients.findAll());
         model.addAttribute("meat", daoMeat.findAll());
         model.addAttribute("breadTypes", daoBreadType.findAll());
@@ -298,8 +280,6 @@ public class BurgersController {
     // GET: Enter customer information.
     @RequestMapping(value = { "/shoppingCartCustomer" }, method = RequestMethod.GET)
     public String shoppingCartCustomerForm(HttpServletRequest request, Model model) {
-        model.addAttribute("user", new User());
-
 
         CartInfo cartInfo = Utils.getCartInSession(request);
         //model.addAttribute("currentCart", cartInfo);
@@ -410,7 +390,6 @@ public class BurgersController {
         CartInfo cartInfo = Utils.getCartInSession(request);
         //request.getSession().setAttribute("currentCart", cartInfo);
 
-        model.addAttribute("user", new User());
         return "index";
     }
 }

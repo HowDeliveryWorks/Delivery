@@ -12,22 +12,20 @@
 
 <!------------------------------------------------>
 <div id="background">
-    <div class="close" onclick="$(this).parent().fadeOut(200)" id="close"></div>
+    <div class="close" onclick="$(this).parent().fadeOut(200)"></div>
     <div class="account" id="account">
         <div class="movebox">
-            <form class="signup" id="signup-form" name="signUp" th:action="@{/registration}" th:object="${user}" method="post">
+            <form class="signup" name="signUp" action="" onsubmit="return validate()">
                 <h2>Register here</h2>
 
                 <p>Full name</p>
-                <input th:field="*{username}"  required></input>
+                <input required></input>
                 <p>E-mail</p>
-                <div id="emailerror"></div>
-                <input type="email" th:field="*{email}" required></input>
+                <input type="email" required></input>
                 <p>Password</p>
-                <input type="password" th:field="*{password}"  required name="password" id="p1"></input>
+                <input type="password" required name="password"></input>
                 <p>Password again </p>
-                <input type="password" th:field="*{passwordConfirm}" required  name="passwordRepeater" id="p2"></input>
-
+                <input type="password" required name="passwordRepeater"></input>
                 <div class="error" id="samePassError">Passwords are not the same</div>
                 <br/>
                 <br/>
@@ -36,20 +34,17 @@
                     <button class="btn-order" type="submit" onclick="$('.movebox .error').hide();">Register</button>
                 </a>
             </form>
-            <form class="login" th:action="@{/login}" method="post" id="login">
+            <form class="login">
                 <h2>Login here</h2>
-
-                <div id="loginerror"></div>
-
                 <p>E-mail</p>
-                <input id="username" name="username"></input>
+                <input></input>
                 <p>Password</p>
-                <input type="password" id="password" name="password" ></input>
+                <input type="password"></input>
                 <br/>
                 <br/>
                 <span class="mobile-register">Register here</span>
                 <a href="#">
-                    <button class="btn-order" type="submit" onclick="tryLogin()">Login</button>
+                    <button class="btn-order" type="submit">Login</button>
                 </a>
             </form>
         </div>
@@ -65,7 +60,6 @@
             <p class="button to-right">Login here</p>
         </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
     <script>
         var $toRight = $('.to-right'),
@@ -94,44 +88,25 @@
         $toLeft.on('click', function(){
             toLeft();
         })
-        function tryLogin() {
-            var json = "<p>Wrong Username or password</p>";
-            $('#loginerror').html(json);
+
+        function validate(){
+
+            $('.movebox .error').hide();
+
+            var pass1 = document.forms["signUp"]["password"].value;
+            var pass2 = document.forms["signUp"]["passwordRepeater"].value;
+
+            if(pass1!=pass2){
+                $('#samePassError').show();
+                return false;
+            }
+
+            else{return true;}
         }
-    </script>
 
-    <script type="text/javascript">
-
-        $(document).ready(function() {
-
-            // Save Person AJAX Form Submit
-            $('#signup-form').submit(function(e) {
-                // validate passwords
-                var pass1 = document.getElementById("p1").value;
-                var pass2 = document.getElementById("p2").value;
-                if(pass1!=pass2){
-                    $('#samePassError').show();
-                    return false;
-                }
-                // will pass the form data using the jQuery serialize function
-                $.post('/registration', $(this).serialize(), function(response) {
-                    if(response === "success"){
-                        var elem = document.getElementById("close");
-                        if (typeof elem.onclick == "function") {
-                            elem.onclick.apply(elem);
-                        }
-                    }
-                    else {
-                        $('#emailerror').text("Email already taken");
-                    }
-                });
-
-                e.preventDefault(); // prevent actual form submit and page reload
-            });
-
-        });
     </script>
 </div>
+
 
 <!------------------------------------------------>
 <!--Raiting-->
@@ -172,5 +147,7 @@
 
     });</script>
 </div>
+
+
 </body>
 </html>

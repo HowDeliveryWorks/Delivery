@@ -1,7 +1,6 @@
 package Delivery.entity;
 
 import Delivery.model.CartLineInfo;
-//Delivery/src/main/java/Delivery/entity/Order.java
 import Delivery.enums.OrderPaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Data;

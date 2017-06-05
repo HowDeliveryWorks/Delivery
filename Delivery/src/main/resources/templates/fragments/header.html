@@ -15,17 +15,20 @@
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-4 right-header">
-            <button class="btn-account">
+            <div class="btn-account">
                 <!--<button class="btn-account" th:if="${#authorization.expression('!isAuthenticated()')}">My account</button>-->
                 <!--<button class="btn-account" th:if="${#authorization.expression('isAuthenticated()')}" sec:authentication="name"></button>-->
                 <!--If user is NOT signed in-->
                 <a href="#" class="signin" th:if="${#authorization.expression('!isAuthenticated()')}">My account</a>
                 <!--If user is signed in-->
-                <a href="#" class="profile" th:if="${#authorization.expression('isAuthenticated()')}">My account</a>
-                <span th:if="${#authorization.expression('isAuthenticated()')}">&#124;</span>
-                <a href="#" th:href="@{/logout}" class="signout" th:if="${#authorization.expression('isAuthenticated()')}">Sign Out</a>
+                <div th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a href="#" class="profile">My account</a>
+                    <span>&#124;</span>
+                    <a href="#" th:href="@{/logout}" class="signout">Sign Out</a>
+                </div>
 
-            </button>
+
+            </div>
             <a th:href="@{/cart}"> <button class="btn-cart">
                 <div id="itemsNum" class="cart-circle" th:text="${session.currentCart.getQuantityTotal()}">77</div>
             </button></a>

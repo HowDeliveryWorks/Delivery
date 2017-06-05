@@ -50,6 +50,7 @@ function showOrderDone() {
 
 $(document).ready(function () {
 
+
     $('.account .mobile-login').on('click', function () {
         $('.account .movebox .signup').fadeOut();
         $('.account .movebox .login').css("visibility", "visible");
@@ -65,6 +66,8 @@ $(document).ready(function () {
     });
 
     $('.btn-account .signin').on('click', function () {
+        $('#background .panel').fadeOut();
+        $('#background .account').fadeIn();
         $('#background').fadeIn(300);
     });
 

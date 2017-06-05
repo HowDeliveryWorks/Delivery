@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <meta name="viewport" content="width=device-width,  initial-scale=1">
 <head>
     <title>Cart</title>
@@ -19,7 +19,8 @@
 </header>
 
 <div class="body"><center>
-    <h3>This page is under construction :(</h3><br>
+    <h3 th:inline="text">Sorry [[${#httpServletRequest.remoteUser}]]. This page is under construction :(</h3><br>
+
     <img src="img/cat.png" width="25%"></center>
     <br>
 </div>

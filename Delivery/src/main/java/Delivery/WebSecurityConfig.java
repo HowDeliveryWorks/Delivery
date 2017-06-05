@@ -40,7 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .successForwardUrl("/login-success")
                     .and()
                 .logout()
-                    .logoutSuccessUrl("/index");
+                    .logoutSuccessUrl("/")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID");
     }
 
     @Autowired

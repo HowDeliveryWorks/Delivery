@@ -49,6 +49,9 @@ public class BurgersController {
     @Autowired
     private SequenceDAO sequenceDAO;
 
+    @Autowired
+    private UserDAO daoUsers;
+
     private static final String ORDER_SEQ_KEY = "order";
 
     @GetMapping("/contacts")
@@ -73,7 +76,6 @@ public class BurgersController {
     public String getAllBurgers(HttpServletRequest request, Model model){
         model.addAttribute("user", new User());
         model.addAttribute("burgers", daoBurgers.findByBurgerType(BurgerType.PreOrdered));
-//        List a = dao.findAll();
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "store";
     }
@@ -99,9 +101,30 @@ public class BurgersController {
         return "sorry";
     }
 
+    /**
+     * Profile mapping
+     * Get current user in session. If doesn't exist - create a mock.
+     * When normal logic will implements - we sould check for a user,
+     * if there are no - SUGGEST TO LOG IN OR SIGN IN.
+     */
     @GetMapping("/profile")
     public String profile(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
+
+//        //Get current user
+//        User currentUser = Utils.getUserInSession(request);
+        User currentUser = daoUsers.findByName("Max");
+
+//        //If there are no user - create it.
+//        if (currentUser == null) {
+//            currentUser = daoUsers.findByName("Max");
+//            request.getSession().setAttribute("currentUser", currentUser);
+//            System.out.println("No user. Created");
+//        }
+
+        List<BurgerUserRating> orderedBurgers = currentUser.getOrderedBurgers();
+        model.addAttribute("orderedBurgers", orderedBurgers);
+
         return "profile";
     }
 
@@ -278,117 +301,7 @@ public class BurgersController {
         }
         return "forward:/cart";
     }
-
-    // GET: Enter customer information.
-    @RequestMapping(value = { "/shoppingCartCustomer" }, method = RequestMethod.GET)
-    public String shoppingCartCustomerForm(HttpServletRequest request, Model model) {
-        model.addAttribute("user", new User());
-
-
-        CartInfo cartInfo = Utils.getCartInSession(request);
-        //model.addAttribute("currentCart", cartInfo);
-
-        // Cart is empty.
-        if (cartInfo.isEmpty()) {
-
-            // Redirect to cart page.
-            return "redirect:/cart";
-        }
-
-        CustomerInfo customerInfo = cartInfo.getCustomerInfo();
-        if (customerInfo == null) {
-            customerInfo = new CustomerInfo();
-        }
-
-        model.addAttribute("customerForm", customerInfo);
-
-        return "forward:/cart2";
-    }
-
-//    // POST: Save customer information.
-//    @RequestMapping(value = { "/shoppingCartCustomer" }, method = RequestMethod.POST)
-//    public String shoppingCartCustomerSave(HttpServletRequest request, //
-//                                           Model model, //
-//                                           @ModelAttribute("customerForm") @Validated CustomerInfo customerForm, //
-//                                           BindingResult result, //
-//                                           final RedirectAttributes redirectAttributes) {
-//
-//        // If has Errors.
-//        if (result.hasErrors()) {
-//            customerForm.setValid(false);
-//            // Forward to reenter customer info.
-//            return "cart2";
-//        }
-//
-//        customerForm.setValid(true);
-//        CartInfo cartInfo = Utils.getCartInSession(request);
-//
-//        cartInfo.setCustomerInfo(customerForm);
-//
-//        // Redirect to Confirmation page.
-//        return "redirect:/shoppingCartConfirmation";
-//    }
-//
-//    // GET: Review Cart to confirm.
-//    @RequestMapping(value = { "/shoppingCartConfirmation" }, method = RequestMethod.GET)
-//    public String shoppingCartConfirmationReview(HttpServletRequest request, Model model) {
-//        CartInfo cartInfo = Utils.getCartInSession(request);
-//
-//        // Cart have no products.
-//        if (cartInfo.isEmpty()) {
-//            // Redirect to shoppingCart page.
-//            return "redirect:/shoppingCart";
-//        } else if (!cartInfo.isValidCustomer()) {
-//            // Enter customer info.
-//            return "redirect:/shoppingCartCustomer";
-//        }
-//
-//        return "shoppingCartConfirmation";
-//    }
-
-//    // POST: Send Cart (Save).
-//    @RequestMapping(value = { "/shoppingCartConfirmation" }, method = RequestMethod.POST)
-//    // Avoid UnexpectedRollbackException (See more explanations)
-//    @Transactional(propagation = Propagation.NEVER)
-//    public String shoppingCartConfirmationSave(HttpServletRequest request, Model model) {
-//        CartInfo cartInfo = Utils.getCartInSession(request);
-//
-//        // Cart have no products.
-//        if (cartInfo.isEmpty()) {
-//            // Redirect to shoppingCart page.
-//            return "redirect:/shoppingCart";
-//        } else if (!cartInfo.isValidCustomer()) {
-//            // Enter customer info.
-//            return "redirect:/shoppingCartCustomer";
-//        }
-//        try {
-//            dao.saveOrder(cartInfo);
-//        } catch (Exception e) {
-//            // Need: Propagation.NEVER?
-//            return "shoppingCartConfirmation";
-//        }
-//        // Remove Cart In Session.
-//        Utils.removeCartInSession(request);
-//
-//        // Store Last ordered cart to Session.
-//        Utils.storeLastOrderedCartInSession(request, cartInfo);
-//
-//        // Redirect to successful page.
-//        return "redirect:/shoppingCartFinalize";
-//    }
-
-//    @RequestMapping(value = { "/shoppingCartFinalize" }, method = RequestMethod.GET)
-//    public String shoppingCartFinalize(HttpServletRequest request, Model model) {
-//
-//        CartInfo lastOrderedCart = Utils.getLastOrderedCartInSession(request);
-//
-//        if (lastOrderedCart == null) {
-//            return "redirect:/shoppingCart";
-//        }
-//
-//        return "shoppingCartFinalize";
-//    }
-
+  
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);

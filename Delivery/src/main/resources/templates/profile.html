@@ -42,62 +42,33 @@
 
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" th:each="burgerUserRating : ${orderedBurgers}">
             <div class="burger">
-                <div class="name">New York</div>
+                <div class="name" th:text="${burgerUserRating.getBurger().getName()}">New York</div>
                 <div class="burgerinfo" onclick='showDescription(this)'></div>
-                <div class="size">400g</div>
-                <div class="spicy"></div>
+                <div class="size" th:text="${burgerUserRating.getBurger().getWeight()}  + 'g'">400g</div>
+                <div class="spicy" th:if="${burgerUserRating.getBurger().getSpicy()} == true"></div>
 
-                <div class="photo"></div>
+                <div class="photo" th:style="'background-image: url(img/burgers/' + ${burgerUserRating.getBurger().getPhoto()} + ')'"></div>
                 <div class="description">
                     <div class="desc-header">Ingridients:</div>
                     <article>
                         <ul class="ingridients">
-                            <li>White Bread</li>
-                            <li>Beef</li>
-                            <li>salad</li>
+                            <li th:text="${burgerUserRating.getBurger().getBreadType().getName()}">White Bread</li>
+                            <li th:text="${burgerUserRating.getBurger().getMeat().getName()}">Beef</li>
+                            <li th:each="ing : ${burgerUserRating.getBurger().getIngredients()}" th:text="${ing.getName()}">salad</li>
                         </ul>
                     </article>
-                    <div class="roasting"><p>Roasting: </p><p> medium well</p></div>
+                    <div class="roasting"><p>Roasting: </p><p th:text="${burgerUserRating.getBurger().getRoasting()}"> medium well</p></div>
                 </div>
 
-                <div class="price">210 UAH</div>
+                <div class="price" th:text="${burgerUserRating.getBurger().getPrice()} + ' UAH'">210 UAH</div>
                 <div class="add">
-                    <a class="btn-add" onclick="addToCart(this)"></a>
+                    <a th:href="@{/buyBurgerMenu(id=${burgerUserRating.getBurger().getId()})}" class="btn-add" id="addToCart" onclick="addToCart(this)"></a>
                 </div>
             </div>
-            <div th:replace="fragments/login :: stars(3)"></div>
+            <div th:replace="fragments/login :: stars(${burgerUserRating.getRating()})"></div>
             </div>
-
-            <div class="col-md-4">
-                <div class="burger">
-                    <div class="name">New York</div>
-                    <div class="burgerinfo" onclick='showDescription(this)'></div>
-                    <div class="size">400g</div>
-                    <div class="spicy"></div>
-
-                    <div class="photo"></div>
-                    <div class="description">
-                        <div class="desc-header">Ingridients:</div>
-                        <article>
-                            <ul class="ingridients">
-                                <li>White Bread</li>
-                                <li>Beef</li>
-                                <li>salad</li>
-                            </ul>
-                        </article>
-                        <div class="roasting"><p>Roasting: </p><p> medium well</p></div>
-                    </div>
-
-                    <div class="price">210 UAH</div>
-                    <div class="add">
-                        <a class="btn-add"  onclick="addToCart(this)"></a>
-                    </div>
-                </div>
-                <div th:replace="fragments/login :: stars(2)"></div>
-            </div>
-
 
         </div>
     </div>

@@ -64,7 +64,7 @@ $(document).ready(function () {
 
     });
 
-    $('.btn-account').on('click', function () {
+    $('.btn-account .signin').on('click', function () {
         $('#background').fadeIn(300);
     });
 

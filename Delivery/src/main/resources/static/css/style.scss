@@ -100,15 +100,18 @@ header{
 	border: 1px solid white;
 	background-color: transparent;
 	font-size: 16px;
+	span{padding-left: 10px; padding-right: 10px;}
+
+	a{
+		color: white;
+		&:hover, &:focus{color: white; opacity: .85;}
+		//&.signout:hover{text-decoration: underline;}
+	}
 }
 
-.btn-account:first-letter{
-	font-size: 12px;
-}
-
-.btn-account:hover{
-	background-color: rgba(255,255,255,0.07);
-}
+//.btn-account:hover{
+//	background-color: rgba(255,255,255,0.07);
+//}
 .btn-cart{
 	width: 40px;
 	height: 40px;

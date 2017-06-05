@@ -149,31 +149,20 @@ header {
   background-image: url(../img/banner.png);
   height: 700px; }
 
-.btn-account, a.exit {
+.btn-account {
   min-width: 120px;
   padding: 7px 12px;
   border: 1px solid white;
   background-color: transparent;
-  font-size: 16px;
-  text-align: center; }
-  .btn-account a, a.exit a {
+  font-size: 16px; }
+  .btn-account span {
+    padding-left: 10px;
+    padding-right: 10px; }
+  .btn-account a {
     color: white; }
-    .btn-account a:hover, a.exit a:hover, .btn-account a:focus, a.exit a:focus {
+    .btn-account a:hover, .btn-account a:focus {
       color: white;
       opacity: .85; }
-
-a.exit {
-  display: block;
-  position: absolute;
-  top: 3px;
-  right: 188px;
-  color: white; }
-  a.exit:hover, a.exit:focus {
-    color: white;
-    opacity: .85; }
-
-.btn-account:hover + a.exit, a.exit:hover + a.exit {
-  display: none; }
 
 .btn-cart {
   width: 40px;

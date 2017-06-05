@@ -15,11 +15,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by igor on 08.04.17.
@@ -57,6 +58,7 @@ public class BurgersController {
     public String contacts(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
         model.addAttribute("feedback", new Feedback());
+        model.addAttribute("user", new User());
         return "contacts";
     }
 
@@ -64,20 +66,15 @@ public class BurgersController {
     public String contactsForm(@ModelAttribute Feedback feedback, Model model){
         ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
-        try
-        {
-            am.sendMail("howdeliveryworks@gmail.com","Feedback", feedback.toString());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        ExecutorService exec = Executors.newFixedThreadPool(1);
+        exec.submit(() -> am.sendMail("howdeliveryworks@gmail.com","Feedback", feedback.toString()));
+        exec.shutdown();
         return "index";
     }
 
     @GetMapping("/menu")
     public String getAllBurgers(HttpServletRequest request, Model model){
-
+        model.addAttribute("user", new User());
         model.addAttribute("burgers", daoBurgers.findByBurgerType(BurgerType.PreOrdered));
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "store";
@@ -91,12 +88,15 @@ public class BurgersController {
 
     @GetMapping("/cart")
     public String cart(HttpServletRequest request, Model model){
+        model.addAttribute("user", new User());
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "cart";
     }
 
     @GetMapping("/sorry")
     public String sorry(HttpServletRequest request, Model model){
+        model.addAttribute("user", new User());
+
         CartInfo cartInfo = Utils.getCartInSession(request);
         return "sorry";
     }
@@ -130,6 +130,8 @@ public class BurgersController {
 
     @GetMapping("/cart2")
     public String cart2(HttpServletRequest request, Model model){
+        model.addAttribute("user", new User());
+
         CartInfo cartInfo = Utils.getCartInSession(request);
         model.addAttribute("order", new Order());
         return "cart2";
@@ -137,28 +139,18 @@ public class BurgersController {
 
     @PostMapping("/cart2")
     public String ordersForm(HttpSession session, HttpServletRequest request, @ModelAttribute Order order, Model model){
+        model.addAttribute("user", new User());
+
         ApplicationContext ctx = new AnnotationConfigApplicationContext(DeliveryApplication.class);
         ApplicationMailer am = (ApplicationMailer) ctx.getBean("mailService");
         CartInfo cartInfo = Utils.getCartInSession(request);
         order.setBurgers(cartInfo.getCartLines());
         order.setId(sequenceDAO.getNextSequenceId(ORDER_SEQ_KEY));
         ordersDAO.insert(order);
-        try
-        {
-            am.sendMail(order.getEmail(),"Your Burgers Order", am.customerText(order));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        try
-        {
-            am.sendMail("howdeliveryworks@gmail.com","We got a new order!", am.ownerText(order));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        ExecutorService exec = Executors.newFixedThreadPool(2);
+        exec.submit(() -> am.sendMail(order.getEmail(),"Your Burgers Order", am.customerText(order)));
+        exec.submit(() -> am.sendMail("howdeliveryworks@gmail.com","We got a new order!", am.ownerText(order)));
+        exec.shutdown();
         Utils.removeCartInSession(request);
         session.invalidate();
         return "redirect:/menu";
@@ -168,6 +160,8 @@ public class BurgersController {
     @RequestMapping({ "/buyBurger" })
     public String listProductHandler(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
+        model.addAttribute("user", new User());
+
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -188,6 +182,8 @@ public class BurgersController {
     @RequestMapping({ "/buyBurgerMenu" })
     public String listProductHandlerMenu(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
+        model.addAttribute("user", new User());
+
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -208,6 +204,8 @@ public class BurgersController {
     @RequestMapping({ "/removeBurger" })
     public String listProductUnHandler(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
+        model.addAttribute("user", new User());
+
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -228,6 +226,8 @@ public class BurgersController {
     @RequestMapping({ "/shoppingCartRemoveProduct" })
     public String removeProductHandler(HttpServletRequest request, Model model, //
                                        @RequestParam(value = "id", defaultValue = "") UUID id) {
+        model.addAttribute("user", new User());
+
         Burger burger = null;
         if (id != null) {
             burger = daoBurgers.findById(id);
@@ -269,6 +269,8 @@ public class BurgersController {
 
     @GetMapping("/constructor")
     public String constructor(HttpServletRequest request, Model model){
+        model.addAttribute("user", new User());
+
         model.addAttribute("ingredients", daoMiscIngredients.findAll());
         model.addAttribute("meat", daoMeat.findAll());
         model.addAttribute("breadTypes", daoBreadType.findAll());
@@ -299,12 +301,13 @@ public class BurgersController {
         }
         return "forward:/cart";
     }
-
+  
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
         //request.getSession().setAttribute("currentCart", cartInfo);
 
+        model.addAttribute("user", new User());
         return "index";
     }
 }

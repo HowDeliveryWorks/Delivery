@@ -50,11 +50,6 @@
 }
 
 @media screen and (max-width: 750px){
-  a.exit{
-    position: static;
-    margin-bottom: 10px;
-    opacity: .6;
-  }
   body{min-width: 100% !important;}
   header .divider{width: 100%;}
   .item-list .col-md-4{width:50%; float: left;}

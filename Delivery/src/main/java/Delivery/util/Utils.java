@@ -81,6 +81,40 @@ public class Utils {
         return (CartInfo) request.getSession().getAttribute("lastOrderedCart");
     }
 
+    public static boolean compareBurgersByName(Burger userBurger, Burger dbBurger) {
+
+        boolean equal = false;
+        if (userBurger.getName().equals(dbBurger.getName())) {
+            equal = true;
+        }
+//        System.out.println(userBurger.getName() + " " + dbBurger.getName());
+//        System.out.println(userBurger.getName().equals(dbBurger.getName()));
+        return equal;
+    }
+
+    public static boolean compareBurgersByIngredients(Burger userBurger, Burger dbBurger) {
+
+        boolean equal = false;
+
+        if (userBurger.getMeat().equals(dbBurger.getMeat())
+                && userBurger.getRoasting().equals(dbBurger.getRoasting())
+                && userBurger.getBreadType().equals(dbBurger.getBreadType())
+                && userBurger.getSpicy().equals(dbBurger.getSpicy())
+                && userBurger.getIngredients().equals(dbBurger.getIngredients())
+                && userBurger.getBurgerType().equals(dbBurger.getBurgerType())) {
+            equal = true;
+        }
+//        System.out.println(userBurger.getName() + " " + dbBurger.getName());
+//        System.out.println("Meat: " + userBurger.getMeat().equals(dbBurger.getMeat()));
+//        System.out.println("Roasting: " + userBurger.getRoasting().equals(dbBurger.getRoasting()));
+//        System.out.println("BreadType: " + userBurger.getBreadType().equals(dbBurger.getBreadType()));
+//        System.out.println("Spicy: " + userBurger.getSpicy().equals(dbBurger.getSpicy()));
+//        System.out.println("Ingredients: " + userBurger.getIngredients().equals(dbBurger.getIngredients()));
+//        System.out.println("BurgerType: " + userBurger.getBurgerType().equals(dbBurger.getBurgerType()));
+
+        return equal;
+    }
+
 
     /**
      * Used to convert JSONObject that comes from the constructor

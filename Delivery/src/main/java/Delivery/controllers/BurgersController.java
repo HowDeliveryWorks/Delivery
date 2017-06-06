@@ -12,6 +12,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -110,20 +112,22 @@ public class BurgersController {
     @GetMapping("/profile")
     public String profile(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-//        //Get current user
-//        User currentUser = Utils.getUserInSession(request);
-        User currentUser = daoUsers.findByName("Max");
+        if (auth.getName() != "anonymousUser"){
 
-//        //If there are no user - create it.
-//        if (currentUser == null) {
-//            currentUser = daoUsers.findByName("Max");
-//            request.getSession().setAttribute("currentUser", currentUser);
-//            System.out.println("No user. Created");
-//        }
+            //Get current user
+            String eMail = auth.getName();
+            User currentUser = daoUsers.findByEmail(eMail);
+            List<BurgerUserRating> orderedBurgers = currentUser.getOrderedBurgers();
+            model.addAttribute("orderedBurgers", orderedBurgers);
+        } else {
+            return "sorry";
+        }
 
-        List<BurgerUserRating> orderedBurgers = currentUser.getOrderedBurgers();
-        model.addAttribute("orderedBurgers", orderedBurgers);
+//        User currentUser = daoUsers.findByName("Max");
+//        List<BurgerUserRating> orderedBurgers = currentUser.getOrderedBurgers();
+//        model.addAttribute("orderedBurgers", orderedBurgers);
 
         return "profile";
     }
@@ -183,6 +187,7 @@ public class BurgersController {
     public String listProductHandlerMenu(HttpServletRequest request, Model model, //
                                      @RequestParam(value = "id", defaultValue = "") UUID id) {
         model.addAttribute("user", new User());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         Burger burger = null;
         if (id != null) {
@@ -197,7 +202,49 @@ public class BurgersController {
 
             cartInfo.addBurger(burgerInfo, 1);
         }
-        // Redirect to cart page.
+
+        // Check if there logged in user, to write down his burger in db
+        if (auth.getName() != "anonymousUser"){
+            String eMail = auth.getName();
+            User currentUser = daoUsers.findByEmail(eMail);
+//            User currentUser = daoUsers.findByName("Max");
+            List<BurgerUserRating> burgerUserRatingList = currentUser.getOrderedBurgers();
+
+            if (burgerUserRatingList != null) {
+                // Check all burgers on equality; For each User's ordered burger
+                boolean equal = false;
+                for (BurgerUserRating bur : burgerUserRatingList) {
+                    Burger userBurger = bur.getBurger();
+                    // Compare 2 burgers on equality
+                    boolean eq = Utils.compareBurgersByIngredients(userBurger, burger);
+                    if (eq) {
+                        equal = eq;
+                    }
+                }
+
+                boolean addToDb = false;
+                // If there found no equal - add to db
+                if (equal == false) {
+                    addToDb = true;
+                }
+                if (addToDb) {
+                    // Create new bur
+                    BurgerUserRating customBur = new BurgerUserRating(UUID.randomUUID(), burger, 0);
+                    // Add it to existing User's list
+                    burgerUserRatingList.add(customBur);
+                    // Rewrite list
+                    currentUser.setOrderedBurgers(burgerUserRatingList);
+                    // Update user
+                    daoUsers.save(currentUser);
+                }
+            } else {
+                BurgerUserRating customBur = new BurgerUserRating(UUID.randomUUID(), burger, 0);
+                burgerUserRatingList.add(customBur);
+                currentUser.setOrderedBurgers(burgerUserRatingList);
+                daoUsers.save(currentUser);
+            }
+        }
+        // Redirect to menu page.
         return "forward:/menu";
     }
 
@@ -298,6 +345,60 @@ public class BurgersController {
             BurgerInfo burgerInfo = new BurgerInfo(burger);
 
             cartInfo.addBurger(burgerInfo, 1);
+
+            // Check if there logged in user, to write down his burger in db
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth.getName() != "anonymousUser"){
+                String eMail = auth.getName();
+                User currentUser = daoUsers.findByEmail(eMail);
+//                User currentUser = daoUsers.findByName("Max");
+                List<BurgerUserRating> burgerUserRatingList = currentUser.getOrderedBurgers();
+
+                if (burgerUserRatingList != null) {
+                    // Check all burgers on equality; For each User's ordered burger
+                    boolean equal = false;
+                    for (BurgerUserRating bur : burgerUserRatingList) {
+                        Burger userBurger = bur.getBurger();
+                        // Compare 2 burgers on equality
+                        boolean eq = Utils.compareBurgersByIngredients(userBurger, burger);
+                        if (eq) {
+                            equal = eq;
+                        }
+                    }
+
+                    boolean addToDb = false;
+                    // If there found no equal - add to db
+                    if (equal == false) {
+                        addToDb = true;
+                    }
+                    if (addToDb) {
+                        /** Create new bur **/
+
+                        // Check how much custom burgers
+                        int customCounter = 1;
+                        for (BurgerUserRating cbur : burgerUserRatingList){
+                            if (cbur.getBurger().getBurgerType().equals(BurgerType.Custom)){
+                                customCounter++;
+                            }
+                        }
+                        // Name of custom burger
+                        burger.setName("Custom Burger #" + customCounter);
+                        BurgerUserRating customBur = new BurgerUserRating(UUID.randomUUID(), burger, 0);
+                        // Add it to existing User's list
+                        burgerUserRatingList.add(customBur);
+                        // Rewrite list
+                        currentUser.setOrderedBurgers(burgerUserRatingList);
+                        // Update user
+                        daoUsers.save(currentUser);
+                    }
+                } else {
+                    burger.setName("Custom Burger #1");
+                    BurgerUserRating customBur = new BurgerUserRating(UUID.randomUUID(), burger, 0);
+                    burgerUserRatingList.add(customBur);
+                    currentUser.setOrderedBurgers(burgerUserRatingList);
+                    daoUsers.save(currentUser);
+                }
+            }
         }
         return "forward:/cart";
     }
@@ -305,7 +406,9 @@ public class BurgersController {
     @GetMapping("/")
     public String index(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
-        //request.getSession().setAttribute("currentCart", cartInfo);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(auth.getName());
 
         model.addAttribute("user", new User());
         return "index";

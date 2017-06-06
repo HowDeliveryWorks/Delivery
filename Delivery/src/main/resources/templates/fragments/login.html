@@ -20,7 +20,7 @@
                 <h2>Register here</h2>
 
                 <p>Full name</p>
-                <input th:field="*{username}"  required></input>
+                <input th:field="*{name}"  required></input>
                 <p>E-mail</p>
                 <div id="emailerror" class="error">Email already taken</div>
                 <input type="email" th:field="*{email}" required></input>
@@ -42,6 +42,7 @@
 
                 <p id="logError" class="error">Wrong Username or password</p>
                 <p>E-mail</p>
+
                 <input id="username" name="username">
                 <p>Password</p>
                 <input type="password" id="password" name="password" >

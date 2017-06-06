@@ -1185,7 +1185,7 @@ textarea{resize:none;}
 		font-family: 'Minion Pro';
 		font-size:20px;
 		color: $black;
-		padding: 15px 20px;
+		padding:100px 20px;
 
 		a{color: $red; padding-left: 15px; &:hover{color:lighten($red,10%);}}
 	}
@@ -1202,12 +1202,12 @@ textarea{resize:none;}
 		color: $red;}
 }
 
-/* Raiting */
-#raiting{text-align: center;margin: -31px 30px 0; border: $divider; border-top-width: 0;}
-.customburger-info .burger:hover, .customburger-info .burger:hover + #raiting{border-color: rgba(51,51,51,0.21);}
+/* Rating */
+.rating{text-align: center;margin: -31px 30px 0; border: $divider; border-top-width: 0;}
+.customburger-info .burger:hover, .customburger-info .burger:hover + .rating{border-color: rgba(51,51,51,0.21);}
 div.stars { display: inline-block;}
-input.star { display: none; }
-label.star {
+
+a.star {
 	float: right;
 	padding: 10px;
 	font-size: 30px;
@@ -1215,11 +1215,11 @@ label.star {
 	transition: all .2s;
 	cursor: pointer;
 }
-label.star:hover {color:gold; transition: all .25s;}
-label.star:hover ~ label.star:before {color: gold; transition: all .25s;}
-label.star:before {content: "\2606";}
+a.star:hover {color:gold; transition: all .25s;}
+a.star:hover ~ a.star:before {color: gold; transition: all .25s;}
+a.star:before {content: "\2606";}
 
-label.checked:before{
+a.checked:before{
 	content: "\2605";
 	color:gold;
 	transition: all .25s;

@@ -133,14 +133,25 @@ function meatEdit(roasting, name, price) {
 
 }
 
+function getNum(str){
+    let i = 0;
+    let arr = str.split('');
+    let num = '';
+    while(!isNaN(+arr[i])){
+        num+=arr[i];
+        i++;
+    }
+    return num;
+}
 
 function loadstars() {
     let form = $('.stars').children('form');
     for (let i = 0; i < form.length; i++) {
-        let currStars = $(form[i]).attr('id');
+        let id = $(form[i]).attr('id');
+        let currStars = getNum(id);
         currStars = currStars.slice(-4);
         currStars = currStars.replace(/\D+/g, "");
-        let allStars = $(form[i]).children("label");
+        let allStars = $(form[i]).children("a");
 
         for (let j = 0; j < currStars; j++) {
             $(allStars[4 - j]).addClass('checked');

@@ -22,9 +22,9 @@
                 <a href="#" class="signin" th:if="${#authorization.expression('!isAuthenticated()')}">My account</a>
                 <!--If user is signed in-->
                 <div th:if="${#authorization.expression('isAuthenticated()')}">
-                    <a href="#" class="profile">My account</a>
+                    <a th:href="@{/profile}" class="profile">My profile</a>
                     <span>&#124;</span>
-                    <a href="#" th:href="@{/logout}" class="signout">Sign Out</a>
+                    <a th:href="@{/logout}" class="signout">Sign Out</a>
                 </div>
 
 

@@ -137,13 +137,13 @@
 <!--Raiting-->
 <div class="rating" th:fragment="stars(num,id)">
     <div class="stars">
-        <form action="" th:id="${num} + burger + ${id}">
+        <form action="" th:id="${num} + burgerUserRating + ${id}">
 
-            <a href="#" class="star star-1" id="star-5"></a>
-            <a href="#" class="star star-2" id="star-4"></a>
-            <a href="#" class="star star-3" id="star-3"></a>
-            <a href="#" class="star star-4" id="star-2"></a>
-            <a href="#" class="star star-5" id="star-1"></a>
+            <a th:href="@{/rateBurger(id=${id},rating=5)}" class="star star-1" id="star-5"></a>
+            <a th:href="@{/rateBurger(id=${id},rating=4)}" class="star star-2" id="star-4"></a>
+            <a th:href="@{/rateBurger(id=${id},rating=3)}" class="star star-3" id="star-3"></a>
+            <a th:href="@{/rateBurger(id=${id},rating=2)}" class="star star-4" id="star-2"></a>
+            <a th:href="@{/rateBurger(id=${id},rating=1)}" class="star star-5" id="star-1"></a>
 
         </form>
     </div>
@@ -155,6 +155,7 @@
 //        $('label.star').bind('click', function() {
        $('.stars form a').bind('click', function(e) {
            e.preventDefault();
+           $.get($(this).attr('href'), function(data){});
         var star = $(this);
         var widget = $(this).parent();
         var currId = star.attr('id');

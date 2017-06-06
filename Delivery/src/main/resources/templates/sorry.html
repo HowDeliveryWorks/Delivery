@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/mobile.css">
 
 </head>
+<body>
 <header>
     <div th:replace = "fragments/header :: header('')"></div>
 </header>
@@ -24,5 +25,6 @@
     <img src="img/cat.png" width="25%"></center>
     <br>
 </div>
-
+<div th:replace="fragments/login :: registration"></div>
+</body>
 </html>

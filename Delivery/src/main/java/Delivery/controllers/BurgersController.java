@@ -132,6 +132,35 @@ public class BurgersController {
         return "profile";
     }
 
+    @RequestMapping({ "/rateBurger" })
+    public String rateBurgerHandler(HttpServletRequest request, Model model, //
+                                    @RequestParam(value = "id", defaultValue = "") UUID id,
+                                    @RequestParam(value = "rating", defaultValue = "") int rating) {
+        model.addAttribute("user", new User());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        String eMail = auth.getName();
+        User currentUser = daoUsers.findByEmail(eMail);
+
+        List<BurgerUserRating> burgerUserRatingList = currentUser.getOrderedBurgers();
+
+        BurgerUserRating burMain = null;
+        for (BurgerUserRating bur : burgerUserRatingList) {
+            if (bur.getId().equals(id)) {
+                burMain = bur;
+            }
+        }
+
+        burgerUserRatingList.remove(burMain);
+        burMain.setRating(rating);
+        burgerUserRatingList.add(burMain);
+
+        currentUser.setOrderedBurgers(burgerUserRatingList);
+        daoUsers.save(currentUser);
+
+        return "forward:/profile";
+    }
+
     @GetMapping("/cart2")
     public String cart2(HttpServletRequest request, Model model){
         model.addAttribute("user", new User());
@@ -407,8 +436,8 @@ public class BurgersController {
     public String index(HttpServletRequest request, Model model){
         CartInfo cartInfo = Utils.getCartInSession(request);
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(auth.getName());
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        System.out.println(auth.getName());
 
         model.addAttribute("user", new User());
         return "index";

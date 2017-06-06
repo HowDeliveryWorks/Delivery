@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping("/login-success")
     public String loginSuccess(Model model, HttpServletRequest request) {
         System.out.print("success login");
-        return "sorry";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

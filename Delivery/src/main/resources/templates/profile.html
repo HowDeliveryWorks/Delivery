@@ -65,7 +65,7 @@
                     <a th:href="@{/buyBurgerMenu(id=${burgerUserRating.getBurger().getId()})}" class="btn-add" id="addToCart" onclick="addToCart(this)"></a>
                 </div>
             </div>
-            <div th:replace="fragments/login :: stars(${burgerUserRating.getRating()},${burgerUserRating.getBurger().getId()})"></div>
+            <div th:replace="fragments/login :: stars(${burgerUserRating.getRating()},${burgerUserRating.getId()})"></div>
             </div>
 
         </div>

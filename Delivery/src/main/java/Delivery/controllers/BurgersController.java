@@ -180,6 +180,17 @@ public class BurgersController {
         order.setBurgers(cartInfo.getCartLines());
         order.setId(sequenceDAO.getNextSequenceId(ORDER_SEQ_KEY));
         ordersDAO.insert(order);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getName() != "anonymousUser") {
+            String eMail = auth.getName();
+            User currentUser = daoUsers.findByEmail(eMail);
+            List<Order> userOrderList = currentUser.getOrders();
+            userOrderList.add(order);
+            currentUser.setOrders(userOrderList);
+            daoUsers.save(currentUser);
+        }
+
         ExecutorService exec = Executors.newFixedThreadPool(2);
         exec.submit(() -> am.sendMail(order.getEmail(),"Your Burgers Order", am.customerText(order)));
         exec.submit(() -> am.sendMail("howdeliveryworks@gmail.com","We got a new order!", am.ownerText(order)));
@@ -342,6 +353,31 @@ public class BurgersController {
         return "redirect:/cart";
     }
 
+    // GET: Enter customer information.
+    @RequestMapping(value = { "/shoppingCartCustomer" }, method = RequestMethod.GET)
+    public String shoppingCartCustomerForm(HttpServletRequest request, Model model) {
+        model.addAttribute("user", new User());
+
+
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        //model.addAttribute("currentCart", cartInfo);
+
+        // Cart is empty.
+        if (cartInfo.isEmpty()) {
+
+            // Redirect to cart page.
+            return "redirect:/cart";
+        }
+
+        CustomerInfo customerInfo = cartInfo.getCustomerInfo();
+        if (customerInfo == null) {
+            customerInfo = new CustomerInfo();
+        }
+
+        model.addAttribute("customerForm", customerInfo);
+
+        return "forward:/cart2";
+    }
 
     @GetMapping("/constructor")
     public String constructor(HttpServletRequest request, Model model){
